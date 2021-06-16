@@ -4,13 +4,13 @@ import io.loginid.sdk.java.api.CredentialsApi;
 import io.loginid.sdk.java.api.ManagementApi;
 import io.loginid.sdk.java.invokers.ApiClient;
 import io.loginid.sdk.java.invokers.ApiException;
-import io.loginid.sdk.java.invokers.ApiResponse;
 import io.loginid.sdk.java.model.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.UUID;
 
+@SuppressWarnings("unused")
 public class LoginIdManagement extends LoginId {
 
     public LoginIdManagement(String clientId, String privateKey, String baseUrl) {
@@ -78,6 +78,7 @@ public class LoginIdManagement extends LoginId {
         User result = managementApi.manageUsersUserIdDeactivatePut(getClientId(), userId);
     }
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     public CredentialsResponse getCredentials(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.list", null, null, null, null);
 
@@ -87,10 +88,10 @@ public class LoginIdManagement extends LoginId {
         apiClient.setAccessToken(token);
 
         CredentialsResponse result = credentialsApi.credentialsGet(UUID.fromString(userId), getClientId(), null);
-
         return result;
     }
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     public CredentialsRenameRevokeResponse renameCredential(String userId, String credId, String updatedName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.rename", null, null, null, null);
 
@@ -110,11 +111,11 @@ public class LoginIdManagement extends LoginId {
         credentialsRenameBody.setCredential(credentialsrenameCredential);
 
         CredentialsRenameRevokeResponse result = credentialsApi.credentialsRenamePost(credentialsRenameBody, null);
-
         return result;
     }
 
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     public CredentialsRenameRevokeResponse revokeCredential(String userId, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.revoke", null, null, null, null);
 
@@ -133,10 +134,10 @@ public class LoginIdManagement extends LoginId {
         credentialsRevokeBody.setCredential(credentialsrevokeCredential);
 
         CredentialsRenameRevokeResponse result = credentialsApi.credentialsRevokePost(credentialsRevokeBody, null);
-
         return result;
     }
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     public UserProfile addUserWithoutCredentials(String username) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("users.create", null, null, null, null);
 
@@ -149,7 +150,6 @@ public class LoginIdManagement extends LoginId {
         manageUsersBody.setUsername(username);
 
         UserProfile result = managementApi.manageUsersPost(getClientId(), manageUsersBody, null);
-
         return result;
     }
 }
