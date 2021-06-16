@@ -23,11 +23,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * CodeTypeInvalidateallBody
+ * CodeTypeAuthorizeBody
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class CodeTypeInvalidateallBody {
+public class CodesCodeTypeAuthorizeBody {
   @SerializedName("client_id")
   private String clientId = null;
 
@@ -78,7 +78,10 @@ public class CodeTypeInvalidateallBody {
   }  @SerializedName("purpose")
   private PurposeEnum purpose = null;
 
-  public CodeTypeInvalidateallBody clientId(String clientId) {
+  @SerializedName("code")
+  private String code = null;
+
+  public CodesCodeTypeAuthorizeBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -96,7 +99,7 @@ public class CodeTypeInvalidateallBody {
     this.clientId = clientId;
   }
 
-  public CodeTypeInvalidateallBody userId(String userId) {
+  public CodesCodeTypeAuthorizeBody userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -114,7 +117,7 @@ public class CodeTypeInvalidateallBody {
     this.userId = userId;
   }
 
-  public CodeTypeInvalidateallBody purpose(PurposeEnum purpose) {
+  public CodesCodeTypeAuthorizeBody purpose(PurposeEnum purpose) {
     this.purpose = purpose;
     return this;
   }
@@ -132,6 +135,24 @@ public class CodeTypeInvalidateallBody {
     this.purpose = purpose;
   }
 
+  public CodesCodeTypeAuthorizeBody code(String code) {
+    this.code = code;
+    return this;
+  }
+
+   /**
+   * Get code
+   * @return code
+  **/
+  @Schema(description = "")
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -141,26 +162,28 @@ public class CodeTypeInvalidateallBody {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CodeTypeInvalidateallBody codeTypeInvalidateallBody = (CodeTypeInvalidateallBody) o;
-    return Objects.equals(this.clientId, codeTypeInvalidateallBody.clientId) &&
-        Objects.equals(this.userId, codeTypeInvalidateallBody.userId) &&
-        Objects.equals(this.purpose, codeTypeInvalidateallBody.purpose);
+    CodesCodeTypeAuthorizeBody codesCodeTypeAuthorizeBody = (CodesCodeTypeAuthorizeBody) o;
+    return Objects.equals(this.clientId, codesCodeTypeAuthorizeBody.clientId) &&
+        Objects.equals(this.userId, codesCodeTypeAuthorizeBody.userId) &&
+        Objects.equals(this.purpose, codesCodeTypeAuthorizeBody.purpose) &&
+        Objects.equals(this.code, codesCodeTypeAuthorizeBody.code);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, userId, purpose);
+    return Objects.hash(clientId, userId, purpose, code);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CodeTypeInvalidateallBody {\n");
+    sb.append("class CodeTypeAuthorizeBody {\n");
 
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("}");
     return sb.toString();
   }

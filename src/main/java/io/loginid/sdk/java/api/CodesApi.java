@@ -49,7 +49,7 @@ public class CodesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call codesCodeTypeAuthorizePostCall(String codeType, CodeTypeAuthorizeBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call codesCodeTypeAuthorizePostCall(String codeType, CodesCodeTypeAuthorizeBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -94,7 +94,7 @@ public class CodesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call codesCodeTypeAuthorizePostValidateBeforeCall(String codeType, CodeTypeAuthorizeBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call codesCodeTypeAuthorizePostValidateBeforeCall(String codeType, CodesCodeTypeAuthorizeBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'codeType' is set
         if (codeType == null) {
             throw new ApiException("Missing the required parameter 'codeType' when calling codesCodeTypeAuthorizePost(Async)");
@@ -118,8 +118,8 @@ public class CodesApi {
      * @return InlineResponse2009
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2009 codesCodeTypeAuthorizePost(String codeType, CodeTypeAuthorizeBody body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse2009> resp = codesCodeTypeAuthorizePostWithHttpInfo(codeType, body, requestID);
+    public CodesCodeTypeAuthorizeResponse codesCodeTypeAuthorizePost(String codeType, CodesCodeTypeAuthorizeBody body, UUID requestID) throws ApiException {
+        ApiResponse<CodesCodeTypeAuthorizeResponse> resp = codesCodeTypeAuthorizePostWithHttpInfo(codeType, body, requestID);
         return resp.getData();
     }
 
@@ -132,9 +132,9 @@ public class CodesApi {
      * @return ApiResponse&lt;InlineResponse2009&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2009> codesCodeTypeAuthorizePostWithHttpInfo(String codeType, CodeTypeAuthorizeBody body, UUID requestID) throws ApiException {
+    public ApiResponse<CodesCodeTypeAuthorizeResponse> codesCodeTypeAuthorizePostWithHttpInfo(String codeType, CodesCodeTypeAuthorizeBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = codesCodeTypeAuthorizePostValidateBeforeCall(codeType, body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2009>(){}.getType();
+        Type localVarReturnType = new TypeToken<CodesCodeTypeAuthorizeResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -148,7 +148,7 @@ public class CodesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call codesCodeTypeAuthorizePostAsync(String codeType, CodeTypeAuthorizeBody body, UUID requestID, final ApiCallback<InlineResponse2009> callback) throws ApiException {
+    public com.squareup.okhttp.Call codesCodeTypeAuthorizePostAsync(String codeType, CodesCodeTypeAuthorizeBody body, UUID requestID, final ApiCallback<CodesCodeTypeAuthorizeResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -170,7 +170,7 @@ public class CodesApi {
         }
 
         com.squareup.okhttp.Call call = codesCodeTypeAuthorizePostValidateBeforeCall(codeType, body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2009>(){}.getType();
+        Type localVarReturnType = new TypeToken<CodesCodeTypeAuthorizeResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -184,7 +184,7 @@ public class CodesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call codesCodeTypeGeneratePostCall(String codeType, CodeTypeGenerateBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call codesCodeTypeGeneratePostCall(String codeType, CodesCodeTypeGenerateBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -229,7 +229,7 @@ public class CodesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call codesCodeTypeGeneratePostValidateBeforeCall(String codeType, CodeTypeGenerateBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call codesCodeTypeGeneratePostValidateBeforeCall(String codeType, CodesCodeTypeGenerateBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'codeType' is set
         if (codeType == null) {
             throw new ApiException("Missing the required parameter 'codeType' when calling codesCodeTypeGeneratePost(Async)");
@@ -253,8 +253,8 @@ public class CodesApi {
      * @return InlineResponse2008
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2008 codesCodeTypeGeneratePost(String codeType, CodeTypeGenerateBody body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse2008> resp = codesCodeTypeGeneratePostWithHttpInfo(codeType, body, requestID);
+    public CodesCodeTypeGenerateResponse codesCodeTypeGeneratePost(String codeType, CodesCodeTypeGenerateBody body, UUID requestID) throws ApiException {
+        ApiResponse<CodesCodeTypeGenerateResponse> resp = codesCodeTypeGeneratePostWithHttpInfo(codeType, body, requestID);
         return resp.getData();
     }
 
@@ -267,9 +267,9 @@ public class CodesApi {
      * @return ApiResponse&lt;InlineResponse2008&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2008> codesCodeTypeGeneratePostWithHttpInfo(String codeType, CodeTypeGenerateBody body, UUID requestID) throws ApiException {
+    public ApiResponse<CodesCodeTypeGenerateResponse> codesCodeTypeGeneratePostWithHttpInfo(String codeType, CodesCodeTypeGenerateBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = codesCodeTypeGeneratePostValidateBeforeCall(codeType, body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2008>(){}.getType();
+        Type localVarReturnType = new TypeToken<CodesCodeTypeGenerateResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -283,7 +283,7 @@ public class CodesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call codesCodeTypeGeneratePostAsync(String codeType, CodeTypeGenerateBody body, UUID requestID, final ApiCallback<InlineResponse2008> callback) throws ApiException {
+    public com.squareup.okhttp.Call codesCodeTypeGeneratePostAsync(String codeType, CodesCodeTypeGenerateBody body, UUID requestID, final ApiCallback<CodesCodeTypeGenerateResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -305,7 +305,7 @@ public class CodesApi {
         }
 
         com.squareup.okhttp.Call call = codesCodeTypeGeneratePostValidateBeforeCall(codeType, body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2008>(){}.getType();
+        Type localVarReturnType = new TypeToken<CodesCodeTypeGenerateResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -319,7 +319,7 @@ public class CodesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call codesCodeTypeInvalidateAllPostCall(String codeType, CodeTypeInvalidateallBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call codesCodeTypeInvalidateAllPostCall(String codeType, CodesCodeTypeInvalidateAllBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -364,7 +364,7 @@ public class CodesApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call codesCodeTypeInvalidateAllPostValidateBeforeCall(String codeType, CodeTypeInvalidateallBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call codesCodeTypeInvalidateAllPostValidateBeforeCall(String codeType, CodesCodeTypeInvalidateAllBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'codeType' is set
         if (codeType == null) {
             throw new ApiException("Missing the required parameter 'codeType' when calling codesCodeTypeInvalidateAllPost(Async)");
@@ -388,8 +388,8 @@ public class CodesApi {
      * @return InlineResponse20010
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse20010 codesCodeTypeInvalidateAllPost(String codeType, CodeTypeInvalidateallBody body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse20010> resp = codesCodeTypeInvalidateAllPostWithHttpInfo(codeType, body, requestID);
+    public CodesCodeTypeInvalidateAllResponse codesCodeTypeInvalidateAllPost(String codeType, CodesCodeTypeInvalidateAllBody body, UUID requestID) throws ApiException {
+        ApiResponse<CodesCodeTypeInvalidateAllResponse> resp = codesCodeTypeInvalidateAllPostWithHttpInfo(codeType, body, requestID);
         return resp.getData();
     }
 
@@ -402,9 +402,9 @@ public class CodesApi {
      * @return ApiResponse&lt;InlineResponse20010&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse20010> codesCodeTypeInvalidateAllPostWithHttpInfo(String codeType, CodeTypeInvalidateallBody body, UUID requestID) throws ApiException {
+    public ApiResponse<CodesCodeTypeInvalidateAllResponse> codesCodeTypeInvalidateAllPostWithHttpInfo(String codeType, CodesCodeTypeInvalidateAllBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = codesCodeTypeInvalidateAllPostValidateBeforeCall(codeType, body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20010>(){}.getType();
+        Type localVarReturnType = new TypeToken<CodesCodeTypeInvalidateAllResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -418,7 +418,7 @@ public class CodesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call codesCodeTypeInvalidateAllPostAsync(String codeType, CodeTypeInvalidateallBody body, UUID requestID, final ApiCallback<InlineResponse20010> callback) throws ApiException {
+    public com.squareup.okhttp.Call codesCodeTypeInvalidateAllPostAsync(String codeType, CodesCodeTypeInvalidateAllBody body, UUID requestID, final ApiCallback<CodesCodeTypeInvalidateAllResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -440,7 +440,7 @@ public class CodesApi {
         }
 
         com.squareup.okhttp.Call call = codesCodeTypeInvalidateAllPostValidateBeforeCall(codeType, body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20010>(){}.getType();
+        Type localVarReturnType = new TypeToken<CodesCodeTypeInvalidateAllResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

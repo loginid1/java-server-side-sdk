@@ -23,11 +23,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * CodeTypeAuthorizeBody
+ * CodeTypeGenerateBody
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class CodeTypeAuthorizeBody {
+public class CodesCodeTypeGenerateBody {
   @SerializedName("client_id")
   private String clientId = null;
 
@@ -78,10 +78,10 @@ public class CodeTypeAuthorizeBody {
   }  @SerializedName("purpose")
   private PurposeEnum purpose = null;
 
-  @SerializedName("code")
-  private String code = null;
+  @SerializedName("authorize")
+  private Boolean authorize = null;
 
-  public CodeTypeAuthorizeBody clientId(String clientId) {
+  public CodesCodeTypeGenerateBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -99,7 +99,7 @@ public class CodeTypeAuthorizeBody {
     this.clientId = clientId;
   }
 
-  public CodeTypeAuthorizeBody userId(String userId) {
+  public CodesCodeTypeGenerateBody userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -117,7 +117,7 @@ public class CodeTypeAuthorizeBody {
     this.userId = userId;
   }
 
-  public CodeTypeAuthorizeBody purpose(PurposeEnum purpose) {
+  public CodesCodeTypeGenerateBody purpose(PurposeEnum purpose) {
     this.purpose = purpose;
     return this;
   }
@@ -135,22 +135,22 @@ public class CodeTypeAuthorizeBody {
     this.purpose = purpose;
   }
 
-  public CodeTypeAuthorizeBody code(String code) {
-    this.code = code;
+  public CodesCodeTypeGenerateBody authorize(Boolean authorize) {
+    this.authorize = authorize;
     return this;
   }
 
    /**
-   * Get code
-   * @return code
+   * Get authorize
+   * @return authorize
   **/
   @Schema(description = "")
-  public String getCode() {
-    return code;
+  public Boolean isAuthorize() {
+    return authorize;
   }
 
-  public void setCode(String code) {
-    this.code = code;
+  public void setAuthorize(Boolean authorize) {
+    this.authorize = authorize;
   }
 
 
@@ -162,28 +162,28 @@ public class CodeTypeAuthorizeBody {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CodeTypeAuthorizeBody codeTypeAuthorizeBody = (CodeTypeAuthorizeBody) o;
-    return Objects.equals(this.clientId, codeTypeAuthorizeBody.clientId) &&
-        Objects.equals(this.userId, codeTypeAuthorizeBody.userId) &&
-        Objects.equals(this.purpose, codeTypeAuthorizeBody.purpose) &&
-        Objects.equals(this.code, codeTypeAuthorizeBody.code);
+    CodesCodeTypeGenerateBody codesCodeTypeGenerateBody = (CodesCodeTypeGenerateBody) o;
+    return Objects.equals(this.clientId, codesCodeTypeGenerateBody.clientId) &&
+        Objects.equals(this.userId, codesCodeTypeGenerateBody.userId) &&
+        Objects.equals(this.purpose, codesCodeTypeGenerateBody.purpose) &&
+        Objects.equals(this.authorize, codesCodeTypeGenerateBody.authorize);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, userId, purpose, code);
+    return Objects.hash(clientId, userId, purpose, authorize);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CodeTypeAuthorizeBody {\n");
+    sb.append("class CodeTypeGenerateBody {\n");
 
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    authorize: ").append(toIndentedString(authorize)).append("\n");
     sb.append("}");
     return sb.toString();
   }

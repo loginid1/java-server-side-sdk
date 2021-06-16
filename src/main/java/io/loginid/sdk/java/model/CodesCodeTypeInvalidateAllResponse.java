@@ -19,51 +19,30 @@ import org.threeten.bp.OffsetDateTime;
 import java.util.Objects;
 
 /**
- * InlineResponse2009
+ * InlineResponse20010
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2009 {
-  @SerializedName("expires_at")
-  private OffsetDateTime expiresAt = null;
+public class CodesCodeTypeInvalidateAllResponse {
+  @SerializedName("deleted_at")
+  private OffsetDateTime deletedAt = null;
 
-  @SerializedName("is_authorized")
-  private Boolean isAuthorized = null;
-
-  public InlineResponse2009 expiresAt(OffsetDateTime expiresAt) {
-    this.expiresAt = expiresAt;
+  public CodesCodeTypeInvalidateAllResponse deletedAt(OffsetDateTime deletedAt) {
+    this.deletedAt = deletedAt;
     return this;
   }
 
    /**
-   * Get expiresAt
-   * @return expiresAt
+   * Get deletedAt
+   * @return deletedAt
   **/
   @Schema(description = "")
-  public OffsetDateTime getExpiresAt() {
-    return expiresAt;
+  public OffsetDateTime getDeletedAt() {
+    return deletedAt;
   }
 
-  public void setExpiresAt(OffsetDateTime expiresAt) {
-    this.expiresAt = expiresAt;
-  }
-
-  public InlineResponse2009 isAuthorized(Boolean isAuthorized) {
-    this.isAuthorized = isAuthorized;
-    return this;
-  }
-
-   /**
-   * Get isAuthorized
-   * @return isAuthorized
-  **/
-  @Schema(description = "")
-  public Boolean isIsAuthorized() {
-    return isAuthorized;
-  }
-
-  public void setIsAuthorized(Boolean isAuthorized) {
-    this.isAuthorized = isAuthorized;
+  public void setDeletedAt(OffsetDateTime deletedAt) {
+    this.deletedAt = deletedAt;
   }
 
 
@@ -75,24 +54,22 @@ public class InlineResponse2009 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2009 inlineResponse2009 = (InlineResponse2009) o;
-    return Objects.equals(this.expiresAt, inlineResponse2009.expiresAt) &&
-        Objects.equals(this.isAuthorized, inlineResponse2009.isAuthorized);
+    CodesCodeTypeInvalidateAllResponse codesCodeTypeInvalidateAllResponse = (CodesCodeTypeInvalidateAllResponse) o;
+    return Objects.equals(this.deletedAt, codesCodeTypeInvalidateAllResponse.deletedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expiresAt, isAuthorized);
+    return Objects.hash(deletedAt);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2009 {\n");
+    sb.append("class InlineResponse20010 {\n");
 
-    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
-    sb.append("    isAuthorized: ").append(toIndentedString(isAuthorized)).append("\n");
+    sb.append("    deletedAt: ").append(toIndentedString(deletedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

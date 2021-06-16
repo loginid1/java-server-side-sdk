@@ -19,39 +19,18 @@ import org.threeten.bp.OffsetDateTime;
 import java.util.Objects;
 
 /**
- * InlineResponse2008
+ * InlineResponse2009
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2008 {
-  @SerializedName("code")
-  private String code = null;
-
+public class CodesCodeTypeAuthorizeResponse {
   @SerializedName("expires_at")
   private OffsetDateTime expiresAt = null;
 
   @SerializedName("is_authorized")
   private Boolean isAuthorized = null;
 
-  public InlineResponse2008 code(String code) {
-    this.code = code;
-    return this;
-  }
-
-   /**
-   * Get code
-   * @return code
-  **/
-  @Schema(description = "")
-  public String getCode() {
-    return code;
-  }
-
-  public void setCode(String code) {
-    this.code = code;
-  }
-
-  public InlineResponse2008 expiresAt(OffsetDateTime expiresAt) {
+  public CodesCodeTypeAuthorizeResponse expiresAt(OffsetDateTime expiresAt) {
     this.expiresAt = expiresAt;
     return this;
   }
@@ -69,7 +48,7 @@ public class InlineResponse2008 {
     this.expiresAt = expiresAt;
   }
 
-  public InlineResponse2008 isAuthorized(Boolean isAuthorized) {
+  public CodesCodeTypeAuthorizeResponse isAuthorized(Boolean isAuthorized) {
     this.isAuthorized = isAuthorized;
     return this;
   }
@@ -96,24 +75,22 @@ public class InlineResponse2008 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2008 inlineResponse2008 = (InlineResponse2008) o;
-    return Objects.equals(this.code, inlineResponse2008.code) &&
-        Objects.equals(this.expiresAt, inlineResponse2008.expiresAt) &&
-        Objects.equals(this.isAuthorized, inlineResponse2008.isAuthorized);
+    CodesCodeTypeAuthorizeResponse codesCodeTypeAuthorizeResponse = (CodesCodeTypeAuthorizeResponse) o;
+    return Objects.equals(this.expiresAt, codesCodeTypeAuthorizeResponse.expiresAt) &&
+        Objects.equals(this.isAuthorized, codesCodeTypeAuthorizeResponse.isAuthorized);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, expiresAt, isAuthorized);
+    return Objects.hash(expiresAt, isAuthorized);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2008 {\n");
+    sb.append("class InlineResponse2009 {\n");
 
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("    isAuthorized: ").append(toIndentedString(isAuthorized)).append("\n");
     sb.append("}");

@@ -114,7 +114,7 @@ public class LoginId {
         return jws;
     }
 
-    public ApiResponse<InlineResponse2008> generateCode(String userId, String codeType, String codePurpose, boolean isAuthorized) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public ApiResponse<CodesCodeTypeGenerateResponse> generateCode(String userId, String codeType, String codePurpose, boolean isAuthorized) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("codes.generate", null, null, null, null);
 
         CodesApi codesApi = new CodesApi();
@@ -122,16 +122,16 @@ public class LoginId {
 
         apiClient.setAccessToken(token);
 
-        CodeTypeGenerateBody codeTypeGenerateBody = new CodeTypeGenerateBody();
-        codeTypeGenerateBody.setClientId(clientId);
-        codeTypeGenerateBody.setUserId(userId);
-        codeTypeGenerateBody.setPurpose(CodeTypeGenerateBody.PurposeEnum.fromValue(codePurpose));
-        codeTypeGenerateBody.setAuthorize(isAuthorized);
+        CodesCodeTypeGenerateBody codesCodeTypeGenerateBody = new CodesCodeTypeGenerateBody();
+        codesCodeTypeGenerateBody.setClientId(clientId);
+        codesCodeTypeGenerateBody.setUserId(userId);
+        codesCodeTypeGenerateBody.setPurpose(CodesCodeTypeGenerateBody.PurposeEnum.fromValue(codePurpose));
+        codesCodeTypeGenerateBody.setAuthorize(isAuthorized);
 
-        return codesApi.codesCodeTypeGeneratePostWithHttpInfo(codeType, codeTypeGenerateBody, null);
+        return codesApi.codesCodeTypeGeneratePostWithHttpInfo(codeType, codesCodeTypeGenerateBody, null);
     }
 
-    public ApiResponse<InlineResponse2009> authorizeCode(String userId, String code, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public ApiResponse<CodesCodeTypeAuthorizeResponse> authorizeCode(String userId, String code, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
         }
@@ -143,17 +143,17 @@ public class LoginId {
 
         apiClient.setAccessToken(token);
 
-        CodeTypeAuthorizeBody codeTypeAuthorizeBody = new CodeTypeAuthorizeBody();
+        CodesCodeTypeAuthorizeBody codesCodeTypeAuthorizeBody = new CodesCodeTypeAuthorizeBody();
 
-        codeTypeAuthorizeBody.setClientId(clientId);
-        codeTypeAuthorizeBody.setUserId(userId);
-        codeTypeAuthorizeBody.setPurpose(CodeTypeAuthorizeBody.PurposeEnum.fromValue(codePurpose));
-        codeTypeAuthorizeBody.setCode(code);
+        codesCodeTypeAuthorizeBody.setClientId(clientId);
+        codesCodeTypeAuthorizeBody.setUserId(userId);
+        codesCodeTypeAuthorizeBody.setPurpose(CodesCodeTypeAuthorizeBody.PurposeEnum.fromValue(codePurpose));
+        codesCodeTypeAuthorizeBody.setCode(code);
 
-        return codesApi.codesCodeTypeAuthorizePostWithHttpInfo(codeType, codeTypeAuthorizeBody, null);
+        return codesApi.codesCodeTypeAuthorizePostWithHttpInfo(codeType, codesCodeTypeAuthorizeBody, null);
     }
 
-    public ApiResponse<InlineResponse20010> invalidateAllCodes(String userId, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public ApiResponse<CodesCodeTypeInvalidateAllResponse> invalidateAllCodes(String userId, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
         }
@@ -165,10 +165,10 @@ public class LoginId {
 
         apiClient.setAccessToken(token);
 
-        CodeTypeInvalidateallBody codeTypeInvalidateallBody = new CodeTypeInvalidateallBody();
-        codeTypeInvalidateallBody.setClientId(clientId);
-        codeTypeInvalidateallBody.setPurpose(CodeTypeInvalidateallBody.PurposeEnum.fromValue(codePurpose));
-        codeTypeInvalidateallBody.setUserId(userId);
+        CodesCodeTypeInvalidateAllBody codesCodeTypeInvalidateAllBody = new CodesCodeTypeInvalidateAllBody();
+        codesCodeTypeInvalidateAllBody.setClientId(clientId);
+        codesCodeTypeInvalidateAllBody.setPurpose(CodesCodeTypeInvalidateAllBody.PurposeEnum.fromValue(codePurpose));
+        codesCodeTypeInvalidateAllBody.setUserId(userId);
 
         return codesApi.codesCodeTypeInvalidateAllPostWithHttpInfo(codeType, null, null);
     }
