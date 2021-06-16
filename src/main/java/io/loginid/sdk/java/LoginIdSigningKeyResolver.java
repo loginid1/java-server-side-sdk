@@ -21,11 +21,7 @@ public class LoginIdSigningKeyResolver extends SigningKeyResolverAdapter {
         Key key = null;
         try {
             key = lookupVerificationKey(keyId);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        } catch (ApiException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException | ApiException e) {
             e.printStackTrace();
         }
 
@@ -38,11 +34,8 @@ public class LoginIdSigningKeyResolver extends SigningKeyResolverAdapter {
         return certificatesApi.certsGetWithHttpInfo(keyId, null).getData();
     }
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     private Key lookupVerificationKey(String keyId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-//        String publicKeyContent = "-----BEGIN PUBLIC KEY-----" +
-//                "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEpnAHxBlabYP9EPr32lkfARyVfSxO" +
-//                "jGP0LLgt4nprTIGYrg0oMjiJNBNbhV4vI3pDyScSNCbjeXd2UKlhQLXb0Q==" +
-//                "-----END PUBLIC KEY-----";
         String publicKeyContent = getPublicKey(keyId);
         publicKeyContent = publicKeyContent.replaceAll("\\n", "").replace("-----BEGIN PUBLIC KEY-----", "")
                 .replace("-----END PUBLIC KEY-----", "");
