@@ -6,7 +6,6 @@ import io.loginid.sdk.java.api.CodesApi;
 import io.loginid.sdk.java.api.TransactionsApi;
 import io.loginid.sdk.java.invokers.ApiClient;
 import io.loginid.sdk.java.invokers.ApiException;
-import io.loginid.sdk.java.invokers.ApiResponse;
 import io.loginid.sdk.java.model.*;
 
 import java.nio.charset.StandardCharsets;
@@ -19,6 +18,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.time.Instant;
 import java.util.*;
 
+@SuppressWarnings("unused")
 public class LoginId {
     private final String clientId;
     private final String privateKey;
@@ -37,6 +37,7 @@ public class LoginId {
         return clientId;
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isValidCodeType(String codeType) {
         return codeTypes.contains(codeType);
     }
@@ -49,6 +50,7 @@ public class LoginId {
         return getRandomString(16);
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     public String getRandomString(int length) {
         String randomCharSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
         StringBuilder randomString = new StringBuilder();
@@ -64,6 +66,7 @@ public class LoginId {
         return verifyToken(token, null);
     }
 
+    @SuppressWarnings({"SpellCheckingInspection", "rawtypes"})
     public boolean verifyToken(String token, String userName) {
         SigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
         Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(token);
@@ -77,6 +80,7 @@ public class LoginId {
         return true;
     }
 
+    @SuppressWarnings({"UnnecessaryLocalVariable", "DuplicatedCode"})
     public String generateServiceToken(String scope, String algorithm, String userName, String userId, String nonce) throws NoSuchAlgorithmException, InvalidKeySpecException {
         if (algorithm == null) {
             algorithm = "ES256";
@@ -118,8 +122,9 @@ public class LoginId {
         String token = generateServiceToken("codes.generate", null, null, null, null);
 
         CodesApi codesApi = new CodesApi();
-        ApiClient apiClient = codesApi.getApiClient();
 
+        ApiClient apiClient = codesApi.getApiClient();
+        apiClient.setBasePath(baseUrl);
         apiClient.setAccessToken(token);
 
         CodesCodeTypeGenerateBody codesCodeTypeGenerateBody = new CodesCodeTypeGenerateBody();
@@ -139,8 +144,9 @@ public class LoginId {
         String token = generateServiceToken("codes.authorize", null, null, null, null);
 
         CodesApi codesApi = new CodesApi();
-        ApiClient apiClient = codesApi.getApiClient();
 
+        ApiClient apiClient = codesApi.getApiClient();
+        apiClient.setBasePath(baseUrl);
         apiClient.setAccessToken(token);
 
         CodesCodeTypeAuthorizeBody codesCodeTypeAuthorizeBody = new CodesCodeTypeAuthorizeBody();
@@ -161,8 +167,9 @@ public class LoginId {
         String token = generateServiceToken("codes.invalidate", null, null, null, null);
 
         CodesApi codesApi = new CodesApi();
-        ApiClient apiClient = codesApi.getApiClient();
 
+        ApiClient apiClient = codesApi.getApiClient();
+        apiClient.setBasePath(baseUrl);
         apiClient.setAccessToken(token);
 
         CodesCodeTypeInvalidateAllBody codesCodeTypeInvalidateAllBody = new CodesCodeTypeInvalidateAllBody();
@@ -181,8 +188,9 @@ public class LoginId {
         String token = generateServiceToken("auth.temporary", null, null, null, null);
 
         AuthenticateApi authenticateApi = new AuthenticateApi();
-        ApiClient apiClient = authenticateApi.getApiClient();
 
+        ApiClient apiClient = authenticateApi.getApiClient();
+        apiClient.setBasePath(baseUrl);
         apiClient.setAccessToken(token);
 
         AuthenticateCodeWaitBody authenticateCodeWaitBody = new AuthenticateCodeWaitBody();
@@ -204,13 +212,14 @@ public class LoginId {
         return result;
     }
 
+    @SuppressWarnings({"UnnecessaryLocalVariable", "DuplicatedCode"})
     public String generateTxAuthToken(String txPayload, String userName, String nonce) throws NoSuchAlgorithmException, InvalidKeySpecException {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
         byte[] hashBytes = messageDigest.digest(txPayload.getBytes(StandardCharsets.UTF_8));
         String hash = Base64.getUrlEncoder().encodeToString(hashBytes);
 
-        hash.replaceAll("^=+", "");
-        hash.replaceAll("=+$", "");
+        hash = hash.replaceAll("^=+", "");
+        hash = hash.replaceAll("=+$", "");
 
         String algorithm = "ES256";
         if (nonce == null) {
@@ -246,7 +255,9 @@ public class LoginId {
 
     public String createTxId(String txPayload, String userName) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
         TransactionsApi transactionsApi = new TransactionsApi();
+
         ApiClient apiClient = transactionsApi.getApiClient();
+        apiClient.setBasePath(baseUrl);
 
         String token = generateTxAuthToken(txPayload, userName, null);
         apiClient.setAccessToken(token);
@@ -262,6 +273,7 @@ public class LoginId {
         return result.getTxId();
     }
 
+    @SuppressWarnings("rawtypes")
     public boolean verifyTransaction(String txToken, String txPayload) throws NoSuchAlgorithmException {
         SigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
         Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(txToken);
@@ -277,8 +289,8 @@ public class LoginId {
         byte[] hashBytes = messageDigest.digest(toHash.getBytes(StandardCharsets.UTF_8));
         String hash = Base64.getUrlEncoder().encodeToString(hashBytes);
 
-        hash.replaceAll("^=+", "");
-        hash.replaceAll("=+$", "");
+        hash = hash.replaceAll("^=+", "");
+        hash = hash.replaceAll("=+$", "");
 
         return payload.get("tx_hash").equals(hash);
     }
