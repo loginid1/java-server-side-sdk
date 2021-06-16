@@ -25,9 +25,9 @@ public class LoginIdManagement extends LoginId {
 
         apiClient.setAccessToken(token);
 
-        UsersRetrieveBody usersRetrieveBody = new UsersRetrieveBody();
-        usersRetrieveBody.setUsername(userName);
-        ApiResponse<UserProfile> result = managementApi.manageUsersRetrievePostWithHttpInfo(getClientId(), usersRetrieveBody);
+        ManageUsersRetrieveBody manageUsersRetrieveBody = new ManageUsersRetrieveBody();
+        manageUsersRetrieveBody.setUsername(userName);
+        ApiResponse<UserProfile> result = managementApi.manageUsersRetrievePostWithHttpInfo(getClientId(), manageUsersRetrieveBody);
 
         return result.getData().getId();
     }
@@ -40,9 +40,9 @@ public class LoginIdManagement extends LoginId {
 
         apiClient.setAccessToken(token);
 
-        UsersDeleteBody usersDeleteBody = new UsersDeleteBody();
-        usersDeleteBody.setUsername(username);
-        ApiResponse<Void> result = managementApi.manageUsersDeletePostWithHttpInfo(getClientId(), usersDeleteBody);
+        ManageUsersDeleteBody manageUsersDeleteBody = new ManageUsersDeleteBody();
+        manageUsersDeleteBody.setUsername(username);
+        ApiResponse<Void> result = managementApi.manageUsersDeletePostWithHttpInfo(getClientId(), manageUsersDeleteBody);
     }
 
     public void deleteByUserId(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {

@@ -49,7 +49,7 @@ public class ManagementApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call manageUsersDeletePostCall(String xClientID, UsersDeleteBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call manageUsersDeletePostCall(String xClientID, ManageUsersDeleteBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -93,7 +93,7 @@ public class ManagementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call manageUsersDeletePostValidateBeforeCall(String xClientID, UsersDeleteBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call manageUsersDeletePostValidateBeforeCall(String xClientID, ManageUsersDeleteBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'xClientID' is set
         if (xClientID == null) {
             throw new ApiException("Missing the required parameter 'xClientID' when calling manageUsersDeletePost(Async)");
@@ -101,8 +101,6 @@ public class ManagementApi {
 
         com.squareup.okhttp.Call call = manageUsersDeletePostCall(xClientID, body, progressListener, progressRequestListener);
         return call;
-
-
     }
 
     /**
@@ -113,7 +111,7 @@ public class ManagementApi {
      * @param body      (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void manageUsersDeletePost(String xClientID, UsersDeleteBody body) throws ApiException {
+    public void manageUsersDeletePost(String xClientID, ManageUsersDeleteBody body) throws ApiException {
         manageUsersDeletePostWithHttpInfo(xClientID, body);
     }
 
@@ -126,7 +124,7 @@ public class ManagementApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> manageUsersDeletePostWithHttpInfo(String xClientID, UsersDeleteBody body) throws ApiException {
+    public ApiResponse<Void> manageUsersDeletePostWithHttpInfo(String xClientID, ManageUsersDeleteBody body) throws ApiException {
         com.squareup.okhttp.Call call = manageUsersDeletePostValidateBeforeCall(xClientID, body, null, null);
         return apiClient.execute(call);
     }
@@ -141,7 +139,7 @@ public class ManagementApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call manageUsersDeletePostAsync(String xClientID, UsersDeleteBody body, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call manageUsersDeletePostAsync(String xClientID, ManageUsersDeleteBody body, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -232,8 +230,6 @@ public class ManagementApi {
 
         com.squareup.okhttp.Call call = manageUsersPostCall(xClientID, body, requestID, progressListener, progressRequestListener);
         return call;
-
-
     }
 
     /**
@@ -317,7 +313,7 @@ public class ManagementApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call manageUsersRetrievePostCall(String xClientID, UsersRetrieveBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call manageUsersRetrievePostCall(String xClientID, ManageUsersRetrieveBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -361,7 +357,7 @@ public class ManagementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call manageUsersRetrievePostValidateBeforeCall(String xClientID, UsersRetrieveBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call manageUsersRetrievePostValidateBeforeCall(String xClientID, ManageUsersRetrieveBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'xClientID' is set
         if (xClientID == null) {
             throw new ApiException("Missing the required parameter 'xClientID' when calling manageUsersRetrievePost(Async)");
@@ -382,7 +378,7 @@ public class ManagementApi {
      * @return UserProfile
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserProfile manageUsersRetrievePost(String xClientID, UsersRetrieveBody body) throws ApiException {
+    public UserProfile manageUsersRetrievePost(String xClientID, ManageUsersRetrieveBody body) throws ApiException {
         ApiResponse<UserProfile> resp = manageUsersRetrievePostWithHttpInfo(xClientID, body);
         return resp.getData();
     }
@@ -396,7 +392,7 @@ public class ManagementApi {
      * @return ApiResponse&lt;UserProfile&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserProfile> manageUsersRetrievePostWithHttpInfo(String xClientID, UsersRetrieveBody body) throws ApiException {
+    public ApiResponse<UserProfile> manageUsersRetrievePostWithHttpInfo(String xClientID, ManageUsersRetrieveBody body) throws ApiException {
         com.squareup.okhttp.Call call = manageUsersRetrievePostValidateBeforeCall(xClientID, body, null, null);
         Type localVarReturnType = new TypeToken<UserProfile>() {
         }.getType();
@@ -413,7 +409,7 @@ public class ManagementApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call manageUsersRetrievePostAsync(String xClientID, UsersRetrieveBody body, final ApiCallback<UserProfile> callback) throws ApiException {
+    public com.squareup.okhttp.Call manageUsersRetrievePostAsync(String xClientID, ManageUsersRetrieveBody body, final ApiCallback<UserProfile> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -508,8 +504,6 @@ public class ManagementApi {
 
         com.squareup.okhttp.Call call = manageUsersUserIdActivatePutCall(xClientID, userId, progressListener, progressRequestListener);
         return call;
-
-
     }
 
     /**

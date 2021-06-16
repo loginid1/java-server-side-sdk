@@ -22,11 +22,11 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class UsersDeleteBody {
+public class ManageUsersDeleteBody {
   @SerializedName("username")
   private String username = null;
 
-  public UsersDeleteBody username(String username) {
+  public ManageUsersDeleteBody username(String username) {
     this.username = username;
     return this;
   }
@@ -53,8 +53,8 @@ public class UsersDeleteBody {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UsersDeleteBody usersDeleteBody = (UsersDeleteBody) o;
-    return Objects.equals(this.username, usersDeleteBody.username);
+    ManageUsersDeleteBody manageUsersDeleteBody = (ManageUsersDeleteBody) o;
+    return Objects.equals(this.username, manageUsersDeleteBody.username);
   }
 
   @Override
