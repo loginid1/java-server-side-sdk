@@ -18,21 +18,24 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * InitCodeBody
+ * Fido2CompleteBody2
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InitCodeBody {
+public class CredentialsFido2CompleteBody {
   @SerializedName("client_id")
   private String clientId = null;
 
   @SerializedName("user_id")
   private String userId = null;
 
-  @SerializedName("authentication_code")
-  private Credentialsfido2initcodeAuthenticationCode authenticationCode = null;
+  @SerializedName("attestation_payload")
+  private Credentialsfido2completeAttestationPayload attestationPayload = null;
 
-  public InitCodeBody clientId(String clientId) {
+  @SerializedName("options")
+  private Registerfido2completeOptions options = null;
+
+  public CredentialsFido2CompleteBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -50,7 +53,7 @@ public class InitCodeBody {
     this.clientId = clientId;
   }
 
-  public InitCodeBody userId(String userId) {
+  public CredentialsFido2CompleteBody userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -68,22 +71,40 @@ public class InitCodeBody {
     this.userId = userId;
   }
 
-  public InitCodeBody authenticationCode(Credentialsfido2initcodeAuthenticationCode authenticationCode) {
-    this.authenticationCode = authenticationCode;
+  public CredentialsFido2CompleteBody attestationPayload(Credentialsfido2completeAttestationPayload attestationPayload) {
+    this.attestationPayload = attestationPayload;
     return this;
   }
 
    /**
-   * Get authenticationCode
-   * @return authenticationCode
+   * Get attestationPayload
+   * @return attestationPayload
   **/
   @Schema(description = "")
-  public Credentialsfido2initcodeAuthenticationCode getAuthenticationCode() {
-    return authenticationCode;
+  public Credentialsfido2completeAttestationPayload getAttestationPayload() {
+    return attestationPayload;
   }
 
-  public void setAuthenticationCode(Credentialsfido2initcodeAuthenticationCode authenticationCode) {
-    this.authenticationCode = authenticationCode;
+  public void setAttestationPayload(Credentialsfido2completeAttestationPayload attestationPayload) {
+    this.attestationPayload = attestationPayload;
+  }
+
+  public CredentialsFido2CompleteBody options(Registerfido2completeOptions options) {
+    this.options = options;
+    return this;
+  }
+
+   /**
+   * Get options
+   * @return options
+  **/
+  @Schema(description = "")
+  public Registerfido2completeOptions getOptions() {
+    return options;
+  }
+
+  public void setOptions(Registerfido2completeOptions options) {
+    this.options = options;
   }
 
 
@@ -95,26 +116,28 @@ public class InitCodeBody {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InitCodeBody initCodeBody = (InitCodeBody) o;
-    return Objects.equals(this.clientId, initCodeBody.clientId) &&
-        Objects.equals(this.userId, initCodeBody.userId) &&
-        Objects.equals(this.authenticationCode, initCodeBody.authenticationCode);
+    CredentialsFido2CompleteBody credentialsFido2CompleteBody = (CredentialsFido2CompleteBody) o;
+    return Objects.equals(this.clientId, credentialsFido2CompleteBody.clientId) &&
+        Objects.equals(this.userId, credentialsFido2CompleteBody.userId) &&
+        Objects.equals(this.attestationPayload, credentialsFido2CompleteBody.attestationPayload) &&
+        Objects.equals(this.options, credentialsFido2CompleteBody.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, userId, authenticationCode);
+    return Objects.hash(clientId, userId, attestationPayload, options);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InitCodeBody {\n");
+    sb.append("class Fido2CompleteBody2 {\n");
 
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
-    sb.append("    authenticationCode: ").append(toIndentedString(authenticationCode)).append("\n");
+    sb.append("    attestationPayload: ").append(toIndentedString(attestationPayload)).append("\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -78,7 +78,7 @@ public class LoginIdManagement extends LoginId {
         ApiResponse<User> result = managementApi.manageUsersUserIdDeactivatePutWithHttpInfo(getClientId(), userId);
     }
 
-    public ApiResponse<InlineResponse20011> getCredentials(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public ApiResponse<CredentialsResponse> getCredentials(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.list", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
@@ -86,12 +86,12 @@ public class LoginIdManagement extends LoginId {
 
         apiClient.setAccessToken(token);
 
-        ApiResponse<InlineResponse20011> result = credentialsApi.credentialsGetWithHttpInfo(UUID.fromString(userId), getClientId(), null);
+        ApiResponse<CredentialsResponse> result = credentialsApi.credentialsGetWithHttpInfo(UUID.fromString(userId), getClientId(), null);
 
         return result;
     }
 
-    public ApiResponse<InlineResponse20012> renameCredential(String userId, String credId, String updatedName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public ApiResponse<CredentialsRenameRevokeResponse> renameCredential(String userId, String credId, String updatedName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.rename", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
@@ -109,13 +109,13 @@ public class LoginIdManagement extends LoginId {
 
         credentialsRenameBody.setCredential(credentialsrenameCredential);
 
-        ApiResponse<InlineResponse20012> result = credentialsApi.credentialsRenamePostWithHttpInfo(credentialsRenameBody, null);
+        ApiResponse<CredentialsRenameRevokeResponse> result = credentialsApi.credentialsRenamePostWithHttpInfo(credentialsRenameBody, null);
 
         return result;
     }
 
 
-    public ApiResponse<InlineResponse20012> revokeCredential(String userId, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public ApiResponse<CredentialsRenameRevokeResponse> revokeCredential(String userId, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.revoke", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
@@ -132,7 +132,7 @@ public class LoginIdManagement extends LoginId {
 
         credentialsRevokeBody.setCredential(credentialsrevokeCredential);
 
-        ApiResponse<InlineResponse20012> result = credentialsApi.credentialsRevokePostWithHttpInfo(credentialsRevokeBody, null);
+        ApiResponse<CredentialsRenameRevokeResponse> result = credentialsApi.credentialsRevokePostWithHttpInfo(credentialsRevokeBody, null);
 
         return result;
     }

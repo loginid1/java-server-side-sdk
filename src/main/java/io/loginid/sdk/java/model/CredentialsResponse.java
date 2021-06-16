@@ -24,14 +24,14 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse20011 {
+public class CredentialsResponse {
   @SerializedName("user_id")
   private String userId = null;
 
   @SerializedName("credentials")
   private List<CredentialFull> credentials = new ArrayList<CredentialFull>();
 
-  public InlineResponse20011 userId(String userId) {
+  public CredentialsResponse userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -49,12 +49,12 @@ public class InlineResponse20011 {
     this.userId = userId;
   }
 
-  public InlineResponse20011 credentials(List<CredentialFull> credentials) {
+  public CredentialsResponse credentials(List<CredentialFull> credentials) {
     this.credentials = credentials;
     return this;
   }
 
-  public InlineResponse20011 addCredentialsItem(CredentialFull credentialsItem) {
+  public CredentialsResponse addCredentialsItem(CredentialFull credentialsItem) {
     this.credentials.add(credentialsItem);
     return this;
   }
@@ -81,9 +81,9 @@ public class InlineResponse20011 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse20011 inlineResponse20011 = (InlineResponse20011) o;
-    return Objects.equals(this.userId, inlineResponse20011.userId) &&
-        Objects.equals(this.credentials, inlineResponse20011.credentials);
+    CredentialsResponse credentialsResponse = (CredentialsResponse) o;
+    return Objects.equals(this.userId, credentialsResponse.userId) &&
+        Objects.equals(this.credentials, credentialsResponse.credentials);
   }
 
   @Override

@@ -22,14 +22,14 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse20012 {
+public class CredentialsRenameRevokeResponse {
   @SerializedName("user_id")
   private String userId = null;
 
   @SerializedName("credential")
   private CredentialFull credential = null;
 
-  public InlineResponse20012 userId(String userId) {
+  public CredentialsRenameRevokeResponse userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -47,7 +47,7 @@ public class InlineResponse20012 {
     this.userId = userId;
   }
 
-  public InlineResponse20012 credential(CredentialFull credential) {
+  public CredentialsRenameRevokeResponse credential(CredentialFull credential) {
     this.credential = credential;
     return this;
   }
@@ -74,9 +74,9 @@ public class InlineResponse20012 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse20012 inlineResponse20012 = (InlineResponse20012) o;
-    return Objects.equals(this.userId, inlineResponse20012.userId) &&
-        Objects.equals(this.credential, inlineResponse20012.credential);
+    CredentialsRenameRevokeResponse credentialsRenameRevokeResponse = (CredentialsRenameRevokeResponse) o;
+    return Objects.equals(this.userId, credentialsRenameRevokeResponse.userId) &&
+        Objects.equals(this.credential, credentialsRenameRevokeResponse.credential);
   }
 
   @Override

@@ -22,11 +22,11 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse20013 {
+public class CredentialsFido2InitCodeResponse {
   @SerializedName("attestation_payload")
   private InlineResponse200AttestationPayload attestationPayload = null;
 
-  public InlineResponse20013 attestationPayload(InlineResponse200AttestationPayload attestationPayload) {
+  public CredentialsFido2InitCodeResponse attestationPayload(InlineResponse200AttestationPayload attestationPayload) {
     this.attestationPayload = attestationPayload;
     return this;
   }
@@ -53,8 +53,8 @@ public class InlineResponse20013 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse20013 inlineResponse20013 = (InlineResponse20013) o;
-    return Objects.equals(this.attestationPayload, inlineResponse20013.attestationPayload);
+    CredentialsFido2InitCodeResponse credentialsFido2InitCodeResponse = (CredentialsFido2InitCodeResponse) o;
+    return Objects.equals(this.attestationPayload, credentialsFido2InitCodeResponse.attestationPayload);
   }
 
   @Override

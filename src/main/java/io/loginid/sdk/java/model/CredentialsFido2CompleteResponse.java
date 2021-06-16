@@ -22,7 +22,7 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse20014 {
+public class CredentialsFido2CompleteResponse {
   @SerializedName("credential_uuid")
   private String credentialUuid = null;
 
@@ -35,7 +35,7 @@ public class InlineResponse20014 {
   @SerializedName("jwt")
   private String jwt = null;
 
-  public InlineResponse20014 credentialUuid(String credentialUuid) {
+  public CredentialsFido2CompleteResponse credentialUuid(String credentialUuid) {
     this.credentialUuid = credentialUuid;
     return this;
   }
@@ -53,7 +53,7 @@ public class InlineResponse20014 {
     this.credentialUuid = credentialUuid;
   }
 
-  public InlineResponse20014 username(String username) {
+  public CredentialsFido2CompleteResponse username(String username) {
     this.username = username;
     return this;
   }
@@ -71,7 +71,7 @@ public class InlineResponse20014 {
     this.username = username;
   }
 
-  public InlineResponse20014 namespaceId(String namespaceId) {
+  public CredentialsFido2CompleteResponse namespaceId(String namespaceId) {
     this.namespaceId = namespaceId;
     return this;
   }
@@ -89,7 +89,7 @@ public class InlineResponse20014 {
     this.namespaceId = namespaceId;
   }
 
-  public InlineResponse20014 jwt(String jwt) {
+  public CredentialsFido2CompleteResponse jwt(String jwt) {
     this.jwt = jwt;
     return this;
   }
@@ -116,11 +116,11 @@ public class InlineResponse20014 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse20014 inlineResponse20014 = (InlineResponse20014) o;
-    return Objects.equals(this.credentialUuid, inlineResponse20014.credentialUuid) &&
-        Objects.equals(this.username, inlineResponse20014.username) &&
-        Objects.equals(this.namespaceId, inlineResponse20014.namespaceId) &&
-        Objects.equals(this.jwt, inlineResponse20014.jwt);
+    CredentialsFido2CompleteResponse credentialsFido2CompleteResponse = (CredentialsFido2CompleteResponse) o;
+    return Objects.equals(this.credentialUuid, credentialsFido2CompleteResponse.credentialUuid) &&
+        Objects.equals(this.username, credentialsFido2CompleteResponse.username) &&
+        Objects.equals(this.namespaceId, credentialsFido2CompleteResponse.namespaceId) &&
+        Objects.equals(this.jwt, credentialsFido2CompleteResponse.jwt);
   }
 
   @Override

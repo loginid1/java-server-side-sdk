@@ -48,7 +48,7 @@ public class CredentialsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call credentialsFido2CompletePostCall(Fido2CompleteBody2 body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call credentialsFido2CompletePostCall(CredentialsFido2CompleteBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -92,7 +92,7 @@ public class CredentialsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call credentialsFido2CompletePostValidateBeforeCall(Fido2CompleteBody2 body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call credentialsFido2CompletePostValidateBeforeCall(CredentialsFido2CompleteBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
 
         com.squareup.okhttp.Call call = credentialsFido2CompletePostCall(body, requestID, progressListener, progressRequestListener);
         return call;
@@ -111,8 +111,8 @@ public class CredentialsApi {
      * @return InlineResponse20014
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse20014 credentialsFido2CompletePost(Fido2CompleteBody2 body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse20014> resp = credentialsFido2CompletePostWithHttpInfo(body, requestID);
+    public CredentialsFido2CompleteResponse credentialsFido2CompletePost(CredentialsFido2CompleteBody body, UUID requestID) throws ApiException {
+        ApiResponse<CredentialsFido2CompleteResponse> resp = credentialsFido2CompletePostWithHttpInfo(body, requestID);
         return resp.getData();
     }
 
@@ -124,9 +124,9 @@ public class CredentialsApi {
      * @return ApiResponse&lt;InlineResponse20014&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse20014> credentialsFido2CompletePostWithHttpInfo(Fido2CompleteBody2 body, UUID requestID) throws ApiException {
+    public ApiResponse<CredentialsFido2CompleteResponse> credentialsFido2CompletePostWithHttpInfo(CredentialsFido2CompleteBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = credentialsFido2CompletePostValidateBeforeCall(body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20014>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsFido2CompleteResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -139,7 +139,7 @@ public class CredentialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call credentialsFido2CompletePostAsync(Fido2CompleteBody2 body, UUID requestID, final ApiCallback<InlineResponse20014> callback) throws ApiException {
+    public com.squareup.okhttp.Call credentialsFido2CompletePostAsync(CredentialsFido2CompleteBody body, UUID requestID, final ApiCallback<CredentialsFido2CompleteResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -161,7 +161,7 @@ public class CredentialsApi {
         }
 
         com.squareup.okhttp.Call call = credentialsFido2CompletePostValidateBeforeCall(body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20014>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsFido2CompleteResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -174,7 +174,7 @@ public class CredentialsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call credentialsFido2InitCodePostCall(InitCodeBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call credentialsFido2InitCodePostCall(CredentialsFido2InitCodeBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -218,15 +218,9 @@ public class CredentialsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call credentialsFido2InitCodePostValidateBeforeCall(InitCodeBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-
+    private com.squareup.okhttp.Call credentialsFido2InitCodePostValidateBeforeCall(CredentialsFido2InitCodeBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         com.squareup.okhttp.Call call = credentialsFido2InitCodePostCall(body, requestID, progressListener, progressRequestListener);
         return call;
-
-
-
-
-
     }
 
     /**
@@ -237,8 +231,8 @@ public class CredentialsApi {
      * @return InlineResponse20013
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse20013 credentialsFido2InitCodePost(InitCodeBody body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse20013> resp = credentialsFido2InitCodePostWithHttpInfo(body, requestID);
+    public CredentialsFido2InitCodeResponse credentialsFido2InitCodePost(CredentialsFido2InitCodeBody body, UUID requestID) throws ApiException {
+        ApiResponse<CredentialsFido2InitCodeResponse> resp = credentialsFido2InitCodePostWithHttpInfo(body, requestID);
         return resp.getData();
     }
 
@@ -250,9 +244,9 @@ public class CredentialsApi {
      * @return ApiResponse&lt;InlineResponse20013&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse20013> credentialsFido2InitCodePostWithHttpInfo(InitCodeBody body, UUID requestID) throws ApiException {
+    public ApiResponse<CredentialsFido2InitCodeResponse> credentialsFido2InitCodePostWithHttpInfo(CredentialsFido2InitCodeBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = credentialsFido2InitCodePostValidateBeforeCall(body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20013>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsFido2InitCodeResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -265,7 +259,7 @@ public class CredentialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call credentialsFido2InitCodePostAsync(InitCodeBody body, UUID requestID, final ApiCallback<InlineResponse20013> callback) throws ApiException {
+    public com.squareup.okhttp.Call credentialsFido2InitCodePostAsync(CredentialsFido2InitCodeBody body, UUID requestID, final ApiCallback<CredentialsFido2InitCodeResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -287,7 +281,7 @@ public class CredentialsApi {
         }
 
         com.squareup.okhttp.Call call = credentialsFido2InitCodePostValidateBeforeCall(body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20013>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsFido2InitCodeResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -377,8 +371,8 @@ public class CredentialsApi {
      * @return InlineResponse20011
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse20011 credentialsGet(UUID userId, String xClientID, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse20011> resp = credentialsGetWithHttpInfo(userId, xClientID, requestID);
+    public CredentialsResponse credentialsGet(UUID userId, String xClientID, UUID requestID) throws ApiException {
+        ApiResponse<CredentialsResponse> resp = credentialsGetWithHttpInfo(userId, xClientID, requestID);
         return resp.getData();
     }
 
@@ -391,9 +385,9 @@ public class CredentialsApi {
      * @return ApiResponse&lt;InlineResponse20011&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse20011> credentialsGetWithHttpInfo(UUID userId, String xClientID, UUID requestID) throws ApiException {
+    public ApiResponse<CredentialsResponse> credentialsGetWithHttpInfo(UUID userId, String xClientID, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = credentialsGetValidateBeforeCall(userId, xClientID, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20011>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -407,7 +401,7 @@ public class CredentialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call credentialsGetAsync(UUID userId, String xClientID, UUID requestID, final ApiCallback<InlineResponse20011> callback) throws ApiException {
+    public com.squareup.okhttp.Call credentialsGetAsync(UUID userId, String xClientID, UUID requestID, final ApiCallback<CredentialsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -429,7 +423,7 @@ public class CredentialsApi {
         }
 
         com.squareup.okhttp.Call call = credentialsGetValidateBeforeCall(userId, xClientID, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20011>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -487,14 +481,8 @@ public class CredentialsApi {
 
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call credentialsRenamePostValidateBeforeCall(CredentialsRenameBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-
         com.squareup.okhttp.Call call = credentialsRenamePostCall(body, requestID, progressListener, progressRequestListener);
         return call;
-
-
-
-
-
     }
 
     /**
@@ -505,8 +493,8 @@ public class CredentialsApi {
      * @return InlineResponse20012
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse20012 credentialsRenamePost(CredentialsRenameBody body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse20012> resp = credentialsRenamePostWithHttpInfo(body, requestID);
+    public CredentialsRenameRevokeResponse credentialsRenamePost(CredentialsRenameBody body, UUID requestID) throws ApiException {
+        ApiResponse<CredentialsRenameRevokeResponse> resp = credentialsRenamePostWithHttpInfo(body, requestID);
         return resp.getData();
     }
 
@@ -518,9 +506,9 @@ public class CredentialsApi {
      * @return ApiResponse&lt;InlineResponse20012&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse20012> credentialsRenamePostWithHttpInfo(CredentialsRenameBody body, UUID requestID) throws ApiException {
+    public ApiResponse<CredentialsRenameRevokeResponse> credentialsRenamePostWithHttpInfo(CredentialsRenameBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = credentialsRenamePostValidateBeforeCall(body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20012>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsRenameRevokeResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -533,7 +521,7 @@ public class CredentialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call credentialsRenamePostAsync(CredentialsRenameBody body, UUID requestID, final ApiCallback<InlineResponse20012> callback) throws ApiException {
+    public com.squareup.okhttp.Call credentialsRenamePostAsync(CredentialsRenameBody body, UUID requestID, final ApiCallback<CredentialsRenameRevokeResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -555,7 +543,7 @@ public class CredentialsApi {
         }
 
         com.squareup.okhttp.Call call = credentialsRenamePostValidateBeforeCall(body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20012>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsRenameRevokeResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -613,14 +601,8 @@ public class CredentialsApi {
     
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call credentialsRevokePostValidateBeforeCall(CredentialsRevokeBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
         com.squareup.okhttp.Call call = credentialsRevokePostCall(body, requestID, progressListener, progressRequestListener);
         return call;
-
-        
-        
-        
-        
     }
 
     /**
@@ -631,8 +613,8 @@ public class CredentialsApi {
      * @return InlineResponse20012
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse20012 credentialsRevokePost(CredentialsRevokeBody body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse20012> resp = credentialsRevokePostWithHttpInfo(body, requestID);
+    public CredentialsRenameRevokeResponse credentialsRevokePost(CredentialsRevokeBody body, UUID requestID) throws ApiException {
+        ApiResponse<CredentialsRenameRevokeResponse> resp = credentialsRevokePostWithHttpInfo(body, requestID);
         return resp.getData();
     }
 
@@ -644,9 +626,9 @@ public class CredentialsApi {
      * @return ApiResponse&lt;InlineResponse20012&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse20012> credentialsRevokePostWithHttpInfo(CredentialsRevokeBody body, UUID requestID) throws ApiException {
+    public ApiResponse<CredentialsRenameRevokeResponse> credentialsRevokePostWithHttpInfo(CredentialsRevokeBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = credentialsRevokePostValidateBeforeCall(body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse20012>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsRenameRevokeResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -659,7 +641,7 @@ public class CredentialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call credentialsRevokePostAsync(CredentialsRevokeBody body, UUID requestID, final ApiCallback<InlineResponse20012> callback) throws ApiException {
+    public com.squareup.okhttp.Call credentialsRevokePostAsync(CredentialsRevokeBody body, UUID requestID, final ApiCallback<CredentialsRenameRevokeResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -681,7 +663,7 @@ public class CredentialsApi {
         }
 
         com.squareup.okhttp.Call call = credentialsRevokePostValidateBeforeCall(body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse20012>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsRenameRevokeResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
