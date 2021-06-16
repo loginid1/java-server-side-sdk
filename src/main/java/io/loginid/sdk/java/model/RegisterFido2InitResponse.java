@@ -22,14 +22,14 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse200 {
+public class RegisterFido2InitResponse {
   @SerializedName("attestation_payload")
   private InlineResponse200AttestationPayload attestationPayload = null;
 
   @SerializedName("register_session")
   private String registerSession = null;
 
-  public InlineResponse200 attestationPayload(InlineResponse200AttestationPayload attestationPayload) {
+  public RegisterFido2InitResponse attestationPayload(InlineResponse200AttestationPayload attestationPayload) {
     this.attestationPayload = attestationPayload;
     return this;
   }
@@ -47,7 +47,7 @@ public class InlineResponse200 {
     this.attestationPayload = attestationPayload;
   }
 
-  public InlineResponse200 registerSession(String registerSession) {
+  public RegisterFido2InitResponse registerSession(String registerSession) {
     this.registerSession = registerSession;
     return this;
   }
@@ -74,9 +74,9 @@ public class InlineResponse200 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse200 inlineResponse200 = (InlineResponse200) o;
-    return Objects.equals(this.attestationPayload, inlineResponse200.attestationPayload) &&
-        Objects.equals(this.registerSession, inlineResponse200.registerSession);
+    RegisterFido2InitResponse registerFido2InitResponse = (RegisterFido2InitResponse) o;
+    return Objects.equals(this.attestationPayload, registerFido2InitResponse.attestationPayload) &&
+        Objects.equals(this.registerSession, registerFido2InitResponse.registerSession);
   }
 
   @Override

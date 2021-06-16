@@ -103,11 +103,6 @@ public class RegisterApi {
 
         com.squareup.okhttp.Call call = registerCompletePostCall(origin, body, requestID, progressListener, progressRequestListener);
         return call;
-
-
-
-
-
     }
 
     /**
@@ -184,7 +179,7 @@ public class RegisterApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call registerFido2CompletePostCall(Fido2CompleteBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call registerFido2CompletePostCall(RegisterFido2CompleteBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -228,15 +223,10 @@ public class RegisterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call registerFido2CompletePostValidateBeforeCall(Fido2CompleteBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call registerFido2CompletePostValidateBeforeCall(RegisterFido2CompleteBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
 
         com.squareup.okhttp.Call call = registerFido2CompletePostCall(body, requestID, progressListener, progressRequestListener);
         return call;
-
-
-
-
-
     }
 
     /**
@@ -247,7 +237,7 @@ public class RegisterApi {
      * @return AuthenticationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public AuthenticationResponse registerFido2CompletePost(Fido2CompleteBody body, UUID requestID) throws ApiException {
+    public AuthenticationResponse registerFido2CompletePost(RegisterFido2CompleteBody body, UUID requestID) throws ApiException {
         ApiResponse<AuthenticationResponse> resp = registerFido2CompletePostWithHttpInfo(body, requestID);
         return resp.getData();
     }
@@ -260,7 +250,7 @@ public class RegisterApi {
      * @return ApiResponse&lt;AuthenticationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<AuthenticationResponse> registerFido2CompletePostWithHttpInfo(Fido2CompleteBody body, UUID requestID) throws ApiException {
+    public ApiResponse<AuthenticationResponse> registerFido2CompletePostWithHttpInfo(RegisterFido2CompleteBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = registerFido2CompletePostValidateBeforeCall(body, requestID, null, null);
         Type localVarReturnType = new TypeToken<AuthenticationResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -275,7 +265,7 @@ public class RegisterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call registerFido2CompletePostAsync(Fido2CompleteBody body, UUID requestID, final ApiCallback<AuthenticationResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call registerFido2CompletePostAsync(RegisterFido2CompleteBody body, UUID requestID, final ApiCallback<AuthenticationResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -310,7 +300,7 @@ public class RegisterApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call registerFido2InitPostCall(Fido2InitBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call registerFido2InitPostCall(RegisterFido2InitBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -354,15 +344,10 @@ public class RegisterApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call registerFido2InitPostValidateBeforeCall(Fido2InitBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call registerFido2InitPostValidateBeforeCall(RegisterFido2InitBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
 
         com.squareup.okhttp.Call call = registerFido2InitPostCall(body, requestID, progressListener, progressRequestListener);
         return call;
-
-
-
-
-
     }
 
     /**
@@ -373,8 +358,8 @@ public class RegisterApi {
      * @return InlineResponse200
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse200 registerFido2InitPost(Fido2InitBody body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse200> resp = registerFido2InitPostWithHttpInfo(body, requestID);
+    public RegisterFido2InitResponse registerFido2InitPost(RegisterFido2InitBody body, UUID requestID) throws ApiException {
+        ApiResponse<RegisterFido2InitResponse> resp = registerFido2InitPostWithHttpInfo(body, requestID);
         return resp.getData();
     }
 
@@ -386,9 +371,9 @@ public class RegisterApi {
      * @return ApiResponse&lt;InlineResponse200&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse200> registerFido2InitPostWithHttpInfo(Fido2InitBody body, UUID requestID) throws ApiException {
+    public ApiResponse<RegisterFido2InitResponse> registerFido2InitPostWithHttpInfo(RegisterFido2InitBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = registerFido2InitPostValidateBeforeCall(body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<RegisterFido2InitResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -401,7 +386,7 @@ public class RegisterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call registerFido2InitPostAsync(Fido2InitBody body, UUID requestID, final ApiCallback<InlineResponse200> callback) throws ApiException {
+    public com.squareup.okhttp.Call registerFido2InitPostAsync(RegisterFido2InitBody body, UUID requestID, final ApiCallback<RegisterFido2InitResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -423,7 +408,7 @@ public class RegisterApi {
         }
 
         com.squareup.okhttp.Call call = registerFido2InitPostValidateBeforeCall(body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<RegisterFido2InitResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -491,11 +476,6 @@ public class RegisterApi {
 
         com.squareup.okhttp.Call call = registerInitPostCall(origin, body, requestID, progressListener, progressRequestListener);
         return call;
-
-
-
-
-
     }
 
     /**
@@ -507,8 +487,8 @@ public class RegisterApi {
      * @return InlineResponse2001
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2001 registerInitPost(String origin, RegisterInitBody body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse2001> resp = registerInitPostWithHttpInfo(origin, body, requestID);
+    public RegisterInitResponse registerInitPost(String origin, RegisterInitBody body, UUID requestID) throws ApiException {
+        ApiResponse<RegisterInitResponse> resp = registerInitPostWithHttpInfo(origin, body, requestID);
         return resp.getData();
     }
 
@@ -521,9 +501,9 @@ public class RegisterApi {
      * @return ApiResponse&lt;InlineResponse2001&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2001> registerInitPostWithHttpInfo(String origin, RegisterInitBody body, UUID requestID) throws ApiException {
+    public ApiResponse<RegisterInitResponse> registerInitPostWithHttpInfo(String origin, RegisterInitBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = registerInitPostValidateBeforeCall(origin, body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2001>(){}.getType();
+        Type localVarReturnType = new TypeToken<RegisterInitResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -537,7 +517,7 @@ public class RegisterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call registerInitPostAsync(String origin, RegisterInitBody body, UUID requestID, final ApiCallback<InlineResponse2001> callback) throws ApiException {
+    public com.squareup.okhttp.Call registerInitPostAsync(String origin, RegisterInitBody body, UUID requestID, final ApiCallback<RegisterInitResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -559,7 +539,7 @@ public class RegisterApi {
         }
 
         com.squareup.okhttp.Call call = registerInitPostValidateBeforeCall(origin, body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2001>(){}.getType();
+        Type localVarReturnType = new TypeToken<RegisterInitResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -620,11 +600,6 @@ public class RegisterApi {
         
         com.squareup.okhttp.Call call = registerPasswordPostCall(body, requestID, progressListener, progressRequestListener);
         return call;
-
-        
-        
-        
-        
     }
 
     /**

@@ -24,16 +24,16 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2001 {
+public class RegisterInitResponse {
   @SerializedName("strategies")
   private List<InlineResponse2001Strategies> strategies = null;
 
-  public InlineResponse2001 strategies(List<InlineResponse2001Strategies> strategies) {
+  public RegisterInitResponse strategies(List<InlineResponse2001Strategies> strategies) {
     this.strategies = strategies;
     return this;
   }
 
-  public InlineResponse2001 addStrategiesItem(InlineResponse2001Strategies strategiesItem) {
+  public RegisterInitResponse addStrategiesItem(InlineResponse2001Strategies strategiesItem) {
     if (this.strategies == null) {
       this.strategies = new ArrayList<InlineResponse2001Strategies>();
     }
@@ -63,8 +63,8 @@ public class InlineResponse2001 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2001 inlineResponse2001 = (InlineResponse2001) o;
-    return Objects.equals(this.strategies, inlineResponse2001.strategies);
+    RegisterInitResponse registerInitResponse = (RegisterInitResponse) o;
+    return Objects.equals(this.strategies, registerInitResponse.strategies);
   }
 
   @Override
