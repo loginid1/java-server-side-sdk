@@ -18,18 +18,18 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * InlineResponse2006
+ * InlineResponse2005
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2006 {
+public class TxResponse {
   @SerializedName("tx_id")
   private String txId = null;
 
-  @SerializedName("assertion_options")
-  private InlineResponse2006AssertionOptions assertionOptions = null;
+  @SerializedName("url")
+  private String url = null;
 
-  public InlineResponse2006 txId(String txId) {
+  public TxResponse txId(String txId) {
     this.txId = txId;
     return this;
   }
@@ -38,7 +38,7 @@ public class InlineResponse2006 {
    * Get txId
    * @return txId
   **/
-  @Schema(example = "5de548f0-caa2-4a5f-93f3-066ae6fc8feb", description = "")
+  @Schema(description = "")
   public String getTxId() {
     return txId;
   }
@@ -47,22 +47,22 @@ public class InlineResponse2006 {
     this.txId = txId;
   }
 
-  public InlineResponse2006 assertionOptions(InlineResponse2006AssertionOptions assertionOptions) {
-    this.assertionOptions = assertionOptions;
+  public TxResponse url(String url) {
+    this.url = url;
     return this;
   }
 
    /**
-   * Get assertionOptions
-   * @return assertionOptions
+   * Get url
+   * @return url
   **/
   @Schema(description = "")
-  public InlineResponse2006AssertionOptions getAssertionOptions() {
-    return assertionOptions;
+  public String getUrl() {
+    return url;
   }
 
-  public void setAssertionOptions(InlineResponse2006AssertionOptions assertionOptions) {
-    this.assertionOptions = assertionOptions;
+  public void setUrl(String url) {
+    this.url = url;
   }
 
 
@@ -74,24 +74,24 @@ public class InlineResponse2006 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2006 inlineResponse2006 = (InlineResponse2006) o;
-    return Objects.equals(this.txId, inlineResponse2006.txId) &&
-        Objects.equals(this.assertionOptions, inlineResponse2006.assertionOptions);
+    TxResponse txResponse = (TxResponse) o;
+    return Objects.equals(this.txId, txResponse.txId) &&
+        Objects.equals(this.url, txResponse.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(txId, assertionOptions);
+    return Objects.hash(txId, url);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2006 {\n");
+    sb.append("class InlineResponse2005 {\n");
 
     sb.append("    txId: ").append(toIndentedString(txId)).append("\n");
-    sb.append("    assertionOptions: ").append(toIndentedString(assertionOptions)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }

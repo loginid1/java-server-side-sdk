@@ -258,7 +258,7 @@ public class LoginId {
         txBody.setTxPayload(txPayload);
         txBody.setNonce(getRandomString());
 
-        ApiResponse<InlineResponse2005> result = transactionsApi.txPostWithHttpInfo(txBody);
+        ApiResponse<TxResponse> result = transactionsApi.txPostWithHttpInfo(txBody);
         return result.getData().getTxId();
     }
 

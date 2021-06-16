@@ -18,51 +18,30 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * InlineResponse2005
+ * InlineResponse2007
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2005 {
-  @SerializedName("tx_id")
-  private String txId = null;
+public class TxCompleteResponse {
+  @SerializedName("jwt")
+  private String jwt = null;
 
-  @SerializedName("url")
-  private String url = null;
-
-  public InlineResponse2005 txId(String txId) {
-    this.txId = txId;
+  public TxCompleteResponse jwt(String jwt) {
+    this.jwt = jwt;
     return this;
   }
 
    /**
-   * Get txId
-   * @return txId
+   * Get jwt
+   * @return jwt
   **/
-  @Schema(description = "")
-  public String getTxId() {
-    return txId;
+  @Schema(example = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZ....", description = "")
+  public String getJwt() {
+    return jwt;
   }
 
-  public void setTxId(String txId) {
-    this.txId = txId;
-  }
-
-  public InlineResponse2005 url(String url) {
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * Get url
-   * @return url
-  **/
-  @Schema(description = "")
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
+  public void setJwt(String jwt) {
+    this.jwt = jwt;
   }
 
 
@@ -74,24 +53,22 @@ public class InlineResponse2005 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2005 inlineResponse2005 = (InlineResponse2005) o;
-    return Objects.equals(this.txId, inlineResponse2005.txId) &&
-        Objects.equals(this.url, inlineResponse2005.url);
+    TxCompleteResponse txCompleteResponse = (TxCompleteResponse) o;
+    return Objects.equals(this.jwt, txCompleteResponse.jwt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(txId, url);
+    return Objects.hash(jwt);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2005 {\n");
+    sb.append("class InlineResponse2007 {\n");
 
-    sb.append("    txId: ").append(toIndentedString(txId)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    jwt: ").append(toIndentedString(jwt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

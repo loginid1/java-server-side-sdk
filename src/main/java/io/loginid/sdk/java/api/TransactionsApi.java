@@ -96,11 +96,6 @@ public class TransactionsApi {
 
         com.squareup.okhttp.Call call = txCompletePostCall(body, progressListener, progressRequestListener);
         return call;
-
-
-
-
-
     }
 
     /**
@@ -110,8 +105,8 @@ public class TransactionsApi {
      * @return InlineResponse2007
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2007 txCompletePost(TxCompleteBody body) throws ApiException {
-        ApiResponse<InlineResponse2007> resp = txCompletePostWithHttpInfo(body);
+    public TxCompleteResponse txCompletePost(TxCompleteBody body) throws ApiException {
+        ApiResponse<TxCompleteResponse> resp = txCompletePostWithHttpInfo(body);
         return resp.getData();
     }
 
@@ -122,9 +117,9 @@ public class TransactionsApi {
      * @return ApiResponse&lt;InlineResponse2007&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2007> txCompletePostWithHttpInfo(TxCompleteBody body) throws ApiException {
+    public ApiResponse<TxCompleteResponse> txCompletePostWithHttpInfo(TxCompleteBody body) throws ApiException {
         com.squareup.okhttp.Call call = txCompletePostValidateBeforeCall(body, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2007>(){}.getType();
+        Type localVarReturnType = new TypeToken<TxCompleteResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -136,7 +131,7 @@ public class TransactionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call txCompletePostAsync(TxCompleteBody body, final ApiCallback<InlineResponse2007> callback) throws ApiException {
+    public com.squareup.okhttp.Call txCompletePostAsync(TxCompleteBody body, final ApiCallback<TxCompleteResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -158,7 +153,7 @@ public class TransactionsApi {
         }
 
         com.squareup.okhttp.Call call = txCompletePostValidateBeforeCall(body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2007>(){}.getType();
+        Type localVarReturnType = new TypeToken<TxCompleteResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -216,11 +211,6 @@ public class TransactionsApi {
 
         com.squareup.okhttp.Call call = txInitPostCall(body, progressListener, progressRequestListener);
         return call;
-
-
-
-
-
     }
 
     /**
@@ -230,8 +220,8 @@ public class TransactionsApi {
      * @return InlineResponse2006
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2006 txInitPost(TxInitBody body) throws ApiException {
-        ApiResponse<InlineResponse2006> resp = txInitPostWithHttpInfo(body);
+    public TxInitResponse txInitPost(TxInitBody body) throws ApiException {
+        ApiResponse<TxInitResponse> resp = txInitPostWithHttpInfo(body);
         return resp.getData();
     }
 
@@ -242,9 +232,9 @@ public class TransactionsApi {
      * @return ApiResponse&lt;InlineResponse2006&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2006> txInitPostWithHttpInfo(TxInitBody body) throws ApiException {
+    public ApiResponse<TxInitResponse> txInitPostWithHttpInfo(TxInitBody body) throws ApiException {
         com.squareup.okhttp.Call call = txInitPostValidateBeforeCall(body, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2006>(){}.getType();
+        Type localVarReturnType = new TypeToken<TxInitResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -256,7 +246,7 @@ public class TransactionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call txInitPostAsync(TxInitBody body, final ApiCallback<InlineResponse2006> callback) throws ApiException {
+    public com.squareup.okhttp.Call txInitPostAsync(TxInitBody body, final ApiCallback<TxInitResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -278,7 +268,7 @@ public class TransactionsApi {
         }
 
         com.squareup.okhttp.Call call = txInitPostValidateBeforeCall(body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2006>(){}.getType();
+        Type localVarReturnType = new TypeToken<TxInitResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -336,11 +326,6 @@ public class TransactionsApi {
         
         com.squareup.okhttp.Call call = txPostCall(body, progressListener, progressRequestListener);
         return call;
-
-        
-        
-        
-        
     }
 
     /**
@@ -350,8 +335,8 @@ public class TransactionsApi {
      * @return InlineResponse2005
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2005 txPost(TxBody body) throws ApiException {
-        ApiResponse<InlineResponse2005> resp = txPostWithHttpInfo(body);
+    public TxResponse txPost(TxBody body) throws ApiException {
+        ApiResponse<TxResponse> resp = txPostWithHttpInfo(body);
         return resp.getData();
     }
 
@@ -362,9 +347,9 @@ public class TransactionsApi {
      * @return ApiResponse&lt;InlineResponse2005&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2005> txPostWithHttpInfo(TxBody body) throws ApiException {
+    public ApiResponse<TxResponse> txPostWithHttpInfo(TxBody body) throws ApiException {
         com.squareup.okhttp.Call call = txPostValidateBeforeCall(body, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2005>(){}.getType();
+        Type localVarReturnType = new TypeToken<TxResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -376,7 +361,7 @@ public class TransactionsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call txPostAsync(TxBody body, final ApiCallback<InlineResponse2005> callback) throws ApiException {
+    public com.squareup.okhttp.Call txPostAsync(TxBody body, final ApiCallback<TxResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -398,7 +383,7 @@ public class TransactionsApi {
         }
 
         com.squareup.okhttp.Call call = txPostValidateBeforeCall(body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2005>(){}.getType();
+        Type localVarReturnType = new TypeToken<TxResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

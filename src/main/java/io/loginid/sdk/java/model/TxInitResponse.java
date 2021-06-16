@@ -18,30 +18,51 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * InlineResponse2007
+ * InlineResponse2006
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2007 {
-  @SerializedName("jwt")
-  private String jwt = null;
+public class TxInitResponse {
+  @SerializedName("tx_id")
+  private String txId = null;
 
-  public InlineResponse2007 jwt(String jwt) {
-    this.jwt = jwt;
+  @SerializedName("assertion_options")
+  private InlineResponse2006AssertionOptions assertionOptions = null;
+
+  public TxInitResponse txId(String txId) {
+    this.txId = txId;
     return this;
   }
 
    /**
-   * Get jwt
-   * @return jwt
+   * Get txId
+   * @return txId
   **/
-  @Schema(example = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZ....", description = "")
-  public String getJwt() {
-    return jwt;
+  @Schema(example = "5de548f0-caa2-4a5f-93f3-066ae6fc8feb", description = "")
+  public String getTxId() {
+    return txId;
   }
 
-  public void setJwt(String jwt) {
-    this.jwt = jwt;
+  public void setTxId(String txId) {
+    this.txId = txId;
+  }
+
+  public TxInitResponse assertionOptions(InlineResponse2006AssertionOptions assertionOptions) {
+    this.assertionOptions = assertionOptions;
+    return this;
+  }
+
+   /**
+   * Get assertionOptions
+   * @return assertionOptions
+  **/
+  @Schema(description = "")
+  public InlineResponse2006AssertionOptions getAssertionOptions() {
+    return assertionOptions;
+  }
+
+  public void setAssertionOptions(InlineResponse2006AssertionOptions assertionOptions) {
+    this.assertionOptions = assertionOptions;
   }
 
 
@@ -53,22 +74,24 @@ public class InlineResponse2007 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2007 inlineResponse2007 = (InlineResponse2007) o;
-    return Objects.equals(this.jwt, inlineResponse2007.jwt);
+    TxInitResponse txInitResponse = (TxInitResponse) o;
+    return Objects.equals(this.txId, txInitResponse.txId) &&
+        Objects.equals(this.assertionOptions, txInitResponse.assertionOptions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jwt);
+    return Objects.hash(txId, assertionOptions);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2007 {\n");
+    sb.append("class InlineResponse2006 {\n");
 
-    sb.append("    jwt: ").append(toIndentedString(jwt)).append("\n");
+    sb.append("    txId: ").append(toIndentedString(txId)).append("\n");
+    sb.append("    assertionOptions: ").append(toIndentedString(assertionOptions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
