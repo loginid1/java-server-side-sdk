@@ -22,7 +22,7 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2002 {
+public class AuthenticateCompleteResponse {
   @SerializedName("jwt")
   private String jwt = null;
 
@@ -35,7 +35,7 @@ public class InlineResponse2002 {
   @SerializedName("organization")
   private String organization = null;
 
-  public InlineResponse2002 jwt(String jwt) {
+  public AuthenticateCompleteResponse jwt(String jwt) {
     this.jwt = jwt;
     return this;
   }
@@ -53,7 +53,7 @@ public class InlineResponse2002 {
     this.jwt = jwt;
   }
 
-  public InlineResponse2002 uid(String uid) {
+  public AuthenticateCompleteResponse uid(String uid) {
     this.uid = uid;
     return this;
   }
@@ -71,7 +71,7 @@ public class InlineResponse2002 {
     this.uid = uid;
   }
 
-  public InlineResponse2002 username(String username) {
+  public AuthenticateCompleteResponse username(String username) {
     this.username = username;
     return this;
   }
@@ -89,7 +89,7 @@ public class InlineResponse2002 {
     this.username = username;
   }
 
-  public InlineResponse2002 organization(String organization) {
+  public AuthenticateCompleteResponse organization(String organization) {
     this.organization = organization;
     return this;
   }
@@ -116,11 +116,11 @@ public class InlineResponse2002 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2002 inlineResponse2002 = (InlineResponse2002) o;
-    return Objects.equals(this.jwt, inlineResponse2002.jwt) &&
-        Objects.equals(this.uid, inlineResponse2002.uid) &&
-        Objects.equals(this.username, inlineResponse2002.username) &&
-        Objects.equals(this.organization, inlineResponse2002.organization);
+    AuthenticateCompleteResponse authenticateCompleteResponse = (AuthenticateCompleteResponse) o;
+    return Objects.equals(this.jwt, authenticateCompleteResponse.jwt) &&
+        Objects.equals(this.uid, authenticateCompleteResponse.uid) &&
+        Objects.equals(this.username, authenticateCompleteResponse.username) &&
+        Objects.equals(this.organization, authenticateCompleteResponse.organization);
   }
 
   @Override

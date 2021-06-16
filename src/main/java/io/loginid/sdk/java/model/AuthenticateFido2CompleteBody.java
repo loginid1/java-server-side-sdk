@@ -18,21 +18,21 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * CodeWaitBody
+ * Fido2CompleteBody1
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class CodeWaitBody {
+public class AuthenticateFido2CompleteBody {
   @SerializedName("client_id")
   private String clientId = null;
 
   @SerializedName("username")
   private String username = null;
 
-  @SerializedName("authentication_code")
-  private AuthenticatecodewaitAuthenticationCode authenticationCode = null;
+  @SerializedName("assertion_payload")
+  private Authenticatefido2completeAssertionPayload assertionPayload = null;
 
-  public CodeWaitBody clientId(String clientId) {
+  public AuthenticateFido2CompleteBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -50,7 +50,7 @@ public class CodeWaitBody {
     this.clientId = clientId;
   }
 
-  public CodeWaitBody username(String username) {
+  public AuthenticateFido2CompleteBody username(String username) {
     this.username = username;
     return this;
   }
@@ -68,22 +68,22 @@ public class CodeWaitBody {
     this.username = username;
   }
 
-  public CodeWaitBody authenticationCode(AuthenticatecodewaitAuthenticationCode authenticationCode) {
-    this.authenticationCode = authenticationCode;
+  public AuthenticateFido2CompleteBody assertionPayload(Authenticatefido2completeAssertionPayload assertionPayload) {
+    this.assertionPayload = assertionPayload;
     return this;
   }
 
    /**
-   * Get authenticationCode
-   * @return authenticationCode
+   * Get assertionPayload
+   * @return assertionPayload
   **/
   @Schema(description = "")
-  public AuthenticatecodewaitAuthenticationCode getAuthenticationCode() {
-    return authenticationCode;
+  public Authenticatefido2completeAssertionPayload getAssertionPayload() {
+    return assertionPayload;
   }
 
-  public void setAuthenticationCode(AuthenticatecodewaitAuthenticationCode authenticationCode) {
-    this.authenticationCode = authenticationCode;
+  public void setAssertionPayload(Authenticatefido2completeAssertionPayload assertionPayload) {
+    this.assertionPayload = assertionPayload;
   }
 
 
@@ -95,26 +95,26 @@ public class CodeWaitBody {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CodeWaitBody codeWaitBody = (CodeWaitBody) o;
-    return Objects.equals(this.clientId, codeWaitBody.clientId) &&
-        Objects.equals(this.username, codeWaitBody.username) &&
-        Objects.equals(this.authenticationCode, codeWaitBody.authenticationCode);
+    AuthenticateFido2CompleteBody authenticateFido2CompleteBody = (AuthenticateFido2CompleteBody) o;
+    return Objects.equals(this.clientId, authenticateFido2CompleteBody.clientId) &&
+        Objects.equals(this.username, authenticateFido2CompleteBody.username) &&
+        Objects.equals(this.assertionPayload, authenticateFido2CompleteBody.assertionPayload);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, username, authenticationCode);
+    return Objects.hash(clientId, username, assertionPayload);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CodeWaitBody {\n");
+    sb.append("class Fido2CompleteBody1 {\n");
 
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    authenticationCode: ").append(toIndentedString(authenticationCode)).append("\n");
+    sb.append("    assertionPayload: ").append(toIndentedString(assertionPayload)).append("\n");
     sb.append("}");
     return sb.toString();
   }

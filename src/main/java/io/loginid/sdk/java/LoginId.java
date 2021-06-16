@@ -185,16 +185,16 @@ public class LoginId {
 
         apiClient.setAccessToken(token);
 
-        CodeWaitBody codeWaitBody = new CodeWaitBody();
-        codeWaitBody.setClientId(clientId);
-        codeWaitBody.setUsername(userName);
+        AuthenticateCodeWaitBody authenticateCodeWaitBody = new AuthenticateCodeWaitBody();
+        authenticateCodeWaitBody.setClientId(clientId);
+        authenticateCodeWaitBody.setUsername(userName);
 
         AuthenticatecodewaitAuthenticationCode authenticatecodewaitAuthenticationCode = new AuthenticatecodewaitAuthenticationCode();
         authenticatecodewaitAuthenticationCode.setCode(code);
         authenticatecodewaitAuthenticationCode.setType(AuthenticatecodewaitAuthenticationCode.TypeEnum.fromValue(codeType));
-        codeWaitBody.setAuthenticationCode(authenticatecodewaitAuthenticationCode);
+        authenticateCodeWaitBody.setAuthenticationCode(authenticatecodewaitAuthenticationCode);
 
-        ApiResponse<AuthenticationResponse> result = authenticateApi.authenticateCodeWaitPostWithHttpInfo(codeWaitBody, null);
+        ApiResponse<AuthenticationResponse> result = authenticateApi.authenticateCodeWaitPostWithHttpInfo(authenticateCodeWaitBody, null);
         String jwtToken = result.getData().getJwt();
 
         if (jwtToken == null || !verifyToken(jwtToken)) {

@@ -22,7 +22,7 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class Fido2InitBody1 {
+public class AuthenticateFido2InitBody {
   @SerializedName("client_id")
   private String clientId = null;
 
@@ -32,7 +32,7 @@ public class Fido2InitBody1 {
   @SerializedName("options")
   private RegisterpasswordOptions options = null;
 
-  public Fido2InitBody1 clientId(String clientId) {
+  public AuthenticateFido2InitBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -50,7 +50,7 @@ public class Fido2InitBody1 {
     this.clientId = clientId;
   }
 
-  public Fido2InitBody1 username(String username) {
+  public AuthenticateFido2InitBody username(String username) {
     this.username = username;
     return this;
   }
@@ -68,7 +68,7 @@ public class Fido2InitBody1 {
     this.username = username;
   }
 
-  public Fido2InitBody1 options(RegisterpasswordOptions options) {
+  public AuthenticateFido2InitBody options(RegisterpasswordOptions options) {
     this.options = options;
     return this;
   }
@@ -95,10 +95,10 @@ public class Fido2InitBody1 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Fido2InitBody1 fido2InitBody1 = (Fido2InitBody1) o;
-    return Objects.equals(this.clientId, fido2InitBody1.clientId) &&
-        Objects.equals(this.username, fido2InitBody1.username) &&
-        Objects.equals(this.options, fido2InitBody1.options);
+    AuthenticateFido2InitBody authenticateFido2InitBody = (AuthenticateFido2InitBody) o;
+    return Objects.equals(this.clientId, authenticateFido2InitBody.clientId) &&
+        Objects.equals(this.username, authenticateFido2InitBody.username) &&
+        Objects.equals(this.options, authenticateFido2InitBody.options);
   }
 
   @Override

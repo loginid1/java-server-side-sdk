@@ -119,8 +119,8 @@ public class RegisterApi {
      * @return InlineResponse2002
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse2002 registerCompletePost(String origin, RegisterCompleteBody body, UUID requestID) throws ApiException {
-        ApiResponse<InlineResponse2002> resp = registerCompletePostWithHttpInfo(origin, body, requestID);
+    public AuthenticateCompleteResponse registerCompletePost(String origin, RegisterCompleteBody body, UUID requestID) throws ApiException {
+        ApiResponse<AuthenticateCompleteResponse> resp = registerCompletePostWithHttpInfo(origin, body, requestID);
         return resp.getData();
     }
 
@@ -133,9 +133,9 @@ public class RegisterApi {
      * @return ApiResponse&lt;InlineResponse2002&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse2002> registerCompletePostWithHttpInfo(String origin, RegisterCompleteBody body, UUID requestID) throws ApiException {
+    public ApiResponse<AuthenticateCompleteResponse> registerCompletePostWithHttpInfo(String origin, RegisterCompleteBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = registerCompletePostValidateBeforeCall(origin, body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse2002>(){}.getType();
+        Type localVarReturnType = new TypeToken<AuthenticateCompleteResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -149,7 +149,7 @@ public class RegisterApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call registerCompletePostAsync(String origin, RegisterCompleteBody body, UUID requestID, final ApiCallback<InlineResponse2002> callback) throws ApiException {
+    public com.squareup.okhttp.Call registerCompletePostAsync(String origin, RegisterCompleteBody body, UUID requestID, final ApiCallback<AuthenticateCompleteResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -171,7 +171,7 @@ public class RegisterApi {
         }
 
         com.squareup.okhttp.Call call = registerCompletePostValidateBeforeCall(origin, body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse2002>(){}.getType();
+        Type localVarReturnType = new TypeToken<AuthenticateCompleteResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

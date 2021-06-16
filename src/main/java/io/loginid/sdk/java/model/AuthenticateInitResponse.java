@@ -15,33 +15,43 @@ package io.loginid.sdk.java.model;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * InlineResponse2003
+ * InlineResponse2004
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2003 {
-  @SerializedName("assertion_payload")
-  private InlineResponse2003AssertionPayload assertionPayload = null;
+public class AuthenticateInitResponse {
+  @SerializedName("strategies")
+  private List<InlineResponse2004Strategies> strategies = null;
 
-  public InlineResponse2003 assertionPayload(InlineResponse2003AssertionPayload assertionPayload) {
-    this.assertionPayload = assertionPayload;
+  public AuthenticateInitResponse strategies(List<InlineResponse2004Strategies> strategies) {
+    this.strategies = strategies;
+    return this;
+  }
+
+  public AuthenticateInitResponse addStrategiesItem(InlineResponse2004Strategies strategiesItem) {
+    if (this.strategies == null) {
+      this.strategies = new ArrayList<InlineResponse2004Strategies>();
+    }
+    this.strategies.add(strategiesItem);
     return this;
   }
 
    /**
-   * Get assertionPayload
-   * @return assertionPayload
+   * Get strategies
+   * @return strategies
   **/
   @Schema(description = "")
-  public InlineResponse2003AssertionPayload getAssertionPayload() {
-    return assertionPayload;
+  public List<InlineResponse2004Strategies> getStrategies() {
+    return strategies;
   }
 
-  public void setAssertionPayload(InlineResponse2003AssertionPayload assertionPayload) {
-    this.assertionPayload = assertionPayload;
+  public void setStrategies(List<InlineResponse2004Strategies> strategies) {
+    this.strategies = strategies;
   }
 
 
@@ -53,22 +63,22 @@ public class InlineResponse2003 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2003 inlineResponse2003 = (InlineResponse2003) o;
-    return Objects.equals(this.assertionPayload, inlineResponse2003.assertionPayload);
+    AuthenticateInitResponse authenticateInitResponse = (AuthenticateInitResponse) o;
+    return Objects.equals(this.strategies, authenticateInitResponse.strategies);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(assertionPayload);
+    return Objects.hash(strategies);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2003 {\n");
+    sb.append("class InlineResponse2004 {\n");
 
-    sb.append("    assertionPayload: ").append(toIndentedString(assertionPayload)).append("\n");
+    sb.append("    strategies: ").append(toIndentedString(strategies)).append("\n");
     sb.append("}");
     return sb.toString();
   }
