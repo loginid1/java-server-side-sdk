@@ -114,7 +114,7 @@ public class LoginId {
         return jws;
     }
 
-    public ApiResponse<CodesCodeTypeGenerateResponse> generateCode(String userId, String codeType, String codePurpose, boolean isAuthorized) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CodesCodeTypeGenerateResponse generateCode(String userId, String codeType, String codePurpose, boolean isAuthorized) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("codes.generate", null, null, null, null);
 
         CodesApi codesApi = new CodesApi();
@@ -128,10 +128,10 @@ public class LoginId {
         codesCodeTypeGenerateBody.setPurpose(CodesCodeTypeGenerateBody.PurposeEnum.fromValue(codePurpose));
         codesCodeTypeGenerateBody.setAuthorize(isAuthorized);
 
-        return codesApi.codesCodeTypeGeneratePostWithHttpInfo(codeType, codesCodeTypeGenerateBody, null);
+        return codesApi.codesCodeTypeGeneratePost(codeType, codesCodeTypeGenerateBody, null);
     }
 
-    public ApiResponse<CodesCodeTypeAuthorizeResponse> authorizeCode(String userId, String code, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CodesCodeTypeAuthorizeResponse authorizeCode(String userId, String code, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
         }
@@ -150,10 +150,10 @@ public class LoginId {
         codesCodeTypeAuthorizeBody.setPurpose(CodesCodeTypeAuthorizeBody.PurposeEnum.fromValue(codePurpose));
         codesCodeTypeAuthorizeBody.setCode(code);
 
-        return codesApi.codesCodeTypeAuthorizePostWithHttpInfo(codeType, codesCodeTypeAuthorizeBody, null);
+        return codesApi.codesCodeTypeAuthorizePost(codeType, codesCodeTypeAuthorizeBody, null);
     }
 
-    public ApiResponse<CodesCodeTypeInvalidateAllResponse> invalidateAllCodes(String userId, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CodesCodeTypeInvalidateAllResponse invalidateAllCodes(String userId, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
         }
@@ -170,10 +170,10 @@ public class LoginId {
         codesCodeTypeInvalidateAllBody.setPurpose(CodesCodeTypeInvalidateAllBody.PurposeEnum.fromValue(codePurpose));
         codesCodeTypeInvalidateAllBody.setUserId(userId);
 
-        return codesApi.codesCodeTypeInvalidateAllPostWithHttpInfo(codeType, null, null);
+        return codesApi.codesCodeTypeInvalidateAllPost(codeType, null, null);
     }
 
-    public ApiResponse<AuthenticationResponse> waitCode(String userName, String code, String codeType) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public AuthenticationResponse waitCode(String userName, String code, String codeType) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
         }
@@ -194,8 +194,8 @@ public class LoginId {
         authenticatecodewaitAuthenticationCode.setType(AuthenticatecodewaitAuthenticationCode.TypeEnum.fromValue(codeType));
         authenticateCodeWaitBody.setAuthenticationCode(authenticatecodewaitAuthenticationCode);
 
-        ApiResponse<AuthenticationResponse> result = authenticateApi.authenticateCodeWaitPostWithHttpInfo(authenticateCodeWaitBody, null);
-        String jwtToken = result.getData().getJwt();
+        AuthenticationResponse result = authenticateApi.authenticateCodeWaitPost(authenticateCodeWaitBody, null);
+        String jwtToken = result.getJwt();
 
         if (jwtToken == null || !verifyToken(jwtToken)) {
             throw new SecurityException();
@@ -258,8 +258,8 @@ public class LoginId {
         txBody.setTxPayload(txPayload);
         txBody.setNonce(getRandomString());
 
-        ApiResponse<TxResponse> result = transactionsApi.txPostWithHttpInfo(txBody);
-        return result.getData().getTxId();
+        TxResponse result = transactionsApi.txPost(txBody);
+        return result.getTxId();
     }
 
     public boolean verifyTransaction(String txToken, String txPayload) throws NoSuchAlgorithmException {
