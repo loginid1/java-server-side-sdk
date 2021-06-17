@@ -8,6 +8,7 @@ import io.loginid.sdk.java.invokers.ApiClient;
 import io.loginid.sdk.java.invokers.ApiException;
 import io.loginid.sdk.java.model.*;
 
+import javax.annotation.Nullable;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
@@ -37,19 +38,37 @@ public class LoginId {
         return clientId;
     }
 
+    /**
+     * @param codeType The type of the code
+     * @return 'true' if the code type is valid, 'false' otherwise
+     */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isValidCodeType(String codeType) {
         return codeTypes.contains(codeType);
     }
 
+    /**
+     * @return UTC Epoch in seconds
+     */
     public long getUtcEpoch() {
         return Instant.now().getEpochSecond();
     }
 
+    /**
+     * Generates a random string of length 16 with alphanumeric characters
+     *
+     * @return A random string of alphanumeric characters
+     */
     public String getRandomString() {
         return getRandomString(16);
     }
 
+    /**
+     * Generates a random string of given length with alphanumeric characters
+     *
+     * @param length The length of the output string
+     * @return A random string of alphanumeric characters
+     */
     @SuppressWarnings("SpellCheckingInspection")
     public String getRandomString(int length) {
         String randomCharSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
@@ -62,26 +81,51 @@ public class LoginId {
         return randomString.toString();
     }
 
+    /**
+     * Verifies a JWT token returned upon user authorization
+     *
+     * @param token The JWT token
+     * @return 'true' if the token is valid, 'false' otherwise
+     */
     public boolean verifyToken(String token) {
         return verifyToken(token, null);
     }
 
+    /**
+     * Verifies a JWT token returned upon user authorization
+     *
+     * @param token    The JWT token
+     * @param username (Nullable) If provided, checks if 'username' matches the 'udata' in JWT
+     * @return 'true' if the token is valid, 'false' otherwise
+     */
     @SuppressWarnings({"SpellCheckingInspection", "rawtypes"})
-    public boolean verifyToken(String token, String userName) {
+    public boolean verifyToken(String token, @Nullable String username) {
         SigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
         Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(token);
 
         Claims payload = claims.getBody();
         JwsHeader headers = claims.getHeader();
 
-        if (userName != null) {
-            return userName.equalsIgnoreCase((String) payload.get("udata"));
+        if (username != null) {
+            return username.equalsIgnoreCase((String) payload.get("udata"));
         }
         return true;
     }
 
+    /**
+     * Generates a service token
+     *
+     * @param scope     The scope of the service
+     * @param algorithm (Nullable) Encryption algorithm; defaults to "ES256"
+     * @param username  (Nullable) The username to be granted by the token
+     * @param userId    (Nullable) The user ID to be granted by the token; ignored if username is provided
+     * @param nonce     (Nullable) Nonce for the token; auto-generated if not provided
+     * @return The JWT service token
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
     @SuppressWarnings({"UnnecessaryLocalVariable", "DuplicatedCode"})
-    public String generateServiceToken(String scope, String algorithm, String userName, String userId, String nonce) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public String generateServiceToken(String scope, @Nullable String algorithm, @Nullable String username, @Nullable String userId, @Nullable String nonce) throws NoSuchAlgorithmException, InvalidKeySpecException {
         if (algorithm == null) {
             algorithm = "ES256";
         }
@@ -96,8 +140,8 @@ public class LoginId {
         payload.put("nonce", nonce);
         payload.put("iat", getUtcEpoch());
 
-        if (userName != null) {
-            payload.put("username", userName);
+        if (username != null) {
+            payload.put("username", username);
         } else if (userId != null) {
             payload.put("user_id", userId);
         }
@@ -118,6 +162,18 @@ public class LoginId {
         return jws;
     }
 
+    /**
+     * Generate a code
+     *
+     * @param userId       The user ID for the code
+     * @param codeType     The code type
+     * @param codePurpose  The purpose of the code
+     * @param isAuthorized Indicates if the code authorizes the user or not
+     * @return The response body from the code generation request
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
     public CodesCodeTypeGenerateResponse generateCode(String userId, String codeType, String codePurpose, boolean isAuthorized) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("codes.generate", null, null, null, null);
 
@@ -136,6 +192,18 @@ public class LoginId {
         return codesApi.codesCodeTypeGeneratePost(codeType, codesCodeTypeGenerateBody, null);
     }
 
+    /**
+     * Authorizes a given code
+     *
+     * @param userId      The user ID associated with the code
+     * @param code        The code that needs authorization
+     * @param codeType    The type of the code
+     * @param codePurpose The purpose of the code
+     * @return The response body from code authorization
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
     public CodesCodeTypeAuthorizeResponse authorizeCode(String userId, String code, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
@@ -159,6 +227,17 @@ public class LoginId {
         return codesApi.codesCodeTypeAuthorizePost(codeType, codesCodeTypeAuthorizeBody, null);
     }
 
+    /**
+     * Invalidates all authentication codes of given type and purpose for given user
+     *
+     * @param userId      The user ID
+     * @param codeType    The code type
+     * @param codePurpose The purpose of the code
+     * @return The response body from invalidating all codes
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
     public CodesCodeTypeInvalidateAllResponse invalidateAllCodes(String userId, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
@@ -180,7 +259,18 @@ public class LoginId {
         return codesApi.codesCodeTypeInvalidateAllPost(codeType, null, null);
     }
 
-    public AuthenticationResponse waitCode(String userName, String code, String codeType) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    /**
+     * Waits for a given code
+     *
+     * @param username The username
+     * @param code     The code associated with the username
+     * @param codeType The type of the code
+     * @return The response body from Code Wait
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public AuthenticationResponse waitCode(String username, String code, String codeType) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
         }
@@ -195,7 +285,7 @@ public class LoginId {
 
         AuthenticateCodeWaitBody authenticateCodeWaitBody = new AuthenticateCodeWaitBody();
         authenticateCodeWaitBody.setClientId(clientId);
-        authenticateCodeWaitBody.setUsername(userName);
+        authenticateCodeWaitBody.setUsername(username);
 
         AuthenticatecodewaitAuthenticationCode authenticatecodewaitAuthenticationCode = new AuthenticatecodewaitAuthenticationCode();
         authenticatecodewaitAuthenticationCode.setCode(code);
@@ -212,8 +302,18 @@ public class LoginId {
         return result;
     }
 
+    /**
+     * Generates an Authorization Token for Transaction Flow
+     *
+     * @param txPayload The transaction payload
+     * @param username  (Nullable) The username
+     * @param nonce     (Nullable) Nonce for the token; auto-generated if not provided
+     * @return The JWT authorization token
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
     @SuppressWarnings({"UnnecessaryLocalVariable", "DuplicatedCode"})
-    public String generateTxAuthToken(String txPayload, String userName, String nonce) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public String generateTxAuthToken(String txPayload, @Nullable String username, @Nullable String nonce) throws NoSuchAlgorithmException, InvalidKeySpecException {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
         byte[] hashBytes = messageDigest.digest(txPayload.getBytes(StandardCharsets.UTF_8));
         String hash = Base64.getUrlEncoder().encodeToString(hashBytes);
@@ -233,8 +333,8 @@ public class LoginId {
         payload.put("payload_hash", hash);
         payload.put("iat", getUtcEpoch());
 
-        if (userName != null) {
-            payload.put("username", userName);
+        if (username != null) {
+            payload.put("username", username);
         }
 
         Map<String, Object> headers = new HashMap<>();
@@ -253,18 +353,28 @@ public class LoginId {
         return jws;
     }
 
-    public String createTxId(String txPayload, String userName) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+    /**
+     * Creates a transaction ID
+     *
+     * @param txPayload The transaction payload
+     * @param username  (Nullable) The username
+     * @return The transaction ID
+     * @throws ApiException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public String createTxId(String txPayload, @Nullable String username) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
         TransactionsApi transactionsApi = new TransactionsApi();
 
         ApiClient apiClient = transactionsApi.getApiClient();
         apiClient.setBasePath(baseUrl);
 
-        String token = generateTxAuthToken(txPayload, userName, null);
+        String token = generateTxAuthToken(txPayload, username, null);
         apiClient.setAccessToken(token);
 
         TxBody txBody = new TxBody();
         txBody.setClientId(clientId);
-        txBody.setUsername(userName);
+        txBody.setUsername(username);
         txBody.setTxType("text");
         txBody.setTxPayload(txPayload);
         txBody.setNonce(getRandomString());
@@ -273,6 +383,14 @@ public class LoginId {
         return result.getTxId();
     }
 
+    /**
+     * Verifies the JWT returned upon completion of a transaction
+     *
+     * @param txToken   The JWT token
+     * @param txPayload The original transaction payload
+     * @return 'true' if the JWT token is valid, 'false' otherwise
+     * @throws NoSuchAlgorithmException
+     */
     @SuppressWarnings("rawtypes")
     public boolean verifyTransaction(String txToken, String txPayload) throws NoSuchAlgorithmException {
         SigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
