@@ -28,12 +28,28 @@ public class LoginIdSigningKeyResolver extends SigningKeyResolverAdapter {
         return key;
     }
 
+    /**
+     * Return the client's public key based on 'kid'
+     *
+     * @param keyId The kid included in the JWT header
+     * @return The public key if present
+     * @throws ApiException
+     */
     private String getPublicKey(String keyId) throws ApiException {
         CertificatesApi certificatesApi = new CertificatesApi();
 
         return certificatesApi.certsGetWithHttpInfo(keyId, null).getData();
     }
 
+    /**
+     * Returns a Key object based on the public key of a client
+     *
+     * @param keyId The kid included in the JWT header
+     * @return Key object based on the public key
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
     @SuppressWarnings("UnnecessaryLocalVariable")
     private Key lookupVerificationKey(String keyId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String publicKeyContent = getPublicKey(keyId);
