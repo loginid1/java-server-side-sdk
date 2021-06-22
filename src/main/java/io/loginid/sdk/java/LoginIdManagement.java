@@ -365,7 +365,7 @@ public class LoginIdManagement extends LoginId {
      * @throws ApiException
      */
     @SuppressWarnings("UnnecessaryLocalVariable")
-    public UserProfile addUserWithoutCredentials(String username) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public UserProfile createUserWithoutCredentials(String username) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("users.create", null, null, null, null);
 
         ManagementApi managementApi = new ManagementApi();
