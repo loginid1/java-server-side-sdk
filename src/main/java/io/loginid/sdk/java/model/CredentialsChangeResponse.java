@@ -22,14 +22,14 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class CredentialsRenameRevokeResponse {
+public class CredentialsChangeResponse {
   @SerializedName("user_id")
   private String userId = null;
 
   @SerializedName("credential")
   private CredentialFull credential = null;
 
-  public CredentialsRenameRevokeResponse userId(String userId) {
+  public CredentialsChangeResponse userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -47,7 +47,7 @@ public class CredentialsRenameRevokeResponse {
     this.userId = userId;
   }
 
-  public CredentialsRenameRevokeResponse credential(CredentialFull credential) {
+  public CredentialsChangeResponse credential(CredentialFull credential) {
     this.credential = credential;
     return this;
   }
@@ -74,9 +74,9 @@ public class CredentialsRenameRevokeResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CredentialsRenameRevokeResponse credentialsRenameRevokeResponse = (CredentialsRenameRevokeResponse) o;
-    return Objects.equals(this.userId, credentialsRenameRevokeResponse.userId) &&
-        Objects.equals(this.credential, credentialsRenameRevokeResponse.credential);
+    CredentialsChangeResponse credentialsChangeResponse = (CredentialsChangeResponse) o;
+    return Objects.equals(this.userId, credentialsChangeResponse.userId) &&
+        Objects.equals(this.credential, credentialsChangeResponse.credential);
   }
 
   @Override

@@ -493,8 +493,8 @@ public class CredentialsApi {
      * @return InlineResponse20012
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public CredentialsRenameRevokeResponse credentialsRenamePost(CredentialsRenameBody body, UUID requestID) throws ApiException {
-        ApiResponse<CredentialsRenameRevokeResponse> resp = credentialsRenamePostWithHttpInfo(body, requestID);
+    public CredentialsChangeResponse credentialsRenamePost(CredentialsRenameBody body, UUID requestID) throws ApiException {
+        ApiResponse<CredentialsChangeResponse> resp = credentialsRenamePostWithHttpInfo(body, requestID);
         return resp.getData();
     }
 
@@ -506,9 +506,9 @@ public class CredentialsApi {
      * @return ApiResponse&lt;InlineResponse20012&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CredentialsRenameRevokeResponse> credentialsRenamePostWithHttpInfo(CredentialsRenameBody body, UUID requestID) throws ApiException {
+    public ApiResponse<CredentialsChangeResponse> credentialsRenamePostWithHttpInfo(CredentialsRenameBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = credentialsRenamePostValidateBeforeCall(body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<CredentialsRenameRevokeResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsChangeResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -521,7 +521,7 @@ public class CredentialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call credentialsRenamePostAsync(CredentialsRenameBody body, UUID requestID, final ApiCallback<CredentialsRenameRevokeResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call credentialsRenamePostAsync(CredentialsRenameBody body, UUID requestID, final ApiCallback<CredentialsChangeResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -543,7 +543,7 @@ public class CredentialsApi {
         }
 
         com.squareup.okhttp.Call call = credentialsRenamePostValidateBeforeCall(body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<CredentialsRenameRevokeResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsChangeResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -613,8 +613,8 @@ public class CredentialsApi {
      * @return InlineResponse20012
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public CredentialsRenameRevokeResponse credentialsRevokePost(CredentialsRevokeBody body, UUID requestID) throws ApiException {
-        ApiResponse<CredentialsRenameRevokeResponse> resp = credentialsRevokePostWithHttpInfo(body, requestID);
+    public CredentialsChangeResponse credentialsRevokePost(CredentialsRevokeBody body, UUID requestID) throws ApiException {
+        ApiResponse<CredentialsChangeResponse> resp = credentialsRevokePostWithHttpInfo(body, requestID);
         return resp.getData();
     }
 
@@ -626,9 +626,9 @@ public class CredentialsApi {
      * @return ApiResponse&lt;InlineResponse20012&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CredentialsRenameRevokeResponse> credentialsRevokePostWithHttpInfo(CredentialsRevokeBody body, UUID requestID) throws ApiException {
+    public ApiResponse<CredentialsChangeResponse> credentialsRevokePostWithHttpInfo(CredentialsRevokeBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = credentialsRevokePostValidateBeforeCall(body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<CredentialsRenameRevokeResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsChangeResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -641,7 +641,7 @@ public class CredentialsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call credentialsRevokePostAsync(CredentialsRevokeBody body, UUID requestID, final ApiCallback<CredentialsRenameRevokeResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call credentialsRevokePostAsync(CredentialsRevokeBody body, UUID requestID, final ApiCallback<CredentialsChangeResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -663,7 +663,7 @@ public class CredentialsApi {
         }
 
         com.squareup.okhttp.Call call = credentialsRevokePostValidateBeforeCall(body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<CredentialsRenameRevokeResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<CredentialsChangeResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
