@@ -17,6 +17,10 @@ public class LoginIdManagement extends LoginId {
         super(clientId, privateKey, baseUrl);
     }
 
+    public LoginIdManagement(String clientId, String privateKey) {
+        super(clientId, privateKey);
+    }
+
     /**
      * Returns the user ID based on username
      *
@@ -154,7 +158,7 @@ public class LoginIdManagement extends LoginId {
      * @throws ApiException
      */
     @SuppressWarnings("UnnecessaryLocalVariable")
-    public CredentialsRenameRevokeResponse renameCredential(String userId, String credId, String updatedName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CredentialsChangeResponse renameCredential(String userId, String credId, String updatedName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.rename", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
@@ -172,7 +176,7 @@ public class LoginIdManagement extends LoginId {
 
         credentialsRenameBody.setCredential(credentialsrenameCredential);
 
-        CredentialsRenameRevokeResponse result = credentialsApi.credentialsRenamePost(credentialsRenameBody, null);
+        CredentialsChangeResponse result = credentialsApi.credentialsRenamePost(credentialsRenameBody, null);
         return result;
     }
 
@@ -188,7 +192,7 @@ public class LoginIdManagement extends LoginId {
      * @throws ApiException
      */
     @SuppressWarnings("UnnecessaryLocalVariable")
-    public CredentialsRenameRevokeResponse revokeCredential(String userId, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CredentialsChangeResponse revokeCredential(String userId, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.revoke", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
@@ -205,7 +209,7 @@ public class LoginIdManagement extends LoginId {
 
         credentialsRevokeBody.setCredential(credentialsrevokeCredential);
 
-        CredentialsRenameRevokeResponse result = credentialsApi.credentialsRevokePost(credentialsRevokeBody, null);
+        CredentialsChangeResponse result = credentialsApi.credentialsRevokePost(credentialsRevokeBody, null);
         return result;
     }
 

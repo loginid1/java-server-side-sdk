@@ -34,6 +34,10 @@ public class LoginId {
         Collections.addAll(codeTypes, "short", "long", "phrase");
     }
 
+    public LoginId(String clientId, String privateKey) {
+        this(clientId, privateKey, "https://usw1.loginid.io/");
+    }
+
     public String getClientId() {
         return clientId;
     }
