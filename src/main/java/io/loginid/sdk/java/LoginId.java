@@ -42,6 +42,10 @@ public class LoginId {
         return clientId;
     }
 
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
     /**
      * @param codeType The type of the code
      * @return 'true' if the code type is valid, 'false' otherwise
@@ -166,145 +170,6 @@ public class LoginId {
         return jws;
     }
 
-    /**
-     * Generate a code
-     *
-     * @param userId       The user ID for the code
-     * @param codeType     The code type
-     * @param codePurpose  The purpose of the code
-     * @param isAuthorized Indicates if the code authorizes the user or not
-     * @return The response body from the code generation request
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
-     * @throws ApiException
-     */
-    public CodesCodeTypeGenerateResponse generateCode(String userId, String codeType, String codePurpose, boolean isAuthorized) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        String token = generateServiceToken("codes.generate", null, null, null, null);
-
-        CodesApi codesApi = new CodesApi();
-
-        ApiClient apiClient = codesApi.getApiClient();
-        apiClient.setBasePath(baseUrl);
-        apiClient.setAccessToken(token);
-
-        CodesCodeTypeGenerateBody codesCodeTypeGenerateBody = new CodesCodeTypeGenerateBody();
-        codesCodeTypeGenerateBody.setClientId(clientId);
-        codesCodeTypeGenerateBody.setUserId(userId);
-        codesCodeTypeGenerateBody.setPurpose(CodesCodeTypeGenerateBody.PurposeEnum.fromValue(codePurpose));
-        codesCodeTypeGenerateBody.setAuthorize(isAuthorized);
-
-        return codesApi.codesCodeTypeGeneratePost(codeType, codesCodeTypeGenerateBody, null);
-    }
-
-    /**
-     * Authorizes a given code
-     *
-     * @param userId      The user ID associated with the code
-     * @param code        The code that needs authorization
-     * @param codeType    The type of the code
-     * @param codePurpose The purpose of the code
-     * @return The response body from code authorization
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
-     * @throws ApiException
-     */
-    public CodesCodeTypeAuthorizeResponse authorizeCode(String userId, String code, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        if (!isValidCodeType(codeType)) {
-            throw new IllegalArgumentException();
-        }
-
-        String token = generateServiceToken("codes.authorize", null, null, null, null);
-
-        CodesApi codesApi = new CodesApi();
-
-        ApiClient apiClient = codesApi.getApiClient();
-        apiClient.setBasePath(baseUrl);
-        apiClient.setAccessToken(token);
-
-        CodesCodeTypeAuthorizeBody codesCodeTypeAuthorizeBody = new CodesCodeTypeAuthorizeBody();
-
-        codesCodeTypeAuthorizeBody.setClientId(clientId);
-        codesCodeTypeAuthorizeBody.setUserId(userId);
-        codesCodeTypeAuthorizeBody.setPurpose(CodesCodeTypeAuthorizeBody.PurposeEnum.fromValue(codePurpose));
-        codesCodeTypeAuthorizeBody.setCode(code);
-
-        return codesApi.codesCodeTypeAuthorizePost(codeType, codesCodeTypeAuthorizeBody, null);
-    }
-
-    /**
-     * Invalidates all authentication codes of given type and purpose for given user
-     *
-     * @param userId      The user ID
-     * @param codeType    The code type
-     * @param codePurpose The purpose of the code
-     * @return The response body from invalidating all codes
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
-     * @throws ApiException
-     */
-    public CodesCodeTypeInvalidateAllResponse invalidateAllCodes(String userId, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        if (!isValidCodeType(codeType)) {
-            throw new IllegalArgumentException();
-        }
-
-        String token = generateServiceToken("codes.invalidate", null, null, null, null);
-
-        CodesApi codesApi = new CodesApi();
-
-        ApiClient apiClient = codesApi.getApiClient();
-        apiClient.setBasePath(baseUrl);
-        apiClient.setAccessToken(token);
-
-        CodesCodeTypeInvalidateAllBody codesCodeTypeInvalidateAllBody = new CodesCodeTypeInvalidateAllBody();
-        codesCodeTypeInvalidateAllBody.setClientId(clientId);
-        codesCodeTypeInvalidateAllBody.setPurpose(CodesCodeTypeInvalidateAllBody.PurposeEnum.fromValue(codePurpose));
-        codesCodeTypeInvalidateAllBody.setUserId(userId);
-
-        return codesApi.codesCodeTypeInvalidateAllPost(codeType, null, null);
-    }
-
-    /**
-     * Waits for a given code
-     *
-     * @param username The username
-     * @param code     The code associated with the username
-     * @param codeType The type of the code
-     * @return The response body from Code Wait
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
-     * @throws ApiException
-     */
-    public AuthenticationResponse waitCode(String username, String code, String codeType) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        if (!isValidCodeType(codeType)) {
-            throw new IllegalArgumentException();
-        }
-
-        String token = generateServiceToken("auth.temporary", null, null, null, null);
-
-        AuthenticateApi authenticateApi = new AuthenticateApi();
-
-        ApiClient apiClient = authenticateApi.getApiClient();
-        apiClient.setBasePath(baseUrl);
-        apiClient.setAccessToken(token);
-
-        AuthenticateCodeWaitBody authenticateCodeWaitBody = new AuthenticateCodeWaitBody();
-        authenticateCodeWaitBody.setClientId(clientId);
-        authenticateCodeWaitBody.setUsername(username);
-
-        AuthenticatecodewaitAuthenticationCode authenticatecodewaitAuthenticationCode = new AuthenticatecodewaitAuthenticationCode();
-        authenticatecodewaitAuthenticationCode.setCode(code);
-        authenticatecodewaitAuthenticationCode.setType(AuthenticatecodewaitAuthenticationCode.TypeEnum.fromValue(codeType));
-        authenticateCodeWaitBody.setAuthenticationCode(authenticatecodewaitAuthenticationCode);
-
-        AuthenticationResponse result = authenticateApi.authenticateCodeWaitPost(authenticateCodeWaitBody, null);
-        String jwtToken = result.getJwt();
-
-        if (jwtToken == null || !verifyToken(jwtToken)) {
-            throw new SecurityException();
-        }
-
-        return result;
-    }
 
     /**
      * Generates an Authorization Token for Transaction Flow
