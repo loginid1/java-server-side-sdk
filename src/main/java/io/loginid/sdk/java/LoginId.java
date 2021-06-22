@@ -367,7 +367,7 @@ public class LoginId {
      * @throws NoSuchAlgorithmException
      * @throws InvalidKeySpecException
      */
-    public String createTxId(String txPayload, @Nullable String username) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+    public String createTx(String txPayload, @Nullable String username) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
         TransactionsApi transactionsApi = new TransactionsApi();
 
         ApiClient apiClient = transactionsApi.getApiClient();
