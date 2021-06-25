@@ -1,8 +1,6 @@
 package io.loginid.sdk.java;
 
 import io.jsonwebtoken.*;
-import io.loginid.sdk.java.api.AuthenticateApi;
-import io.loginid.sdk.java.api.CodesApi;
 import io.loginid.sdk.java.api.TransactionsApi;
 import io.loginid.sdk.java.invokers.ApiClient;
 import io.loginid.sdk.java.invokers.ApiException;
@@ -118,6 +116,21 @@ public class LoginId {
             return username.equalsIgnoreCase((String) payload.get("udata"));
         }
         return true;
+    }
+
+    /**
+     * Generates a service token
+     *
+     * @param scope    The scope of the service
+     * @param username (Nullable) The username to be granted by the token
+     * @param userId   (Nullable) The user ID to be granted by the token; ignored if username is provided
+     * @param nonce    (Nullable) Nonce for the token; auto-generated if not provided
+     * @return The JWT service token
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public String generateServiceToken(String scope, @Nullable String username, @Nullable String userId, @Nullable String nonce) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        return generateServiceToken(scope, null, username, userId, nonce);
     }
 
     /**
