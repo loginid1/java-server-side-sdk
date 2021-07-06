@@ -379,4 +379,30 @@ public class LoginIdManagement extends LoginId {
         UserProfile result = managementApi.manageUsersPost(getClientId(), manageUsersBody, null);
         return result;
     }
+
+
+    /**
+     * Add a credential without pre-generated authorization code
+     *
+     * @param userId The ID of the user to add the new credential for
+     * @return The attestation payload for the new credential
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public CredentialsFido2InitForceResponse addCredentialWithoutCode(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        String token = generateServiceToken("credentials.force_add", null, null, null, null);
+
+        CredentialsApi credentialsApi = new CredentialsApi();
+        ApiClient apiClient = credentialsApi.getApiClient();
+
+        apiClient.setAccessToken(token);
+
+        CredentialsFido2InitForceBody credentialsFido2InitForceBody = new CredentialsFido2InitForceBody();
+        credentialsFido2InitForceBody.setClientId(getClientId());
+        credentialsFido2InitForceBody.setUserId(userId);
+
+        CredentialsFido2InitForceResponse result = credentialsApi.credentialsFido2InitForcePost(credentialsFido2InitForceBody,null);
+        return result;
+    }
 }
