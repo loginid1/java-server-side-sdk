@@ -390,7 +390,7 @@ public class LoginIdManagement extends LoginId {
      * @throws InvalidKeySpecException
      * @throws ApiException
      */
-    public CredentialsFido2InitForceResponse addCredentialWithoutCode(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CredentialsFido2InitForceResponse initAddCredentialWithoutCode(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.force_add", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
