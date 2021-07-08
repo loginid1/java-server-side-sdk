@@ -1,6 +1,7 @@
 package io.loginid.sdk.java;
 
 import io.jsonwebtoken.*;
+import io.loginid.sdk.java.api.AuthenticateApi;
 import io.loginid.sdk.java.api.TransactionsApi;
 import io.loginid.sdk.java.invokers.ApiClient;
 import io.loginid.sdk.java.invokers.ApiException;
@@ -293,5 +294,48 @@ public class LoginId {
         hash = hash.replaceAll("=+$", "");
 
         return payload.get("tx_hash").equals(hash);
+    }
+
+    /**
+     * Waits for a given code
+     *
+     * @param username The username
+     * @param code     The code associated with the username
+     * @param codeType The type of the code
+     * @return The response body from Code Wait
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public AuthenticationResponse waitCode(String username, String code, String codeType) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        if (!isValidCodeType(codeType)) {
+            throw new IllegalArgumentException();
+        }
+
+        String token = generateServiceToken("auth.temporary", null, null, null, null);
+
+        AuthenticateApi authenticateApi = new AuthenticateApi();
+
+        ApiClient apiClient = authenticateApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+
+        AuthenticateCodeWaitBody authenticateCodeWaitBody = new AuthenticateCodeWaitBody();
+        authenticateCodeWaitBody.setClientId(getClientId());
+        authenticateCodeWaitBody.setUsername(username);
+
+        AuthenticatecodewaitAuthenticationCode authenticatecodewaitAuthenticationCode = new AuthenticatecodewaitAuthenticationCode();
+        authenticatecodewaitAuthenticationCode.setCode(code);
+        authenticatecodewaitAuthenticationCode.setType(AuthenticatecodewaitAuthenticationCode.TypeEnum.fromValue(codeType));
+        authenticateCodeWaitBody.setAuthenticationCode(authenticatecodewaitAuthenticationCode);
+
+        AuthenticationResponse result = authenticateApi.authenticateCodeWaitPost(authenticateCodeWaitBody, null);
+        String jwtToken = result.getJwt();
+
+        if (jwtToken == null || !verifyToken(jwtToken)) {
+            throw new SecurityException();
+        }
+
+        return result;
     }
 }
