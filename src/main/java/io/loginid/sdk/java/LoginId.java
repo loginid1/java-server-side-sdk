@@ -34,7 +34,7 @@ public class LoginId {
     }
 
     public LoginId(String clientId, String privateKey) {
-        this(clientId, privateKey, "https://usw1.loginid.io");
+        this(clientId, privateKey, "https://directweb.usw1.loginid.io/api/native");
     }
 
     public String getClientId() {
