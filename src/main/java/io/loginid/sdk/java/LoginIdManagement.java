@@ -22,7 +22,7 @@ public class LoginIdManagement extends LoginId {
     public LoginIdManagement(String clientId, String privateKey) {
         super(clientId, privateKey);
     }
-
+    
     /**
      * Returns the user ID based on username
      *
@@ -36,8 +36,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("users.retrieve", null, null, null, null);
 
         ManagementApi managementApi = new ManagementApi();
-        ApiClient apiClient = managementApi.getApiClient();
 
+        ApiClient apiClient = managementApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         ManageUsersRetrieveBody manageUsersRetrieveBody = new ManageUsersRetrieveBody();
@@ -60,8 +61,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("users.delete", null, null, null, null);
 
         ManagementApi managementApi = new ManagementApi();
-        ApiClient apiClient = managementApi.getApiClient();
 
+        ApiClient apiClient = managementApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         ManageUsersDeleteBody manageUsersDeleteBody = new ManageUsersDeleteBody();
@@ -81,8 +83,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("users.delete", null, null, null, null);
 
         ManagementApi managementApi = new ManagementApi();
-        ApiClient apiClient = managementApi.getApiClient();
 
+        ApiClient apiClient = managementApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         managementApi.manageUsersUserIdDelete(getClientId(), userId);
@@ -100,8 +103,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("users.activate", null, null, null, null);
 
         ManagementApi managementApi = new ManagementApi();
-        ApiClient apiClient = managementApi.getApiClient();
 
+        ApiClient apiClient = managementApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         User result = managementApi.manageUsersUserIdActivatePut(getClientId(), userId);
@@ -119,8 +123,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("users.deactivate", null, null, null, null);
 
         ManagementApi managementApi = new ManagementApi();
-        ApiClient apiClient = managementApi.getApiClient();
 
+        ApiClient apiClient = managementApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         User result = managementApi.manageUsersUserIdDeactivatePut(getClientId(), userId);
@@ -237,8 +242,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("credentials.list", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
-        ApiClient apiClient = credentialsApi.getApiClient();
 
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         CredentialsResponse result = credentialsApi.credentialsGet(UUID.fromString(userId), getClientId(), null);
@@ -261,8 +267,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("credentials.rename", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
-        ApiClient apiClient = credentialsApi.getApiClient();
 
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         CredentialsRenameBody credentialsRenameBody = new CredentialsRenameBody();
@@ -295,8 +302,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("credentials.revoke", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
-        ApiClient apiClient = credentialsApi.getApiClient();
 
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         CredentialsRevokeBody credentialsRevokeBody = new CredentialsRevokeBody();
@@ -326,8 +334,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("users.create", null, null, null, null);
 
         ManagementApi managementApi = new ManagementApi();
-        ApiClient apiClient = managementApi.getApiClient();
 
+        ApiClient apiClient = managementApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         ManageUsersBody manageUsersBody = new ManageUsersBody();
@@ -351,8 +360,9 @@ public class LoginIdManagement extends LoginId {
         String token = generateServiceToken("credentials.force_add", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
-        ApiClient apiClient = credentialsApi.getApiClient();
 
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
         CredentialsFido2InitForceBody credentialsFido2InitForceBody = new CredentialsFido2InitForceBody();
