@@ -13,10 +13,15 @@
 package io.loginid.sdk.java.model;
 
 import com.google.gson.annotations.SerializedName;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.threeten.bp.LocalDate;
 
-import java.util.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import org.threeten.bp.OffsetDateTime;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
+
 
 /**
  * UserProfile
@@ -43,10 +48,10 @@ public class UserProfile {
   private String namespaceId = null;
 
   @SerializedName("created_at")
-  private Date createdAt = null;
+  private OffsetDateTime createdAt = null;
 
   @SerializedName("updated_at")
-  private Date updatedAt = null;
+  private OffsetDateTime updatedAt = null;
 
   @SerializedName("contacts")
   private List<UserProfileContacts> contacts = null;
@@ -159,7 +164,7 @@ public class UserProfile {
     this.namespaceId = namespaceId;
   }
 
-  public UserProfile createdAt(Date createdAt) {
+  public UserProfile createdAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -169,15 +174,15 @@ public class UserProfile {
    * @return createdAt
   **/
   @Schema(description = "")
-  public Date getCreatedAt() {
+  public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(Date createdAt) {
+  public void setCreatedAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
-  public UserProfile updatedAt(Date updatedAt) {
+  public UserProfile updatedAt(OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -187,11 +192,11 @@ public class UserProfile {
    * @return updatedAt
   **/
   @Schema(description = "")
-  public Date getUpdatedAt() {
+  public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(Date updatedAt) {
+  public void setUpdatedAt(OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
   }
 
