@@ -16,10 +16,7 @@ import com.google.gson.annotations.SerializedName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.threeten.bp.LocalDate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * UserProfile
@@ -46,10 +43,10 @@ public class UserProfile {
   private String namespaceId = null;
 
   @SerializedName("created_at")
-  private LocalDate createdAt = null;
+  private Date createdAt = null;
 
   @SerializedName("updated_at")
-  private LocalDate updatedAt = null;
+  private Date updatedAt = null;
 
   @SerializedName("contacts")
   private List<UserProfileContacts> contacts = null;
@@ -162,7 +159,7 @@ public class UserProfile {
     this.namespaceId = namespaceId;
   }
 
-  public UserProfile createdAt(LocalDate createdAt) {
+  public UserProfile createdAt(Date createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -172,15 +169,15 @@ public class UserProfile {
    * @return createdAt
   **/
   @Schema(description = "")
-  public LocalDate getCreatedAt() {
+  public Date getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(LocalDate createdAt) {
+  public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
 
-  public UserProfile updatedAt(LocalDate updatedAt) {
+  public UserProfile updatedAt(Date updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -190,11 +187,11 @@ public class UserProfile {
    * @return updatedAt
   **/
   @Schema(description = "")
-  public LocalDate getUpdatedAt() {
+  public Date getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(LocalDate updatedAt) {
+  public void setUpdatedAt(Date updatedAt) {
     this.updatedAt = updatedAt;
   }
 

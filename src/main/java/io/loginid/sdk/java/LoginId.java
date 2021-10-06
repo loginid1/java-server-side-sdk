@@ -175,8 +175,8 @@ public class LoginId {
 
         KeyFactory keyFactory = KeyFactory.getInstance("EC");
         String privateKeyContent = privateKey;
-        privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PUBLIC KEY-----", "")
-                .replace("-----END PUBLIC KEY-----", "");
+        privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PRIVATE KEY-----", "")
+                .replace("-----END PRIVATE KEY-----", "");
         PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
         PrivateKey privateKey = keyFactory.generatePrivate(keySpecPKCS8);
 
