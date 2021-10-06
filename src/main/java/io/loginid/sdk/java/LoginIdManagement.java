@@ -225,7 +225,7 @@ public class LoginIdManagement extends LoginId {
         codesCodeTypeInvalidateAllBody.setPurpose(CodesCodeTypeInvalidateAllBody.PurposeEnum.fromValue(codePurpose));
         codesCodeTypeInvalidateAllBody.setUserId(userId);
 
-        return codesApi.codesCodeTypeInvalidateAllPost(codeType, null, null);
+        return codesApi.codesCodeTypeInvalidateAllPost(codeType, codesCodeTypeInvalidateAllBody, null);
     }
 
     /**
