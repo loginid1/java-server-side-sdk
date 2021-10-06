@@ -34,7 +34,7 @@ public class LoginId {
     }
 
     public LoginId(String clientId, String privateKey) {
-        this(clientId, privateKey, "https://usw1.loginid.io/");
+        this(clientId, privateKey, "https://directweb.usw1.loginid.io/api/native");
     }
 
     public String getClientId() {
@@ -107,7 +107,11 @@ public class LoginId {
      */
     @SuppressWarnings({"SpellCheckingInspection", "rawtypes"})
     public boolean verifyToken(String token, @Nullable String username) {
-        SigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
+        LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
+
+        ApiClient apiClient = signingKeyResolver.getCertificatesApi().getApiClient();
+        apiClient.setBasePath(baseUrl);
+        
         Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(token);
 
         Claims payload = claims.getBody();
@@ -175,8 +179,8 @@ public class LoginId {
 
         KeyFactory keyFactory = KeyFactory.getInstance("EC");
         String privateKeyContent = privateKey;
-        privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PUBLIC KEY-----", "")
-                .replace("-----END PUBLIC KEY-----", "");
+        privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PRIVATE KEY-----", "")
+                .replace("-----END PRIVATE KEY-----", "");
         PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
         PrivateKey privateKey = keyFactory.generatePrivate(keySpecPKCS8);
 
@@ -227,8 +231,8 @@ public class LoginId {
 
         KeyFactory keyFactory = KeyFactory.getInstance("EC");
         String privateKeyContent = privateKey;
-        privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PUBLIC KEY-----", "")
-                .replace("-----END PUBLIC KEY-----", "");
+        privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PRIVATE KEY-----", "")
+                .replace("-----END PRIVATE KEY-----", "");
         PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
         PrivateKey privateKey = keyFactory.generatePrivate(keySpecPKCS8);
 
@@ -276,7 +280,11 @@ public class LoginId {
      */
     @SuppressWarnings("rawtypes")
     public boolean verifyTransaction(String txToken, String txPayload) throws NoSuchAlgorithmException {
-        SigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
+        LoginIdSigningKeyResolver signingKeyResolver = new LoginIdSigningKeyResolver();
+
+        ApiClient apiClient = signingKeyResolver.getCertificatesApi().getApiClient();
+        apiClient.setBasePath(baseUrl);
+
         Jws<Claims> claims = Jwts.parserBuilder().setSigningKeyResolver(signingKeyResolver).build().parseClaimsJws(txToken);
 
         Claims payload = claims.getBody();

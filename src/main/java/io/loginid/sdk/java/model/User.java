@@ -14,7 +14,7 @@ package io.loginid.sdk.java.model;
 
 import com.google.gson.annotations.SerializedName;
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.threeten.bp.LocalDate;
+import org.threeten.bp.OffsetDateTime;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -44,7 +44,7 @@ public class User {
   private String namspaceId = null;
 
   @SerializedName("created_at")
-  private LocalDate createdAt = null;
+  private OffsetDateTime createdAt = null;
 
   public User id(UUID id) {
     this.id = id;
@@ -154,7 +154,7 @@ public class User {
     this.namspaceId = namspaceId;
   }
 
-  public User createdAt(LocalDate createdAt) {
+  public User createdAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -164,11 +164,11 @@ public class User {
    * @return createdAt
   **/
   @Schema(description = "")
-  public LocalDate getCreatedAt() {
+  public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(LocalDate createdAt) {
+  public void setCreatedAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
   }
 

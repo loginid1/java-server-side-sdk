@@ -15,6 +15,17 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class LoginIdSigningKeyResolver extends SigningKeyResolverAdapter {
+	final private CertificatesApi certificatesApi = new CertificatesApi();
+	
+    /**
+     * Get certificatesApi
+     *
+     * @return CertificatesApi
+     */
+	public CertificatesApi getCertificatesApi() {
+		return certificatesApi;
+	}
+	
     @Override
     public Key resolveSigningKey(JwsHeader header, Claims claims) {
         String keyId = header.getKeyId();

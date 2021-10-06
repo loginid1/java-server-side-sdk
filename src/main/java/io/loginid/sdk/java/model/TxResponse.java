@@ -23,7 +23,7 @@ import java.util.Objects;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
 public class TxResponse {
-  @SerializedName("tx_id")
+  @SerializedName("id")
   private String txId = null;
 
   @SerializedName("url")
