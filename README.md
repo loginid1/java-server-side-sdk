@@ -17,7 +17,7 @@ You can now use the SDK in your local development machine!
 Here is a simple code snippet that connects to LoginID, creates a user and retrieves the userId of the newly created user.
  It works as shown on a Mac environment and if you have chosen to create a configuration file as documented:
 
-```
+```java
 package io.loginid.doc;
 
 import io.loginid.sdk.java.LoginIdManagement;
