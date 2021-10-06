@@ -52,7 +52,7 @@ import java.util.regex.Pattern;
 
 public class ApiClient {
 
-    private String basePath = "http://localhost:8080/api/native";
+    private String basePath = "https://usw1.loginid.io/api/native";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private String tempFolderPath = null;
