@@ -17,6 +17,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.time.Instant;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("unused")
 public class LoginId {
@@ -327,6 +328,8 @@ public class LoginId {
         ApiClient apiClient = authenticateApi.getApiClient();
         apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
+        apiClient.getHttpClient().setConnectTimeout(3, TimeUnit.MINUTES);
+        apiClient.getHttpClient().setReadTimeout(3, TimeUnit.MINUTES);
 
         AuthenticateCodeWaitBody authenticateCodeWaitBody = new AuthenticateCodeWaitBody();
         authenticateCodeWaitBody.setClientId(getClientId());
