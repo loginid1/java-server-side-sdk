@@ -328,8 +328,8 @@ public class LoginId {
         ApiClient apiClient = authenticateApi.getApiClient();
         apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
-        apiClient.getHttpClient().setConnectTimeout(3, TimeUnit.MINUTES);
-        apiClient.getHttpClient().setReadTimeout(3, TimeUnit.MINUTES);
+        apiClient.setConnectTimeout(3*60*1000);
+        apiClient.setReadTimeout(3*60*1000);
 
         AuthenticateCodeWaitBody authenticateCodeWaitBody = new AuthenticateCodeWaitBody();
         authenticateCodeWaitBody.setClientId(getClientId());
