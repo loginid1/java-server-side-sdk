@@ -52,7 +52,7 @@ public class CredentialsApi {
         Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/credentials/authid/evaluate";
+        String localVarPath = "/credentials/authid/init";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -288,132 +288,6 @@ public class CredentialsApi {
 
         com.squareup.okhttp.Call call = credentialsProofCompletePostValidateBeforeCall(body, requestID, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CredentialsCompleteResponse>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for credentialsProofEvaluatePost
-     * @param body  (optional)
-     * @param requestID  (optional)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call credentialsProofEvaluatePostCall(CredentialsProofEvaluateBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = body;
-        
-        // create path and map variables
-        String localVarPath = "/credentials/authid/evaluate";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (requestID != null)
-        localVarHeaderParams.put("Request-ID", apiClient.parameterToString(requestID));
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-    
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call credentialsProofEvaluatePostValidateBeforeCall(CredentialsProofEvaluateBody body, UUID requestID, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        com.squareup.okhttp.Call call = credentialsProofEvaluatePostCall(body, requestID, progressListener, progressRequestListener);
-        return call;
-
-        
-        
-        
-        
-    }
-
-    /**
-     * Retrieve AuthID data for evaluation
-     * 
-     * @param body  (optional)
-     * @param requestID  (optional)
-     * @return InlineResponse20022
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public CredentialsProofEvaluateResponse credentialsProofEvaluatePost(CredentialsProofEvaluateBody body, UUID requestID) throws ApiException {
-        ApiResponse<CredentialsProofEvaluateResponse> resp = credentialsProofEvaluatePostWithHttpInfo(body, requestID);
-        return resp.getData();
-    }
-
-    /**
-     * Retrieve AuthID data for evaluation
-     * 
-     * @param body  (optional)
-     * @param requestID  (optional)
-     * @return ApiResponse&lt;InlineResponse20022&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<CredentialsProofEvaluateResponse> credentialsProofEvaluatePostWithHttpInfo(CredentialsProofEvaluateBody body, UUID requestID) throws ApiException {
-        com.squareup.okhttp.Call call = credentialsProofEvaluatePostValidateBeforeCall(body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<CredentialsProofEvaluateResponse>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Retrieve AuthID data for evaluation (asynchronously)
-     * 
-     * @param body  (optional)
-     * @param requestID  (optional)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call credentialsProofEvaluatePostAsync(CredentialsProofEvaluateBody body, UUID requestID, final ApiCallback<CredentialsProofEvaluateResponse> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = credentialsProofEvaluatePostValidateBeforeCall(body, requestID, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<CredentialsProofEvaluateResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
