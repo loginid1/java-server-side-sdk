@@ -22,7 +22,7 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class CredentialsFido2CompleteResponse {
+public class CredentialsCompleteResponse {
   @SerializedName("credential_uuid")
   private String credentialUuid = null;
 
@@ -35,7 +35,7 @@ public class CredentialsFido2CompleteResponse {
   @SerializedName("jwt")
   private String jwt = null;
 
-  public CredentialsFido2CompleteResponse credentialUuid(String credentialUuid) {
+  public CredentialsCompleteResponse credentialUuid(String credentialUuid) {
     this.credentialUuid = credentialUuid;
     return this;
   }
@@ -53,7 +53,7 @@ public class CredentialsFido2CompleteResponse {
     this.credentialUuid = credentialUuid;
   }
 
-  public CredentialsFido2CompleteResponse username(String username) {
+  public CredentialsCompleteResponse username(String username) {
     this.username = username;
     return this;
   }
@@ -71,7 +71,7 @@ public class CredentialsFido2CompleteResponse {
     this.username = username;
   }
 
-  public CredentialsFido2CompleteResponse namespaceId(String namespaceId) {
+  public CredentialsCompleteResponse namespaceId(String namespaceId) {
     this.namespaceId = namespaceId;
     return this;
   }
@@ -89,7 +89,7 @@ public class CredentialsFido2CompleteResponse {
     this.namespaceId = namespaceId;
   }
 
-  public CredentialsFido2CompleteResponse jwt(String jwt) {
+  public CredentialsCompleteResponse jwt(String jwt) {
     this.jwt = jwt;
     return this;
   }
@@ -116,11 +116,11 @@ public class CredentialsFido2CompleteResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CredentialsFido2CompleteResponse credentialsFido2CompleteResponse = (CredentialsFido2CompleteResponse) o;
-    return Objects.equals(this.credentialUuid, credentialsFido2CompleteResponse.credentialUuid) &&
-        Objects.equals(this.username, credentialsFido2CompleteResponse.username) &&
-        Objects.equals(this.namespaceId, credentialsFido2CompleteResponse.namespaceId) &&
-        Objects.equals(this.jwt, credentialsFido2CompleteResponse.jwt);
+    CredentialsCompleteResponse CredentialsCompleteResponse = (CredentialsCompleteResponse) o;
+    return Objects.equals(this.credentialUuid, CredentialsCompleteResponse.credentialUuid) &&
+        Objects.equals(this.username, CredentialsCompleteResponse.username) &&
+        Objects.equals(this.namespaceId, CredentialsCompleteResponse.namespaceId) &&
+        Objects.equals(this.jwt, CredentialsCompleteResponse.jwt);
   }
 
   @Override

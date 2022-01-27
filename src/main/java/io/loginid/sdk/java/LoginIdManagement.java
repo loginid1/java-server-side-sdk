@@ -238,7 +238,7 @@ public class LoginIdManagement extends LoginId {
      * @throws ApiException
      */
     @SuppressWarnings("UnnecessaryLocalVariable")
-    public CredentialsResponse getCredentials(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CredentialsResponse getCredentials(String userId, String username) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.list", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
@@ -247,7 +247,51 @@ public class LoginIdManagement extends LoginId {
         apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
 
-        CredentialsResponse result = credentialsApi.credentialsGet(UUID.fromString(userId), getClientId(), null);
+        CredentialsListBody credentialsListBody = new CredentialsListBody();
+        credentialsListBody.setClientId(getClientId());
+        credentialsListBody.setUserId(userId);
+        credentialsListBody.setUsername(username);
+
+        CredentialsResponse result = credentialsApi.credentialsListPost(credentialsListBody, null);
+        return result;
+    }
+
+    /**
+     * add a public key as a credential
+     *
+     * @param userId The user ID of the end user
+     * @param username The username of the end user
+     * @param publickeyAlg The algorithm the public key is verified against, defaults to ES256
+     * @param publickey The base64 encoded public key
+     * @param credentialName Optional name of credential
+     * @return User's credentials
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    @SuppressWarnings("UnnecessaryLocalVariable")
+    public AuthenticationResponse initAddPublicKeyCredential(String userId, String username, String publickeyAlg, String publickey, String credentialName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        String token = generateServiceToken("credentials.force_add", null, null, null, null);
+
+        CredentialsApi credentialsApi = new CredentialsApi();
+
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+
+        CredentialsPublickeyBody credentialsPublickeyBody = new CredentialsPublickeyBody();
+        credentialsPublickeyBody.setClientId(getClientId());
+        credentialsPublickeyBody.setUserId(userId);
+        credentialsPublickeyBody.setUsername(username);
+        credentialsPublickeyBody.setPublickey(publickey);
+        if (publickeyAlg.length() > 0) {
+            credentialsPublickeyBody.setPublickeyAlg(publickeyAlg);
+        }
+
+        CredentialsPublickeyOptions credentialsPublickeyOptions = new CredentialsPublickeyOptions();
+        credentialsPublickeyOptions.setCredentialName(credentialName);
+
+        AuthenticationResponse result = credentialsApi.credentialsPublickeyPost(credentialsPublickeyBody);
         return result;
     }
 
@@ -255,6 +299,7 @@ public class LoginIdManagement extends LoginId {
      * Renames the credential of a user
      *
      * @param userId      The ID of the user
+     * @param username    The username of the user
      * @param credId      The ID of the credential to be renamed
      * @param updatedName The new name
      * @return The renamed credential's details
@@ -263,7 +308,7 @@ public class LoginIdManagement extends LoginId {
      * @throws ApiException
      */
     @SuppressWarnings("UnnecessaryLocalVariable")
-    public CredentialsChangeResponse renameCredential(String userId, String credId, String updatedName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CredentialsChangeResponse renameCredential(String userId, String username, String credId, String updatedName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.rename", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
@@ -275,6 +320,7 @@ public class LoginIdManagement extends LoginId {
         CredentialsRenameBody credentialsRenameBody = new CredentialsRenameBody();
         credentialsRenameBody.setClientId(getClientId());
         credentialsRenameBody.setUserId(userId);
+        credentialsRenameBody.setUsername(username);
 
         CredentialsrenameCredential credentialsrenameCredential = new CredentialsrenameCredential();
         credentialsrenameCredential.setName(updatedName);
@@ -291,6 +337,7 @@ public class LoginIdManagement extends LoginId {
      * Revokes an existing credential from a user
      *
      * @param userId The user ID to extract the credential
+     * @param username The username to extract the credential
      * @param credId The credential ID to be revoked
      * @return The revoked credential's details
      * @throws NoSuchAlgorithmException
@@ -298,7 +345,7 @@ public class LoginIdManagement extends LoginId {
      * @throws ApiException
      */
     @SuppressWarnings("UnnecessaryLocalVariable")
-    public CredentialsChangeResponse revokeCredential(String userId, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CredentialsChangeResponse revokeCredential(String userId, String username, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.revoke", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
@@ -310,6 +357,7 @@ public class LoginIdManagement extends LoginId {
         CredentialsRevokeBody credentialsRevokeBody = new CredentialsRevokeBody();
         credentialsRevokeBody.setClientId(getClientId());
         credentialsRevokeBody.setUserId(userId);
+        credentialsRevokeBody.setUsername(username);
 
         CredentialsrevokeCredential credentialsrevokeCredential = new CredentialsrevokeCredential();
         credentialsrevokeCredential.setUuid(credId);
@@ -370,6 +418,60 @@ public class LoginIdManagement extends LoginId {
         credentialsFido2InitForceBody.setUserId(userId);
 
         CredentialsFido2InitForceResponse result = credentialsApi.credentialsFido2InitForcePost(credentialsFido2InitForceBody,null);
+        return result;
+    }
+
+    /**
+     * Generate a recovery code
+     *
+     * @param userId The ID of the user to generate the new recovery code for
+     * @param userName The userName of the user to generate the new recovery code for
+     * @return The response body from the code generation request
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public CredentialsRecoverycodeResponse generateRecoveryCode(String userId, String userName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        String token = generateServiceToken("credentials.add_recovery", null, null, null, null);
+
+        CredentialsApi credentialsApi = new CredentialsApi();
+
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+
+        CredentialsRecoverycodeBody credentialsRecoverycodeBody = new CredentialsRecoverycodeBody();
+        credentialsRecoverycodeBody.setClientId(getClientId());
+        credentialsRecoverycodeBody.setUserId(userId);
+        credentialsRecoverycodeBody.setUsername(userName);
+
+        CredentialsRecoverycodeResponse result = credentialsApi.credentialsRecoveryCodePost(credentialsRecoverycodeBody,null);
+        return result;
+    }
+
+    /**
+     * Add a credential with proof
+     *
+     * @param userId The ID of the user to generate the new recovery code for
+     * @return The response body from the code generation request
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public CredentialsProofInitResponse initAddCredentialWithProof(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        String token = generateServiceToken("credentials.force_add", null, null, null, null);
+
+        CredentialsApi credentialsApi = new CredentialsApi();
+
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+
+        CredentialsProofBody credentialsProofBody = new CredentialsProofBody();
+        credentialsProofBody.setClientId(getClientId());
+        credentialsProofBody.setUserId(userId);
+
+        CredentialsProofInitResponse result = credentialsApi.credentialsProofInitPost(credentialsProofBody,null);
         return result;
     }
 }

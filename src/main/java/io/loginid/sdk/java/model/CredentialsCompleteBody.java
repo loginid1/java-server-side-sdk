@@ -22,7 +22,7 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class CredentialsFido2CompleteBody {
+public class CredentialsCompleteBody {
   @SerializedName("client_id")
   private String clientId = null;
 
@@ -35,7 +35,7 @@ public class CredentialsFido2CompleteBody {
   @SerializedName("options")
   private Registerfido2completeOptions options = null;
 
-  public CredentialsFido2CompleteBody clientId(String clientId) {
+  public CredentialsCompleteBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -53,7 +53,7 @@ public class CredentialsFido2CompleteBody {
     this.clientId = clientId;
   }
 
-  public CredentialsFido2CompleteBody userId(String userId) {
+  public CredentialsCompleteBody userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -71,7 +71,7 @@ public class CredentialsFido2CompleteBody {
     this.userId = userId;
   }
 
-  public CredentialsFido2CompleteBody attestationPayload(Credentialsfido2completeAttestationPayload attestationPayload) {
+  public CredentialsCompleteBody attestationPayload(Credentialsfido2completeAttestationPayload attestationPayload) {
     this.attestationPayload = attestationPayload;
     return this;
   }
@@ -89,7 +89,7 @@ public class CredentialsFido2CompleteBody {
     this.attestationPayload = attestationPayload;
   }
 
-  public CredentialsFido2CompleteBody options(Registerfido2completeOptions options) {
+  public CredentialsCompleteBody options(Registerfido2completeOptions options) {
     this.options = options;
     return this;
   }
@@ -116,11 +116,11 @@ public class CredentialsFido2CompleteBody {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CredentialsFido2CompleteBody credentialsFido2CompleteBody = (CredentialsFido2CompleteBody) o;
-    return Objects.equals(this.clientId, credentialsFido2CompleteBody.clientId) &&
-        Objects.equals(this.userId, credentialsFido2CompleteBody.userId) &&
-        Objects.equals(this.attestationPayload, credentialsFido2CompleteBody.attestationPayload) &&
-        Objects.equals(this.options, credentialsFido2CompleteBody.options);
+    CredentialsCompleteBody CredentialsCompleteBody = (CredentialsCompleteBody) o;
+    return Objects.equals(this.clientId, CredentialsCompleteBody.clientId) &&
+        Objects.equals(this.userId, CredentialsCompleteBody.userId) &&
+        Objects.equals(this.attestationPayload, CredentialsCompleteBody.attestationPayload) &&
+        Objects.equals(this.options, CredentialsCompleteBody.options);
   }
 
   @Override
