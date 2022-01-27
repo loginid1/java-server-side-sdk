@@ -323,13 +323,13 @@ public class LoginId {
 
         String token = generateServiceToken("auth.temporary", null, null, null, null);
 
-        AuthenticateApi authenticateApi = new AuthenticateApi();
-
-        ApiClient apiClient = authenticateApi.getApiClient();
+        ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(getBaseUrl());
         apiClient.setAccessToken(token);
         apiClient.setConnectTimeout(3*60*1000);
         apiClient.setReadTimeout(3*60*1000);
+
+        AuthenticateApi authenticateApi = new AuthenticateApi(apiClient);
 
         AuthenticateCodeWaitBody authenticateCodeWaitBody = new AuthenticateCodeWaitBody();
         authenticateCodeWaitBody.setClientId(getClientId());
