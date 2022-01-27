@@ -18,11 +18,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * CredentialsRevokeBody
+ * CredentialsListBody
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class CredentialsRevokeBody {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-01-25T11:19:57.896818-05:00[America/Toronto]")
+public class CredentialsListBody {
   @SerializedName("client_id")
   private String clientId = null;
 
@@ -32,10 +32,7 @@ public class CredentialsRevokeBody {
   @SerializedName("username")
   private String username = null;
 
-  @SerializedName("credential")
-  private CredentialsrevokeCredential credential = null;
-
-  public CredentialsRevokeBody clientId(String clientId) {
+  public CredentialsListBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -53,7 +50,7 @@ public class CredentialsRevokeBody {
     this.clientId = clientId;
   }
 
-  public CredentialsRevokeBody userId(String userId) {
+  public CredentialsListBody userId(String userId) {
     this.userId = userId;
     return this;
   }
@@ -71,7 +68,7 @@ public class CredentialsRevokeBody {
     this.userId = userId;
   }
 
-  public CredentialsRevokeBody username(String username) {
+  public CredentialsListBody username(String username) {
     this.username = username;
     return this;
   }
@@ -89,55 +86,35 @@ public class CredentialsRevokeBody {
     this.username = username;
   }
 
-  public CredentialsRevokeBody credential(CredentialsrevokeCredential credential) {
-    this.credential = credential;
-    return this;
-  }
-
-   /**
-   * Get credential
-   * @return credential
-  **/
-  @Schema(description = "")
-  public CredentialsrevokeCredential getCredential() {
-    return credential;
-  }
-
-  public void setCredential(CredentialsrevokeCredential credential) {
-    this.credential = credential;
-  }
-
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CredentialsRevokeBody credentialsRevokeBody = (CredentialsRevokeBody) o;
-    return Objects.equals(this.clientId, credentialsRevokeBody.clientId) &&
-    Objects.equals(this.userId, credentialsRevokeBody.userId) &&
-    Objects.equals(this.username, credentialsRevokeBody.username) &&
-        Objects.equals(this.credential, credentialsRevokeBody.credential);
+    CredentialsListBody credentialsListBody = (CredentialsListBody) o;
+    return Objects.equals(this.clientId, credentialsListBody.clientId) &&
+        Objects.equals(this.userId, credentialsListBody.userId) &&
+        Objects.equals(this.username, credentialsListBody.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, userId, credential);
+    return Objects.hash(clientId, userId, username);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CredentialsRevokeBody {\n");
-
+    sb.append("class CredentialsListBody {\n");
+    
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    credential: ").append(toIndentedString(credential)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -146,7 +123,7 @@ public class CredentialsRevokeBody {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(java.lang.Object o) {
     if (o == null) {
       return "null";
     }
