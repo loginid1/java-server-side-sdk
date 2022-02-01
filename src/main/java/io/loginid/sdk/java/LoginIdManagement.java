@@ -237,6 +237,35 @@ public class LoginIdManagement extends LoginId {
      * @throws InvalidKeySpecException
      * @throws ApiException
      */
+    @Deprecated
+    @SuppressWarnings("UnnecessaryLocalVariable")
+    public CredentialsResponse getCredentials(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        String token = generateServiceToken("credentials.list", null, null, null, null);
+
+        CredentialsApi credentialsApi = new CredentialsApi();
+
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+
+        CredentialsListBody credentialsListBody = new CredentialsListBody();
+        credentialsListBody.setClientId(getClientId());
+        credentialsListBody.setUserId(userId);
+
+        CredentialsResponse result = credentialsApi.credentialsListPost(credentialsListBody, null);
+        return result;
+    }
+
+    /**
+     * Returns an exhaustive list of credentials for a given user
+     *
+     * @param userId The user ID of the end user whose list of credentials are required
+     * @param username The username of the end user whose list of credentials are required
+     * @return User's credentials
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
     @SuppressWarnings("UnnecessaryLocalVariable")
     public CredentialsResponse getCredentials(String userId, String username) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.list", null, null, null, null);
@@ -299,6 +328,42 @@ public class LoginIdManagement extends LoginId {
      * Renames the credential of a user
      *
      * @param userId      The ID of the user
+     * @param credId      The ID of the credential to be renamed
+     * @param updatedName The new name
+     * @return The renamed credential's details
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    @Deprecated
+    @SuppressWarnings("UnnecessaryLocalVariable")
+    public CredentialsChangeResponse renameCredential(String userId, String credId, String updatedName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        String token = generateServiceToken("credentials.rename", null, null, null, null);
+        
+        CredentialsApi credentialsApi = new CredentialsApi();
+        
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+        
+        CredentialsRenameBody credentialsRenameBody = new CredentialsRenameBody();
+        credentialsRenameBody.setClientId(getClientId());
+        credentialsRenameBody.setUserId(userId);
+        
+        CredentialsrenameCredential credentialsrenameCredential = new CredentialsrenameCredential();
+        credentialsrenameCredential.setName(updatedName);
+        credentialsrenameCredential.setUuid(credId);
+        
+        credentialsRenameBody.setCredential(credentialsrenameCredential);
+        
+        CredentialsChangeResponse result = credentialsApi.credentialsRenamePost(credentialsRenameBody, null);
+        return result;
+    }
+
+    /**
+     * Renames the credential of a user
+     *
+     * @param userId      The ID of the user
      * @param username    The username of the user
      * @param credId      The ID of the credential to be renamed
      * @param updatedName The new name
@@ -332,6 +397,39 @@ public class LoginIdManagement extends LoginId {
         return result;
     }
 
+    /**
+     * Revokes an existing credential from a user
+     *
+     * @param userId The user ID to extract the credential
+     * @param credId The credential ID to be revoked
+     * @return The revoked credential's details
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    @Deprecated
+    @SuppressWarnings("UnnecessaryLocalVariable")
+    public CredentialsChangeResponse revokeCredential(String userId, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        String token = generateServiceToken("credentials.revoke", null, null, null, null);
+
+        CredentialsApi credentialsApi = new CredentialsApi();
+
+        ApiClient apiClient = credentialsApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+
+        CredentialsRevokeBody credentialsRevokeBody = new CredentialsRevokeBody();
+        credentialsRevokeBody.setClientId(getClientId());
+        credentialsRevokeBody.setUserId(userId);
+
+        CredentialsrevokeCredential credentialsrevokeCredential = new CredentialsrevokeCredential();
+        credentialsrevokeCredential.setUuid(credId);
+
+        credentialsRevokeBody.setCredential(credentialsrevokeCredential);
+
+        CredentialsChangeResponse result = credentialsApi.credentialsRevokePost(credentialsRevokeBody, null);
+        return result;
+    }
 
     /**
      * Revokes an existing credential from a user
