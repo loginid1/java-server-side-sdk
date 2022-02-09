@@ -1,6 +1,5 @@
 package io.loginid.sdk.java;
 
-import io.loginid.sdk.java.api.AuthenticateApi;
 import io.loginid.sdk.java.api.CodesApi;
 import io.loginid.sdk.java.api.CredentialsApi;
 import io.loginid.sdk.java.api.ManagementApi;
@@ -570,67 +569,6 @@ public class LoginIdManagement extends LoginId {
         credentialsProofBody.setUserId(userId);
 
         CredentialsProofInitResponse result = credentialsApi.credentialsProofInitPost(credentialsProofBody,null);
-        return result;
-    }
-
-    /**
-     * Start user login process with authid
-     *
-     * @param userId The ID of the user to generate the new recovery code for
-     * @return The response body from the code generation request
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
-     * @throws ApiException
-     */
-    public AuthenticateVerifyInitResponse initAuthenticationVerify(String username, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        String token = generateServiceToken("auth.login", null, null, null, null);
-
-        AuthenticateApi authenticateApi = new AuthenticateApi();
-
-        ApiClient apiClient = authenticateApi.getApiClient();
-        apiClient.setBasePath(getBaseUrl());
-        apiClient.setAccessToken(token);
-
-        AuthenticateVerifyInitBody authenticateVerifyInitBody = new AuthenticateVerifyInitBody();
-        authenticateVerifyInitBody.setClientId(getClientId());
-        authenticateVerifyInitBody.setUsername(username);
-
-        AuthenticateVerifyInitOptions authenticateVerifyInitOptions = new AuthenticateVerifyInitOptions();
-        authenticateVerifyInitOptions.setCredentialUuid(credId);
-
-        authenticateVerifyInitBody.setOptions(authenticateVerifyInitOptions);
-
-        AuthenticateVerifyInitResponse result = authenticateApi.authenticateAuthidInitPost(authenticateVerifyInitBody, null);
-        return result;
-    }
-
-    /**
-     * init user login process with authid
-     *
-     * @param userId The ID of the user to generate the new recovery code for
-     * @return The response body from the code generation request
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
-     * @throws ApiException
-     */
-    public AuthenticatePublickeyInitResponse initUserLoginPublickey(String username, String credId, String publickeyAlg, String publickey) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        String token = generateServiceToken("auth.login", null, null, null, null);
-
-        AuthenticateApi authenticateApi = new AuthenticateApi();
-
-        ApiClient apiClient = authenticateApi.getApiClient();
-        apiClient.setBasePath(getBaseUrl());
-        apiClient.setAccessToken(token);
-
-        PublickeyInitBody publickeyInitBody = new PublickeyInitBody();
-        publickeyInitBody.setClientId(getClientId());
-        publickeyInitBody.setUsername(username);
-        publickeyInitBody.setPublickey(publickey);
-        if (publickeyAlg.length() > 0) {
-            publickeyInitBody.setPublickeyAlg(publickeyAlg);
-        } 
-
-        AuthenticatePublickeyInitResponse result = authenticateApi.authenticatePublickeyInitPost(publickeyInitBody);
         return result;
     }
 }
