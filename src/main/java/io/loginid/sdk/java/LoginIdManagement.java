@@ -1,5 +1,6 @@
 package io.loginid.sdk.java;
 
+import io.jsonwebtoken.security.InvalidKeyException;
 import io.loginid.sdk.java.api.CodesApi;
 import io.loginid.sdk.java.api.CredentialsApi;
 import io.loginid.sdk.java.api.ManagementApi;
@@ -15,13 +16,20 @@ import java.util.UUID;
 public class LoginIdManagement extends LoginId {
 
     public LoginIdManagement(String clientId, String privateKey, String baseUrl) {
-        super(clientId, privateKey, baseUrl);
+        super(clientId, isValidPrivateKey(privateKey), baseUrl);
     }
 
     public LoginIdManagement(String clientId, String privateKey) {
-        super(clientId, privateKey);
+        super(clientId, isValidPrivateKey(privateKey));
     }
     
+    private static String isValidPrivateKey(String privateKey) throws InvalidKeyException {
+        if (privateKey == null) {
+            throw new InvalidKeyException("missing private key");
+        }
+        return privateKey;
+    }
+
     /**
      * Returns the user ID based on username
      *
@@ -31,7 +39,7 @@ public class LoginIdManagement extends LoginId {
      * @throws InvalidKeySpecException
      * @throws ApiException
      */
-    public UUID getUserId(String userName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public UUID getUserId(String username) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("users.retrieve", null, null, null, null);
 
         ManagementApi managementApi = new ManagementApi();
@@ -41,7 +49,7 @@ public class LoginIdManagement extends LoginId {
         apiClient.setAccessToken(token);
 
         ManageUsersRetrieveBody manageUsersRetrieveBody = new ManageUsersRetrieveBody();
-        manageUsersRetrieveBody.setUsername(userName);
+        manageUsersRetrieveBody.setUsername(username);
         UserProfile result = managementApi.manageUsersRetrievePost(getClientId(), manageUsersRetrieveBody);
 
         return result.getId();
@@ -142,6 +150,7 @@ public class LoginIdManagement extends LoginId {
      * @throws InvalidKeySpecException
      * @throws ApiException
      */
+    @Deprecated
     public CodesCodeTypeGenerateResponse generateCode(String userId, String codeType, String codePurpose, boolean isAuthorized) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("codes.generate", null, null, null, null);
 
@@ -160,6 +169,44 @@ public class LoginIdManagement extends LoginId {
         return codesApi.codesCodeTypeGeneratePost(codeType, codesCodeTypeGenerateBody, null);
     }
 
+
+    /**
+     * Generate a code, either `userId` or `username` must be present
+     *
+     * @param userId       The user ID for the code
+     * @param username     The username for the code
+     * @param codeType     The code type
+     * @param codePurpose  The purpose of the code
+     * @param isAuthorized Indicates if the code authorizes the user or not
+     * @return The response body from the code generation request
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public CodesCodeTypeGenerateResponse generateCode(String userId, String username, String codeType, String codePurpose, boolean isAuthorized) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        String token = generateServiceToken("codes.generate", null, null, null, null);
+
+        CodesApi codesApi = new CodesApi();
+
+        ApiClient apiClient = codesApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+
+        CodesCodeTypeGenerateBody codesCodeTypeGenerateBody = new CodesCodeTypeGenerateBody();
+        codesCodeTypeGenerateBody.setClientId(getClientId());
+        codesCodeTypeGenerateBody.setPurpose(CodesCodeTypeGenerateBody.PurposeEnum.fromValue(codePurpose));
+        codesCodeTypeGenerateBody.setAuthorize(isAuthorized);
+        if (userId != "") {
+            codesCodeTypeGenerateBody.setUserId(userId);
+        } else if (username != "") {
+            codesCodeTypeGenerateBody.setUsername(username);
+        } else {
+            throw new ApiException("Missing the required parameter 'userId' or 'username'");
+        }
+        
+        return codesApi.codesCodeTypeGeneratePost(codeType, codesCodeTypeGenerateBody, null);
+    }
+
     /**
      * Authorizes a given code
      *
@@ -172,6 +219,7 @@ public class LoginIdManagement extends LoginId {
      * @throws InvalidKeySpecException
      * @throws ApiException
      */
+    @Deprecated
     public CodesCodeTypeAuthorizeResponse authorizeCode(String userId, String code, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
@@ -195,6 +243,49 @@ public class LoginIdManagement extends LoginId {
         return codesApi.codesCodeTypeAuthorizePost(codeType, codesCodeTypeAuthorizeBody, null);
     }
 
+
+    /**
+     * Authorizes a given code
+     *
+     * @param userId      The user ID associated with the code
+     * @param username      The user ID associated with the code
+     * @param code        The code that needs authorization
+     * @param codeType    The type of the code
+     * @param codePurpose The purpose of the code
+     * @return The response body from code authorization
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public CodesCodeTypeAuthorizeResponse authorizeCode(String userId, String username, String code, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        if (!isValidCodeType(codeType)) {
+            throw new IllegalArgumentException();
+        }
+
+        String token = generateServiceToken("codes.authorize", null, null, null, null);
+
+        CodesApi codesApi = new CodesApi();
+
+        ApiClient apiClient = codesApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+
+        CodesCodeTypeAuthorizeBody codesCodeTypeAuthorizeBody = new CodesCodeTypeAuthorizeBody();
+
+        codesCodeTypeAuthorizeBody.setClientId(getClientId());
+        codesCodeTypeAuthorizeBody.setPurpose(CodesCodeTypeAuthorizeBody.PurposeEnum.fromValue(codePurpose));
+        codesCodeTypeAuthorizeBody.setCode(code);
+        if (userId != "") {
+            codesCodeTypeAuthorizeBody.setUserId(userId);
+        } else if (username != "") {
+            codesCodeTypeAuthorizeBody.setUsername(username);
+        } else {
+            throw new ApiException("Missing the required parameter 'userId' or 'username'");
+        }
+
+        return codesApi.codesCodeTypeAuthorizePost(codeType, codesCodeTypeAuthorizeBody, null);
+    }
+
     /**
      * Invalidates all authentication codes of given type and purpose for given user
      *
@@ -206,6 +297,7 @@ public class LoginIdManagement extends LoginId {
      * @throws InvalidKeySpecException
      * @throws ApiException
      */
+    @Deprecated
     public CodesCodeTypeInvalidateAllResponse invalidateAllCodes(String userId, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
@@ -223,6 +315,45 @@ public class LoginIdManagement extends LoginId {
         codesCodeTypeInvalidateAllBody.setClientId(getClientId());
         codesCodeTypeInvalidateAllBody.setPurpose(CodesCodeTypeInvalidateAllBody.PurposeEnum.fromValue(codePurpose));
         codesCodeTypeInvalidateAllBody.setUserId(userId);
+
+        return codesApi.codesCodeTypeInvalidateAllPost(codeType, codesCodeTypeInvalidateAllBody, null);
+    }
+
+    /**
+     * Invalidates all authentication codes of given type and purpose for given user. Either `userId` or `username` must be present.
+     *
+     * @param userId      The user ID
+     * @param username    The username
+     * @param codeType    The code type
+     * @param codePurpose The purpose of the code
+     * @return The response body from invalidating all codes
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public CodesCodeTypeInvalidateAllResponse invalidateAllCodes(String userId, String username, String codeType, String codePurpose) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        if (!isValidCodeType(codeType)) {
+            throw new IllegalArgumentException();
+        }
+
+        String token = generateServiceToken("codes.invalidate", null, null, null, null);
+
+        CodesApi codesApi = new CodesApi();
+
+        ApiClient apiClient = codesApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        apiClient.setAccessToken(token);
+
+        CodesCodeTypeInvalidateAllBody codesCodeTypeInvalidateAllBody = new CodesCodeTypeInvalidateAllBody();
+        codesCodeTypeInvalidateAllBody.setClientId(getClientId());
+        codesCodeTypeInvalidateAllBody.setPurpose(CodesCodeTypeInvalidateAllBody.PurposeEnum.fromValue(codePurpose));
+        if (userId != "") {
+            codesCodeTypeInvalidateAllBody.setUserId(userId);
+        } else if (username != "") {
+            codesCodeTypeInvalidateAllBody.setUsername(username);
+        } else {
+            throw new ApiException("Missing the required parameter 'userId' or 'username'");
+        }
 
         return codesApi.codesCodeTypeInvalidateAllPost(codeType, codesCodeTypeInvalidateAllBody, null);
     }
@@ -277,15 +408,20 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsListBody credentialsListBody = new CredentialsListBody();
         credentialsListBody.setClientId(getClientId());
-        credentialsListBody.setUserId(userId);
-        credentialsListBody.setUsername(username);
+        if (userId != "") {
+            credentialsListBody.setUserId(userId);
+        } else if (username != "") {
+            credentialsListBody.setUsername(username);
+        } else {
+            throw new ApiException("Missing the required parameter 'userId' or 'username'");
+        }
 
         CredentialsResponse result = credentialsApi.credentialsListPost(credentialsListBody, null);
         return result;
     }
 
     /**
-     * add a public key as a credential
+     * add a public key as a credential. Either `userId` or `username`  must be present
      *
      * @param userId The user ID of the end user
      * @param username The username of the end user
@@ -309,8 +445,14 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsPublickeyBody credentialsPublickeyBody = new CredentialsPublickeyBody();
         credentialsPublickeyBody.setClientId(getClientId());
-        credentialsPublickeyBody.setUserId(userId);
-        credentialsPublickeyBody.setUsername(username);
+        if (userId != "") {
+            credentialsPublickeyBody.setUserId(userId);
+        } else if (username != "") {
+            credentialsPublickeyBody.setUsername(username);
+        } else {
+            throw new ApiException("Missing the required parameter 'userId' or 'username'");
+        }
+
         credentialsPublickeyBody.setPublickey(publickey);
         if (publickeyAlg.length() > 0) {
             credentialsPublickeyBody.setPublickeyAlg(publickeyAlg);
@@ -360,7 +502,7 @@ public class LoginIdManagement extends LoginId {
     }
 
     /**
-     * Renames the credential of a user
+     * Renames the credential of a user. Either `userId` or `username`  must be present
      *
      * @param userId      The ID of the user
      * @param username    The username of the user
@@ -383,8 +525,13 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsRenameBody credentialsRenameBody = new CredentialsRenameBody();
         credentialsRenameBody.setClientId(getClientId());
-        credentialsRenameBody.setUserId(userId);
-        credentialsRenameBody.setUsername(username);
+        if (userId != "") {
+            credentialsRenameBody.setUserId(userId);
+        } else if (username != "") {
+            credentialsRenameBody.setUsername(username);
+        } else {
+            throw new ApiException("Missing the required parameter 'userId' or 'username'");
+        }
 
         CredentialsrenameCredential credentialsrenameCredential = new CredentialsrenameCredential();
         credentialsrenameCredential.setName(updatedName);
@@ -431,7 +578,7 @@ public class LoginIdManagement extends LoginId {
     }
 
     /**
-     * Revokes an existing credential from a user
+     * Revokes an existing credential from a user. Either `userId` or `username`  must be present
      *
      * @param userId The user ID to extract the credential
      * @param username The username to extract the credential
@@ -453,8 +600,13 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsRevokeBody credentialsRevokeBody = new CredentialsRevokeBody();
         credentialsRevokeBody.setClientId(getClientId());
-        credentialsRevokeBody.setUserId(userId);
-        credentialsRevokeBody.setUsername(username);
+        if (userId != "") {
+            credentialsRevokeBody.setUserId(userId);
+        } else if (username != "") {
+            credentialsRevokeBody.setUsername(username);
+        } else {
+            throw new ApiException("Missing the required parameter 'userId' or 'username'");
+        }
 
         CredentialsrevokeCredential credentialsrevokeCredential = new CredentialsrevokeCredential();
         credentialsrevokeCredential.setUuid(credId);
@@ -519,16 +671,16 @@ public class LoginIdManagement extends LoginId {
     }
 
     /**
-     * Generate a recovery code
+     * Generate a recovery code. Either `userId` or `username` must be present
      *
      * @param userId The ID of the user to generate the new recovery code for
-     * @param userName The userName of the user to generate the new recovery code for
+     * @param username The userName of the user to generate the new recovery code for
      * @return The response body from the code generation request
      * @throws NoSuchAlgorithmException
      * @throws InvalidKeySpecException
      * @throws ApiException
      */
-    public CredentialsRecoverycodeResponse generateRecoveryCode(String userId, String userName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public CredentialsRecoverycodeResponse generateRecoveryCode(String userId, String username) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.add_recovery", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
@@ -539,8 +691,13 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsRecoverycodeBody credentialsRecoverycodeBody = new CredentialsRecoverycodeBody();
         credentialsRecoverycodeBody.setClientId(getClientId());
-        credentialsRecoverycodeBody.setUserId(userId);
-        credentialsRecoverycodeBody.setUsername(userName);
+        if (userId != "") {
+            credentialsRecoverycodeBody.setUserId(userId);
+        } else if (username != "") {
+            credentialsRecoverycodeBody.setUsername(username);
+        } else {
+            throw new ApiException("Missing the required parameter 'userId' or 'username'");
+        }
 
         CredentialsRecoverycodeResponse result = credentialsApi.credentialsRecoveryCodePost(credentialsRecoverycodeBody,null);
         return result;

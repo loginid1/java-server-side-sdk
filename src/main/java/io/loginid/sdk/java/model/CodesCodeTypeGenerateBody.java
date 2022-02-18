@@ -34,6 +34,9 @@ public class CodesCodeTypeGenerateBody {
   @SerializedName("user_id")
   private String userId = null;
 
+  @SerializedName("username")
+  private String username = null;
+
   /**
    * Gets or Sets purpose
    */
@@ -117,6 +120,24 @@ public class CodesCodeTypeGenerateBody {
     this.userId = userId;
   }
 
+  public CodesCodeTypeGenerateBody username(String username) {
+    this.username = username;
+    return this;
+  }
+
+   /**
+   * Get username
+   * @return username
+  **/
+  @Schema(description = "")
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
   public CodesCodeTypeGenerateBody purpose(PurposeEnum purpose) {
     this.purpose = purpose;
     return this;
@@ -165,6 +186,7 @@ public class CodesCodeTypeGenerateBody {
     CodesCodeTypeGenerateBody codesCodeTypeGenerateBody = (CodesCodeTypeGenerateBody) o;
     return Objects.equals(this.clientId, codesCodeTypeGenerateBody.clientId) &&
         Objects.equals(this.userId, codesCodeTypeGenerateBody.userId) &&
+        Objects.equals(this.username, codesCodeTypeGenerateBody.username) &&
         Objects.equals(this.purpose, codesCodeTypeGenerateBody.purpose) &&
         Objects.equals(this.authorize, codesCodeTypeGenerateBody.authorize);
   }
@@ -182,6 +204,7 @@ public class CodesCodeTypeGenerateBody {
 
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
     sb.append("    authorize: ").append(toIndentedString(authorize)).append("\n");
     sb.append("}");
