@@ -256,9 +256,10 @@ public class LoginId {
 
         ApiClient apiClient = transactionsApi.getApiClient();
         apiClient.setBasePath(baseUrl);
-
-        String token = generateTxAuthToken(txPayload, username, null);
-        apiClient.setAccessToken(token);
+        if (this.privateKey == null) {
+            String token = generateTxAuthToken(txPayload, username, null);
+            apiClient.setAccessToken(token);
+        }
 
         TxBody txBody = new TxBody();
         txBody.setClientId(clientId);
@@ -321,13 +322,14 @@ public class LoginId {
             throw new IllegalArgumentException();
         }
 
-        String token = generateServiceToken("auth.temporary", null, null, null, null);
-
         ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(getBaseUrl());
-        apiClient.setAccessToken(token);
         apiClient.setConnectTimeout(3*60*1000);
         apiClient.setReadTimeout(3*60*1000);
+        if (this.privateKey == null) {
+            String token = generateServiceToken("auth.temporary", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
 
         AuthenticateApi authenticateApi = new AuthenticateApi(apiClient);
 
@@ -360,13 +362,15 @@ public class LoginId {
      * @throws ApiException
      */
     public AuthenticateVerifyInitResponse initAuthenticationVerify(String username, String credId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        String token = generateServiceToken("auth.login", null, null, null, null);
-
+        
         AuthenticateApi authenticateApi = new AuthenticateApi();
-
+        
         ApiClient apiClient = authenticateApi.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        apiClient.setAccessToken(token);
+        if (this.privateKey == null) {
+            String token = generateServiceToken("auth.login", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
 
         AuthenticateVerifyInitBody authenticateVerifyInitBody = new AuthenticateVerifyInitBody();
         authenticateVerifyInitBody.setClientId(getClientId());
@@ -382,13 +386,10 @@ public class LoginId {
     }
 
     public AuthenticationResponse completeAuthenticationVerify(String username, String credID) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        String token = generateServiceToken("credentials.force_add", null, username, null, null);
-
         AuthenticateApi authenticateApi = new AuthenticateApi();
 
         ApiClient apiClient = authenticateApi.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        apiClient.setAccessToken(token);
 
         AuthenticateVerifyCompleteBody authenticateVerifyCompleteBody = new AuthenticateVerifyCompleteBody();
         authenticateVerifyCompleteBody.setClientId(getClientId());
@@ -409,13 +410,14 @@ public class LoginId {
      * @throws ApiException
      */
     public AuthenticatePublickeyInitResponse initUserLoginPublickey(String username, String credId, String publickeyAlg, String publickey) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        String token = generateServiceToken("auth.login", null, null, null, null);
-
         AuthenticateApi authenticateApi = new AuthenticateApi();
 
         ApiClient apiClient = authenticateApi.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        apiClient.setAccessToken(token);
+        if (this.privateKey == null) {
+            String token = generateServiceToken("auth.login", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
 
         PublickeyInitBody publickeyInitBody = new PublickeyInitBody();
         publickeyInitBody.setClientId(getClientId());
