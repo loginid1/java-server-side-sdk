@@ -14,7 +14,6 @@ package io.loginid.sdk.java.model;
 
 import com.google.gson.annotations.SerializedName;
 import io.swagger.v3.oas.annotations.media.Schema;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +22,7 @@ import java.util.Objects;
  * InlineResponse200AttestationPayload
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-02-22T12:29:40.679835-05:00[America/Toronto]")
 public class InlineResponse200AttestationPayload {
   @SerializedName("credential_uuid")
   private String credentialUuid = null;
@@ -35,7 +34,7 @@ public class InlineResponse200AttestationPayload {
   private String challenge = null;
 
   @SerializedName("excludeCredentials")
-  private List<String> excludeCredentials = null;
+  private List<InlineResponse200AttestationPayloadExcludeCredentials> excludeCredentials = null;
 
   @SerializedName("pubKeyCredParams")
   private List<InlineResponse200AttestationPayloadPubKeyCredParams> pubKeyCredParams = null;
@@ -100,14 +99,14 @@ public class InlineResponse200AttestationPayload {
     this.challenge = challenge;
   }
 
-  public InlineResponse200AttestationPayload excludeCredentials(List<String> excludeCredentials) {
+  public InlineResponse200AttestationPayload excludeCredentials(List<InlineResponse200AttestationPayloadExcludeCredentials> excludeCredentials) {
     this.excludeCredentials = excludeCredentials;
     return this;
   }
 
-  public InlineResponse200AttestationPayload addExcludeCredentialsItem(String excludeCredentialsItem) {
+  public InlineResponse200AttestationPayload addExcludeCredentialsItem(InlineResponse200AttestationPayloadExcludeCredentials excludeCredentialsItem) {
     if (this.excludeCredentials == null) {
-      this.excludeCredentials = new ArrayList<String>();
+      this.excludeCredentials = new ArrayList<InlineResponse200AttestationPayloadExcludeCredentials>();
     }
     this.excludeCredentials.add(excludeCredentialsItem);
     return this;
@@ -118,11 +117,11 @@ public class InlineResponse200AttestationPayload {
    * @return excludeCredentials
   **/
   @Schema(description = "")
-  public List<String> getExcludeCredentials() {
+  public List<InlineResponse200AttestationPayloadExcludeCredentials> getExcludeCredentials() {
     return excludeCredentials;
   }
 
-  public void setExcludeCredentials(List<String> excludeCredentials) {
+  public void setExcludeCredentials(List<InlineResponse200AttestationPayloadExcludeCredentials> excludeCredentials) {
     this.excludeCredentials = excludeCredentials;
   }
 
@@ -217,7 +216,7 @@ public class InlineResponse200AttestationPayload {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InlineResponse200AttestationPayload {\n");
-
+    
     sb.append("    credentialUuid: ").append(toIndentedString(credentialUuid)).append("\n");
     sb.append("    authenticatorSelection: ").append(toIndentedString(authenticatorSelection)).append("\n");
     sb.append("    challenge: ").append(toIndentedString(challenge)).append("\n");
