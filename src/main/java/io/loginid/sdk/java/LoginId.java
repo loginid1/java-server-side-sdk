@@ -353,9 +353,10 @@ public class LoginId {
     }
 
     /**
-     * Start user login process with authid
+     * Start user login process with cloud biometric verification
      *
-     * @param userId The ID of the user to generate the new recovery code for
+     * @param username The username of the user
+     * @param credId The uuid of the credential
      * @return The response body from the code generation request
      * @throws NoSuchAlgorithmException
      * @throws InvalidKeySpecException
@@ -385,6 +386,16 @@ public class LoginId {
         return result;
     }
 
+    /**
+     * Start user login process with authid
+     *
+     * @param username The username of the user
+     * @param credId The uuid of the credential
+     * @return The response body from the code generation request
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
     public AuthenticationResponse completeAuthenticationVerify(String username, String credID) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         AuthenticateApi authenticateApi = new AuthenticateApi();
 
@@ -401,15 +412,17 @@ public class LoginId {
     }
 
     /**
-     * init user login process with authid
+     * init user login process with public key
      *
      * @param userId The ID of the user to generate the new recovery code for
-     * @return The response body from the code generation request
+     * @param publickeyAlg The encryption algorithm; defaults to ES256
+     * @param publickey The publickey used as credential
+     * @return The challenge id and nonce
      * @throws NoSuchAlgorithmException
      * @throws InvalidKeySpecException
      * @throws ApiException
      */
-    public AuthenticatePublickeyInitResponse initUserLoginPublickey(String username, String credId, String publickeyAlg, String publickey) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public AuthenticatePublickeyInitResponse initUserLoginPublickey(String username, String publickeyAlg, String publickey) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         AuthenticateApi authenticateApi = new AuthenticateApi();
 
         ApiClient apiClient = authenticateApi.getApiClient();
@@ -431,7 +444,18 @@ public class LoginId {
         return result;
     }
 
-    public AuthenticationResponse completeUserLoginPublickey(String username, String challengeID, String assertion, boolean noJWT) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    /**
+     * complete user login process with public key
+     *
+     * @param userId The ID of the user to generate the new recovery code for
+     * @param challengeID The temporary generated ID 
+     * @param assertion The JWT used for assertion
+     * @return The response body from the code generation request
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public AuthenticationResponse completeUserLoginPublickey(String username, String challengeID, String assertion) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         AuthenticateApi authenticateApi = new AuthenticateApi();
 
         ApiClient apiClient = authenticateApi.getApiClient();
@@ -442,7 +466,6 @@ public class LoginId {
         publickeyCompleteBody.setUsername(username);
         publickeyCompleteBody.setChallengeId(challengeID);
         publickeyCompleteBody.setAssertion(assertion);
-        publickeyCompleteBody.setNoJwt(noJWT);
 
         AuthenticationResponse result = authenticateApi.authenticatePublickeyCompletePost(publickeyCompleteBody);
         return result;
