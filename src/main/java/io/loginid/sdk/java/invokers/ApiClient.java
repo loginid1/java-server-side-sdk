@@ -1165,13 +1165,12 @@ public class ApiClient {
                     public boolean verify(String hostname, SSLSession session) { return true; }
                 };
             } else if (sslCaCert != null) {
-                char[] password = null; // Any password will work.
                 CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
                 Collection<? extends Certificate> certificates = certificateFactory.generateCertificates(sslCaCert);
                 if (certificates.isEmpty()) {
                     throw new IllegalArgumentException("expected non-empty set of trusted certificates");
                 }
-                KeyStore caKeyStore = newEmptyKeyStore(password);
+                KeyStore caKeyStore = newEmptyKeyStore();
                 int index = 0;
                 for (Certificate certificate : certificates) {
                     String certificateAlias = "ca" + Integer.toString(index++);
@@ -1195,10 +1194,10 @@ public class ApiClient {
         }
     }
 
-    private KeyStore newEmptyKeyStore(char[] password) throws GeneralSecurityException {
+    private KeyStore newEmptyKeyStore() throws GeneralSecurityException {
         try {
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            keyStore.load(null, password);
+            keyStore.load(null, null);
             return keyStore;
         } catch (IOException e) {
             throw new AssertionError(e);
