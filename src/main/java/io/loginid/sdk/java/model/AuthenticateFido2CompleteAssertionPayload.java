@@ -20,21 +20,21 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * InlineResponse2003AssertionPayload
+ * AuthenticateFido2CompleteAssertionPayload
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2003AssertionPayload {
+public class AuthenticateFido2CompleteAssertionPayload {
   @SerializedName("challenge")
   private String challenge = null;
 
   @SerializedName("allowCredentials")
-  private List<InlineResponse2003AssertionPayloadAllowCredentials> allowCredentials = null;
+  private List<AuthenticateFido2CompleteAssertionPayloadAllowCredentials> allowCredentials = null;
 
   @SerializedName("rpId")
   private String rpId = null;
 
-  public InlineResponse2003AssertionPayload challenge(String challenge) {
+  public AuthenticateFido2CompleteAssertionPayload challenge(String challenge) {
     this.challenge = challenge;
     return this;
   }
@@ -52,14 +52,14 @@ public class InlineResponse2003AssertionPayload {
     this.challenge = challenge;
   }
 
-  public InlineResponse2003AssertionPayload allowCredentials(List<InlineResponse2003AssertionPayloadAllowCredentials> allowCredentials) {
+  public AuthenticateFido2CompleteAssertionPayload allowCredentials(List<AuthenticateFido2CompleteAssertionPayloadAllowCredentials> allowCredentials) {
     this.allowCredentials = allowCredentials;
     return this;
   }
 
-  public InlineResponse2003AssertionPayload addAllowCredentialsItem(InlineResponse2003AssertionPayloadAllowCredentials allowCredentialsItem) {
+  public AuthenticateFido2CompleteAssertionPayload addAllowCredentialsItem(AuthenticateFido2CompleteAssertionPayloadAllowCredentials allowCredentialsItem) {
     if (this.allowCredentials == null) {
-      this.allowCredentials = new ArrayList<InlineResponse2003AssertionPayloadAllowCredentials>();
+      this.allowCredentials = new ArrayList<AuthenticateFido2CompleteAssertionPayloadAllowCredentials>();
     }
     this.allowCredentials.add(allowCredentialsItem);
     return this;
@@ -70,15 +70,15 @@ public class InlineResponse2003AssertionPayload {
    * @return allowCredentials
   **/
   @Schema(description = "")
-  public List<InlineResponse2003AssertionPayloadAllowCredentials> getAllowCredentials() {
+  public List<AuthenticateFido2CompleteAssertionPayloadAllowCredentials> getAllowCredentials() {
     return allowCredentials;
   }
 
-  public void setAllowCredentials(List<InlineResponse2003AssertionPayloadAllowCredentials> allowCredentials) {
+  public void setAllowCredentials(List<AuthenticateFido2CompleteAssertionPayloadAllowCredentials> allowCredentials) {
     this.allowCredentials = allowCredentials;
   }
 
-  public InlineResponse2003AssertionPayload rpId(String rpId) {
+  public AuthenticateFido2CompleteAssertionPayload rpId(String rpId) {
     this.rpId = rpId;
     return this;
   }
@@ -105,7 +105,7 @@ public class InlineResponse2003AssertionPayload {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2003AssertionPayload inlineResponse2003AssertionPayload = (InlineResponse2003AssertionPayload) o;
+    AuthenticateFido2CompleteAssertionPayload inlineResponse2003AssertionPayload = (AuthenticateFido2CompleteAssertionPayload) o;
     return Objects.equals(this.challenge, inlineResponse2003AssertionPayload.challenge) &&
         Objects.equals(this.allowCredentials, inlineResponse2003AssertionPayload.allowCredentials) &&
         Objects.equals(this.rpId, inlineResponse2003AssertionPayload.rpId);
@@ -120,7 +120,7 @@ public class InlineResponse2003AssertionPayload {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2003AssertionPayload {\n");
+    sb.append("class AuthenticateFido2CompleteAssertionPayload {\n");
 
     sb.append("    challenge: ").append(toIndentedString(challenge)).append("\n");
     sb.append("    allowCredentials: ").append(toIndentedString(allowCredentials)).append("\n");

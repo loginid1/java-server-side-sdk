@@ -26,11 +26,14 @@ public class CredentialsFido2InitCodeBody {
   @SerializedName("client_id")
   private String clientId = null;
 
-  @SerializedName("user_id")
-  private String userId = null;
+  @SerializedName("username")
+  private String username = null;
 
   @SerializedName("authentication_code")
-  private Credentialsfido2initcodeAuthenticationCode authenticationCode = null;
+  private CredentialsFido2InitCodeAuthenticationCode authenticationCode = null;
+
+  @SerializedName("options")
+  private CredentialsFido2InitOptions options = null;
 
   public CredentialsFido2InitCodeBody clientId(String clientId) {
     this.clientId = clientId;
@@ -50,26 +53,26 @@ public class CredentialsFido2InitCodeBody {
     this.clientId = clientId;
   }
 
-  public CredentialsFido2InitCodeBody userId(String userId) {
-    this.userId = userId;
+  public CredentialsFido2InitCodeBody username(String username) {
+    this.username = username;
     return this;
   }
 
    /**
-   * Get userId
-   * @return userId
+   * Get username
+   * @return username
   **/
   @Schema(description = "")
-  public String getUserId() {
-    return userId;
+  public String getUsername() {
+    return username;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  public CredentialsFido2InitCodeBody authenticationCode(Credentialsfido2initcodeAuthenticationCode authenticationCode) {
-    this.authenticationCode = authenticationCode;
+  public CredentialsFido2InitCodeBody authenticationCode(CredentialsFido2InitOptions options) {
+    this.options = options;
     return this;
   }
 
@@ -78,14 +81,31 @@ public class CredentialsFido2InitCodeBody {
    * @return authenticationCode
   **/
   @Schema(description = "")
-  public Credentialsfido2initcodeAuthenticationCode getAuthenticationCode() {
+  public CredentialsFido2InitCodeAuthenticationCode getAuthenticationCode() {
     return authenticationCode;
   }
 
-  public void setAuthenticationCode(Credentialsfido2initcodeAuthenticationCode authenticationCode) {
+  public void setAuthenticationCode(CredentialsFido2InitCodeAuthenticationCode authenticationCode) {
     this.authenticationCode = authenticationCode;
   }
 
+  public CredentialsFido2InitCodeBody options(CredentialsFido2InitOptions options) {
+    this.options = options;
+    return this;
+  }
+
+  /**
+   * Get options
+   * @return options
+   **/
+  @Schema(description = "")
+  public CredentialsFido2InitOptions getOptions() {
+    return options;
+  }
+
+  public void setOptions(CredentialsFido2InitOptions options) {
+    this.options = options;
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -95,15 +115,16 @@ public class CredentialsFido2InitCodeBody {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CredentialsFido2InitCodeBody credentialsFido2InitCodeBody = (CredentialsFido2InitCodeBody) o;
-    return Objects.equals(this.clientId, credentialsFido2InitCodeBody.clientId) &&
-        Objects.equals(this.userId, credentialsFido2InitCodeBody.userId) &&
-        Objects.equals(this.authenticationCode, credentialsFido2InitCodeBody.authenticationCode);
+    CredentialsFido2InitCodeBody body = (CredentialsFido2InitCodeBody) o;
+    return Objects.equals(this.clientId, body.clientId) &&
+        Objects.equals(this.username, body.username) &&
+        Objects.equals(this.authenticationCode, body.authenticationCode) &&
+        Objects.equals(this.options, body.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, userId, authenticationCode);
+    return Objects.hash(clientId, username, authenticationCode, options);
   }
 
 
@@ -113,8 +134,9 @@ public class CredentialsFido2InitCodeBody {
     sb.append("class InitCodeBody {\n");
 
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    authenticationCode: ").append(toIndentedString(authenticationCode)).append("\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();
   }

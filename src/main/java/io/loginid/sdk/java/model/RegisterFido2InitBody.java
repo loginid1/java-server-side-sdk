@@ -30,7 +30,7 @@ public class RegisterFido2InitBody {
   private String username = null;
 
   @SerializedName("options")
-  private Registerfido2initOptions options = null;
+  private RegisterFido2InitOptions options = null;
 
   public RegisterFido2InitBody clientId(String clientId) {
     this.clientId = clientId;
@@ -68,7 +68,7 @@ public class RegisterFido2InitBody {
     this.username = username;
   }
 
-  public RegisterFido2InitBody options(Registerfido2initOptions options) {
+  public RegisterFido2InitBody options(RegisterFido2InitOptions options) {
     this.options = options;
     return this;
   }
@@ -78,11 +78,11 @@ public class RegisterFido2InitBody {
    * @return options
   **/
   @Schema(description = "")
-  public Registerfido2initOptions getOptions() {
+  public RegisterFido2InitOptions getOptions() {
     return options;
   }
 
-  public void setOptions(Registerfido2initOptions options) {
+  public void setOptions(RegisterFido2InitOptions options) {
     this.options = options;
   }
 

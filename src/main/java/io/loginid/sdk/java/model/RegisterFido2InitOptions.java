@@ -22,17 +22,20 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class Registerfido2initOptions {
+public class RegisterFido2InitOptions {
   @SerializedName("register_session")
   private String registerSession = null;
 
-  @SerializedName("ipsidy_account")
-  private String ipsidyAccount = null;
+  @SerializedName("display_name")
+  private String displayName = null;
 
-  @SerializedName("invitation")
-  private Invitation invitation = null;
+  @SerializedName("override_name")
+  private String overrideName = null;
 
-  public Registerfido2initOptions registerSession(String registerSession) {
+  @SerializedName("roaming_authenticator")
+  private Boolean roamingAuthenticator = false;
+
+  public RegisterFido2InitOptions registerSession(String registerSession) {
     this.registerSession = registerSession;
     return this;
   }
@@ -50,40 +53,58 @@ public class Registerfido2initOptions {
     this.registerSession = registerSession;
   }
 
-  public Registerfido2initOptions ipsidyAccount(String ipsidyAccount) {
-    this.ipsidyAccount = ipsidyAccount;
+  public RegisterFido2InitOptions displayName(String displayName) {
+    this.displayName = displayName;
     return this;
   }
 
    /**
-   * Get ipsidyAccount
-   * @return ipsidyAccount
+   * Get displayName
+   * @return displayName
   **/
   @Schema(description = "")
-  public String getIpsidyAccount() {
-    return ipsidyAccount;
+  public String getDisplayName() {
+    return displayName;
   }
 
-  public void setIpsidyAccount(String ipsidyAccount) {
-    this.ipsidyAccount = ipsidyAccount;
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
   }
 
-  public Registerfido2initOptions invitation(Invitation invitation) {
-    this.invitation = invitation;
+  public RegisterFido2InitOptions overrideName(String overrideName) {
+    this.overrideName = overrideName;
     return this;
   }
 
    /**
-   * Get invitation
-   * @return invitation
+   * Get overrideName
+   * @return overrideName
   **/
   @Schema(description = "")
-  public Invitation getInvitation() {
-    return invitation;
+  public String getOverrideName() {
+    return overrideName;
   }
 
-  public void setInvitation(Invitation invitation) {
-    this.invitation = invitation;
+  public void setOverrideName(String overrideName) {
+    this.overrideName = overrideName;
+  }
+
+  public RegisterFido2InitOptions roamingAuthenticator(Boolean roamingAuthenticator) {
+    this.roamingAuthenticator = roamingAuthenticator;
+    return this;
+  }
+
+  /**
+   * Get overrideName
+   * @return overrideName
+   **/
+  @Schema(description = "")
+  public Boolean getRoamingAuthenticator() {
+    return roamingAuthenticator;
+  }
+
+  public void setRoamingAuthenticator(Boolean roamingAuthenticator) {
+    this.roamingAuthenticator = roamingAuthenticator;
   }
 
 
@@ -95,15 +116,16 @@ public class Registerfido2initOptions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Registerfido2initOptions registerfido2initOptions = (Registerfido2initOptions) o;
-    return Objects.equals(this.registerSession, registerfido2initOptions.registerSession) &&
-        Objects.equals(this.ipsidyAccount, registerfido2initOptions.ipsidyAccount) &&
-        Objects.equals(this.invitation, registerfido2initOptions.invitation);
+    RegisterFido2InitOptions options = (RegisterFido2InitOptions) o;
+    return Objects.equals(this.registerSession, options.registerSession) &&
+        Objects.equals(this.displayName, options.displayName) &&
+        Objects.equals(this.overrideName, options.overrideName) &&
+        Objects.equals(this.roamingAuthenticator, options.roamingAuthenticator);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(registerSession, ipsidyAccount, invitation);
+    return Objects.hash(registerSession, displayName, overrideName, roamingAuthenticator);
   }
 
 
@@ -113,8 +135,9 @@ public class Registerfido2initOptions {
     sb.append("class Registerfido2initOptions {\n");
 
     sb.append("    registerSession: ").append(toIndentedString(registerSession)).append("\n");
-    sb.append("    ipsidyAccount: ").append(toIndentedString(ipsidyAccount)).append("\n");
-    sb.append("    invitation: ").append(toIndentedString(invitation)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    overrideName: ").append(toIndentedString(overrideName)).append("\n");
+    sb.append("    roamingAuthenticator: ").append(toIndentedString(roamingAuthenticator)).append("\n");
     sb.append("}");
     return sb.toString();
   }

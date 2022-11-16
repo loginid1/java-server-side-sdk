@@ -30,7 +30,7 @@ public class AuthenticateFido2CompleteBody {
   private String username = null;
 
   @SerializedName("assertion_payload")
-  private Authenticatefido2completeAssertionPayload assertionPayload = null;
+  private AuthenticateFido2CompleteAssertionPayload assertionPayload = null;
 
   public AuthenticateFido2CompleteBody clientId(String clientId) {
     this.clientId = clientId;
@@ -68,7 +68,7 @@ public class AuthenticateFido2CompleteBody {
     this.username = username;
   }
 
-  public AuthenticateFido2CompleteBody assertionPayload(Authenticatefido2completeAssertionPayload assertionPayload) {
+  public AuthenticateFido2CompleteBody assertionPayload(AuthenticateFido2CompleteAssertionPayload assertionPayload) {
     this.assertionPayload = assertionPayload;
     return this;
   }
@@ -78,11 +78,11 @@ public class AuthenticateFido2CompleteBody {
    * @return assertionPayload
   **/
   @Schema(description = "")
-  public Authenticatefido2completeAssertionPayload getAssertionPayload() {
+  public AuthenticateFido2CompleteAssertionPayload getAssertionPayload() {
     return assertionPayload;
   }
 
-  public void setAssertionPayload(Authenticatefido2completeAssertionPayload assertionPayload) {
+  public void setAssertionPayload(AuthenticateFido2CompleteAssertionPayload assertionPayload) {
     this.assertionPayload = assertionPayload;
   }
 

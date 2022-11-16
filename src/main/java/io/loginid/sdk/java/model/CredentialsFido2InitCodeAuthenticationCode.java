@@ -23,11 +23,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * Credentialsfido2initcodeAuthenticationCode
+ * CredentialsFido2InitCodeAuthenticationCode
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class Credentialsfido2initcodeAuthenticationCode {
+public class CredentialsFido2InitCodeAuthenticationCode {
   @SerializedName("code")
   private String code = null;
 
@@ -76,7 +76,7 @@ public class Credentialsfido2initcodeAuthenticationCode {
   }  @SerializedName("type")
   private TypeEnum type = null;
 
-  public Credentialsfido2initcodeAuthenticationCode code(String code) {
+  public CredentialsFido2InitCodeAuthenticationCode code(String code) {
     this.code = code;
     return this;
   }
@@ -94,7 +94,7 @@ public class Credentialsfido2initcodeAuthenticationCode {
     this.code = code;
   }
 
-  public Credentialsfido2initcodeAuthenticationCode type(TypeEnum type) {
+  public CredentialsFido2InitCodeAuthenticationCode type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -121,7 +121,7 @@ public class Credentialsfido2initcodeAuthenticationCode {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Credentialsfido2initcodeAuthenticationCode credentialsfido2initcodeAuthenticationCode = (Credentialsfido2initcodeAuthenticationCode) o;
+    CredentialsFido2InitCodeAuthenticationCode credentialsfido2initcodeAuthenticationCode = (CredentialsFido2InitCodeAuthenticationCode) o;
     return Objects.equals(this.code, credentialsfido2initcodeAuthenticationCode.code) &&
         Objects.equals(this.type, credentialsfido2initcodeAuthenticationCode.type);
   }

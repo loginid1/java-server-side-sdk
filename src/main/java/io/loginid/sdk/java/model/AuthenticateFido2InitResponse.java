@@ -24,9 +24,9 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
 public class AuthenticateFido2InitResponse {
   @SerializedName("assertion_payload")
-  private InlineResponse2003AssertionPayload assertionPayload = null;
+  private AuthenticateFido2CompleteAssertionPayload assertionPayload = null;
 
-  public AuthenticateFido2InitResponse assertionPayload(InlineResponse2003AssertionPayload assertionPayload) {
+  public AuthenticateFido2InitResponse assertionPayload(AuthenticateFido2CompleteAssertionPayload assertionPayload) {
     this.assertionPayload = assertionPayload;
     return this;
   }
@@ -36,11 +36,11 @@ public class AuthenticateFido2InitResponse {
    * @return assertionPayload
   **/
   @Schema(description = "")
-  public InlineResponse2003AssertionPayload getAssertionPayload() {
+  public AuthenticateFido2CompleteAssertionPayload getAssertionPayload() {
     return assertionPayload;
   }
 
-  public void setAssertionPayload(InlineResponse2003AssertionPayload assertionPayload) {
+  public void setAssertionPayload(AuthenticateFido2CompleteAssertionPayload assertionPayload) {
     this.assertionPayload = assertionPayload;
   }
 

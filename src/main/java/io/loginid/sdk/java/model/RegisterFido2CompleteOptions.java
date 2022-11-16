@@ -22,11 +22,11 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class Registerfido2completeOptions {
+public class RegisterFido2CompleteOptions {
   @SerializedName("credential_name")
   private String credentialName = null;
 
-  public Registerfido2completeOptions credentialName(String credentialName) {
+  public RegisterFido2CompleteOptions credentialName(String credentialName) {
     this.credentialName = credentialName;
     return this;
   }
@@ -53,7 +53,7 @@ public class Registerfido2completeOptions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Registerfido2completeOptions registerfido2completeOptions = (Registerfido2completeOptions) o;
+    RegisterFido2CompleteOptions registerfido2completeOptions = (RegisterFido2CompleteOptions) o;
     return Objects.equals(this.credentialName, registerfido2completeOptions.credentialName);
   }
 

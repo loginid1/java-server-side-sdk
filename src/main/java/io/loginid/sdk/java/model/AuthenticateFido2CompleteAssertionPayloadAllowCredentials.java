@@ -25,11 +25,11 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * InlineResponse2003AssertionPayloadAllowCredentials
+ * AuthenticateFido2CompleteAssertionPayloadAllowCredentials
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class InlineResponse2003AssertionPayloadAllowCredentials {
+public class AuthenticateFido2CompleteAssertionPayloadAllowCredentials {
   @SerializedName("id")
   private String id = null;
 
@@ -82,7 +82,7 @@ public class InlineResponse2003AssertionPayloadAllowCredentials {
   }  @SerializedName("transports")
   private List<TransportsEnum> transports = null;
 
-  public InlineResponse2003AssertionPayloadAllowCredentials id(String id) {
+  public AuthenticateFido2CompleteAssertionPayloadAllowCredentials id(String id) {
     this.id = id;
     return this;
   }
@@ -100,7 +100,7 @@ public class InlineResponse2003AssertionPayloadAllowCredentials {
     this.id = id;
   }
 
-  public InlineResponse2003AssertionPayloadAllowCredentials type(String type) {
+  public AuthenticateFido2CompleteAssertionPayloadAllowCredentials type(String type) {
     this.type = type;
     return this;
   }
@@ -118,12 +118,12 @@ public class InlineResponse2003AssertionPayloadAllowCredentials {
     this.type = type;
   }
 
-  public InlineResponse2003AssertionPayloadAllowCredentials transports(List<TransportsEnum> transports) {
+  public AuthenticateFido2CompleteAssertionPayloadAllowCredentials transports(List<TransportsEnum> transports) {
     this.transports = transports;
     return this;
   }
 
-  public InlineResponse2003AssertionPayloadAllowCredentials addTransportsItem(TransportsEnum transportsItem) {
+  public AuthenticateFido2CompleteAssertionPayloadAllowCredentials addTransportsItem(TransportsEnum transportsItem) {
     if (this.transports == null) {
       this.transports = new ArrayList<TransportsEnum>();
     }
@@ -153,10 +153,10 @@ public class InlineResponse2003AssertionPayloadAllowCredentials {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2003AssertionPayloadAllowCredentials inlineResponse2003AssertionPayloadAllowCredentials = (InlineResponse2003AssertionPayloadAllowCredentials) o;
-    return Objects.equals(this.id, inlineResponse2003AssertionPayloadAllowCredentials.id) &&
-        Objects.equals(this.type, inlineResponse2003AssertionPayloadAllowCredentials.type) &&
-        Objects.equals(this.transports, inlineResponse2003AssertionPayloadAllowCredentials.transports);
+    AuthenticateFido2CompleteAssertionPayloadAllowCredentials authenticateFido2CompleteAssertionPayloadAllowCredentials = (AuthenticateFido2CompleteAssertionPayloadAllowCredentials) o;
+    return Objects.equals(this.id, authenticateFido2CompleteAssertionPayloadAllowCredentials.id) &&
+        Objects.equals(this.type, authenticateFido2CompleteAssertionPayloadAllowCredentials.type) &&
+        Objects.equals(this.transports, authenticateFido2CompleteAssertionPayloadAllowCredentials.transports);
   }
 
   @Override

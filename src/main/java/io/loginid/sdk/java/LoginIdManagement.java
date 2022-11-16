@@ -35,7 +35,7 @@ public class LoginIdManagement extends LoginId {
     /**
      * Returns the user ID based on username
      *
-     * @param userName The username
+     * @param username The username
      * @return The user ID
      * @throws NoSuchAlgorithmException
      * @throws InvalidKeySpecException
@@ -56,7 +56,6 @@ public class LoginIdManagement extends LoginId {
 
         return result.getId();
     }
-
 
     /**
      * Deletes a user by their username
@@ -171,7 +170,6 @@ public class LoginIdManagement extends LoginId {
         return codesApi.codesCodeTypeGeneratePost(codeType, codesCodeTypeGenerateBody, null);
     }
 
-
     /**
      * Generate a code. Either `userId` or `username` must be present.
      *
@@ -244,7 +242,6 @@ public class LoginIdManagement extends LoginId {
 
         return codesApi.codesCodeTypeAuthorizePost(codeType, codesCodeTypeAuthorizeBody, null);
     }
-
 
     /**
      * Authorizes a given code
@@ -645,7 +642,6 @@ public class LoginIdManagement extends LoginId {
         return result;
     }
 
-
     /**
      * Add a credential without pre-generated authorization code
      *
@@ -702,32 +698,6 @@ public class LoginIdManagement extends LoginId {
         }
 
         CredentialsRecoverycodeResponse result = credentialsApi.credentialsRecoveryCodePost(credentialsRecoverycodeBody,null);
-        return result;
-    }
-
-    /**
-     * Add a credential with proof
-     *
-     * @param userId The ID of the user to generate the new recovery code for
-     * @return The response body from the code generation request
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
-     * @throws ApiException
-     */
-    public CredentialsProofInitResponse initAddCredentialWithProof(String userId) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
-        String token = generateServiceToken("credentials.force_add", null, null, null, null);
-
-        CredentialsApi credentialsApi = new CredentialsApi();
-
-        ApiClient apiClient = credentialsApi.getApiClient();
-        apiClient.setBasePath(getBaseUrl());
-        apiClient.setAccessToken(token);
-
-        CredentialsProofBody credentialsProofBody = new CredentialsProofBody();
-        credentialsProofBody.setClientId(getClientId());
-        credentialsProofBody.setUserId(userId);
-
-        CredentialsProofInitResponse result = credentialsApi.credentialsProofInitPost(credentialsProofBody,null);
         return result;
     }
 }
