@@ -180,7 +180,7 @@ public class LoginId {
         headers.put("typ", "JWT");
 
         KeyFactory keyFactory = KeyFactory.getInstance("EC");
-        String privateKeyContent = privateKey;
+        String privateKeyContent = this.privateKey;
         privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PRIVATE KEY-----", "")
                 .replace("-----END PRIVATE KEY-----", "");
         PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
@@ -232,7 +232,7 @@ public class LoginId {
         headers.put("typ", "JWT");
 
         KeyFactory keyFactory = KeyFactory.getInstance("EC");
-        String privateKeyContent = privateKey;
+        String privateKeyContent = this.privateKey;
         privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PRIVATE KEY-----", "")
                 .replace("-----END PRIVATE KEY-----", "");
         PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
@@ -257,7 +257,7 @@ public class LoginId {
 
         ApiClient apiClient = transactionsApi.getApiClient();
         apiClient.setBasePath(baseUrl);
-        if (this.privateKey == null) {
+        if (this.privateKey.isEmpty()) {
             String token = generateTxAuthToken(txPayload, username, null);
             apiClient.setAccessToken(token);
         }
@@ -322,7 +322,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey == null) {
+        if (this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.register", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -377,7 +377,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey == null) {
+        if (this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.login", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -426,7 +426,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey == null) {
+        if (this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.register", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -455,7 +455,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey == null) {
+        if (this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.login", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -485,7 +485,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey == null) {
+        if (this.privateKey.isEmpty()) {
             String token = generateServiceToken("credentials.add", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -568,7 +568,7 @@ public class LoginId {
         apiClient.setBasePath(getBaseUrl());
         apiClient.setConnectTimeout(3*60*1000);
         apiClient.setReadTimeout(3*60*1000);
-        if (this.privateKey == null) {
+        if (this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.temporary", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -610,7 +610,7 @@ public class LoginId {
 
         ApiClient apiClient = authenticateApi.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey == null) {
+        if (this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.login", null, null, null, null);
             apiClient.setAccessToken(token);
         }

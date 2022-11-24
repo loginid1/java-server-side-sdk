@@ -196,9 +196,9 @@ public class LoginIdManagement extends LoginId {
         codesCodeTypeGenerateBody.setClientId(getClientId());
         codesCodeTypeGenerateBody.setPurpose(CodesCodeTypeGenerateBody.PurposeEnum.fromValue(codePurpose));
         codesCodeTypeGenerateBody.setAuthorize(isAuthorized);
-        if (userId != null && userId != "") {
+        if (userId != null && userId.isEmpty()) {
             codesCodeTypeGenerateBody.setUserId(userId);
-        } else if (username != null && username != "") {
+        } else if (username != null && username.isEmpty()) {
             codesCodeTypeGenerateBody.setUsername(username);
         } else {
             throw new ApiException("Missing the required parameter 'userId' or 'username'");
@@ -274,9 +274,9 @@ public class LoginIdManagement extends LoginId {
         codesCodeTypeAuthorizeBody.setClientId(getClientId());
         codesCodeTypeAuthorizeBody.setPurpose(CodesCodeTypeAuthorizeBody.PurposeEnum.fromValue(codePurpose));
         codesCodeTypeAuthorizeBody.setCode(code);
-        if (userId != null && userId != "") {
+        if (userId != null && userId.isEmpty()) {
             codesCodeTypeAuthorizeBody.setUserId(userId);
-        } else if (username != null && username != "") {
+        } else if (username != null && username.isEmpty()) {
             codesCodeTypeAuthorizeBody.setUsername(username);
         } else {
             throw new ApiException("Missing the required parameter 'userId' or 'username'");
@@ -346,9 +346,9 @@ public class LoginIdManagement extends LoginId {
         CodesCodeTypeInvalidateAllBody codesCodeTypeInvalidateAllBody = new CodesCodeTypeInvalidateAllBody();
         codesCodeTypeInvalidateAllBody.setClientId(getClientId());
         codesCodeTypeInvalidateAllBody.setPurpose(CodesCodeTypeInvalidateAllBody.PurposeEnum.fromValue(codePurpose));
-        if (userId != null && userId != "") {
+        if (userId != null && userId.isEmpty()) {
             codesCodeTypeInvalidateAllBody.setUserId(userId);
-        } else if (username != null && username != "") {
+        } else if (username != null && username.isEmpty()) {
             codesCodeTypeInvalidateAllBody.setUsername(username);
         } else {
             throw new ApiException("Missing the required parameter 'userId' or 'username'");
@@ -407,9 +407,9 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsListBody credentialsListBody = new CredentialsListBody();
         credentialsListBody.setClientId(getClientId());
-        if (userId != null && userId != "") {
+        if (userId != null && userId.isEmpty()) {
             credentialsListBody.setUserId(userId);
-        } else if (username != null && username != "") {
+        } else if (username != null && username.isEmpty()) {
             credentialsListBody.setUsername(username);
         } else {
             throw new ApiException("Missing the required parameter 'userId' or 'username'");
@@ -444,9 +444,9 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsPublickeyBody credentialsPublickeyBody = new CredentialsPublickeyBody();
         credentialsPublickeyBody.setClientId(getClientId());
-        if (userId != null && userId != "") {
+        if (userId != null && userId.isEmpty()) {
             credentialsPublickeyBody.setUserId(userId);
-        } else if (username != null && username != "") {
+        } else if (username != null && username.isEmpty()) {
             credentialsPublickeyBody.setUsername(username);
         } else {
             throw new ApiException("Missing the required parameter 'userId' or 'username'");
@@ -524,9 +524,9 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsRenameBody credentialsRenameBody = new CredentialsRenameBody();
         credentialsRenameBody.setClientId(getClientId());
-        if (userId != null && userId != "") {
+        if (userId != null && userId.isEmpty()) {
             credentialsRenameBody.setUserId(userId);
-        } else if (username != null && username != "") {
+        } else if (username != null && username.isEmpty()) {
             credentialsRenameBody.setUsername(username);
         } else {
             throw new ApiException("Missing the required parameter 'userId' or 'username'");
@@ -599,9 +599,9 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsRevokeBody credentialsRevokeBody = new CredentialsRevokeBody();
         credentialsRevokeBody.setClientId(getClientId());
-        if (userId != null && userId != "") {
+        if (userId != null && userId.isEmpty()) {
             credentialsRevokeBody.setUserId(userId);
-        } else if (username != null && username != "") {
+        } else if (username != null && username.isEmpty()) {
             credentialsRevokeBody.setUsername(username);
         } else {
             throw new ApiException("Missing the required parameter 'userId' or 'username'");
@@ -689,9 +689,9 @@ public class LoginIdManagement extends LoginId {
 
         CredentialsRecoverycodeBody credentialsRecoverycodeBody = new CredentialsRecoverycodeBody();
         credentialsRecoverycodeBody.setClientId(getClientId());
-        if (userId != null && userId != "") {
+        if (userId != null && userId.isEmpty()) {
             credentialsRecoverycodeBody.setUserId(userId);
-        } else if (username != null && username != "") {
+        } else if (username != null && username.isEmpty()) {
             credentialsRecoverycodeBody.setUsername(username);
         } else {
             throw new ApiException("Missing the required parameter 'userId' or 'username'");
