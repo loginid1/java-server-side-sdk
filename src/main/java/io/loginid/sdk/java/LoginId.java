@@ -73,6 +73,13 @@ public class LoginId {
     }
 
     /**
+     * Verifies if the string is null or empty
+     * */
+    protected boolean isNullOrEmpty(@Nullable String value) {
+        return value == null || value.isEmpty();
+    }
+
+    /**
      * Generates a random string of given length with alphanumeric characters
      *
      * @param length The length of the output string
@@ -257,7 +264,7 @@ public class LoginId {
 
         ApiClient apiClient = transactionsApi.getApiClient();
         apiClient.setBasePath(baseUrl);
-        if (this.privateKey.isEmpty()) {
+        if (!this.privateKey.isEmpty()) {
             String token = generateTxAuthToken(txPayload, username, null);
             apiClient.setAccessToken(token);
         }
@@ -322,7 +329,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey.isEmpty()) {
+        if (!this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.register", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -377,7 +384,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey.isEmpty()) {
+        if (!this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.login", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -426,7 +433,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey.isEmpty()) {
+        if (!this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.register", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -455,7 +462,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey.isEmpty()) {
+        if (!this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.login", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -485,7 +492,7 @@ public class LoginId {
 
         ApiClient apiClient = api.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey.isEmpty()) {
+        if (!this.privateKey.isEmpty()) {
             String token = generateServiceToken("credentials.add", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -568,7 +575,7 @@ public class LoginId {
         apiClient.setBasePath(getBaseUrl());
         apiClient.setConnectTimeout(3*60*1000);
         apiClient.setReadTimeout(3*60*1000);
-        if (this.privateKey.isEmpty()) {
+        if (!this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.temporary", null, null, null, null);
             apiClient.setAccessToken(token);
         }
@@ -610,7 +617,7 @@ public class LoginId {
 
         ApiClient apiClient = authenticateApi.getApiClient();
         apiClient.setBasePath(getBaseUrl());
-        if (this.privateKey.isEmpty()) {
+        if (!this.privateKey.isEmpty()) {
             String token = generateServiceToken("auth.login", null, null, null, null);
             apiClient.setAccessToken(token);
         }
