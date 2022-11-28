@@ -1124,7 +1124,7 @@ public class AuthenticateApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "serviceToken" };
+        String[] localVarAuthNames = new String[] { };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -1244,7 +1244,7 @@ public class AuthenticateApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[] { "serviceToken" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     

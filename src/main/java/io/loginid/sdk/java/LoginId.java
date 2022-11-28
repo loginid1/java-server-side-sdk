@@ -404,7 +404,7 @@ public class LoginId {
      * @return The authentication response
      * @throws ApiException
      */
-    public AuthenticationResponse authenticateFido2Complete(String username, AuthenticateFido2CompleteAssertionPayload assertionPayload) throws ApiException {
+    public AuthenticationResponse authenticateFido2Complete(String username, AuthenticateCompletePayload assertionPayload) throws ApiException {
         AuthenticateApi api = new AuthenticateApi();
 
         ApiClient apiClient = api.getApiClient();

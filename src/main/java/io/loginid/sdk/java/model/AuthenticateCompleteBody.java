@@ -33,7 +33,7 @@ public class AuthenticateCompleteBody {
   private String strategy = null;
 
   @SerializedName("payload")
-  private AuthenticatecompletePayload payload = null;
+  private AuthenticateCompletePayload payload = null;
 
   public AuthenticateCompleteBody clientId(String clientId) {
     this.clientId = clientId;
@@ -89,7 +89,7 @@ public class AuthenticateCompleteBody {
     this.strategy = strategy;
   }
 
-  public AuthenticateCompleteBody payload(AuthenticatecompletePayload payload) {
+  public AuthenticateCompleteBody payload(AuthenticateCompletePayload payload) {
     this.payload = payload;
     return this;
   }
@@ -99,11 +99,11 @@ public class AuthenticateCompleteBody {
    * @return payload
   **/
   @Schema(description = "")
-  public AuthenticatecompletePayload getPayload() {
+  public AuthenticateCompletePayload getPayload() {
     return payload;
   }
 
-  public void setPayload(AuthenticatecompletePayload payload) {
+  public void setPayload(AuthenticateCompletePayload payload) {
     this.payload = payload;
   }
 

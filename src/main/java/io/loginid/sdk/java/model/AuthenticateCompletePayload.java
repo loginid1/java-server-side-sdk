@@ -22,15 +22,12 @@ import java.util.Objects;
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class AuthenticatecompletePayload {
+public class AuthenticateCompletePayload {
   @SerializedName("challenge")
   private String challenge = null;
 
-  @SerializedName("id")
-  private String id = null;
-
-  @SerializedName("raw_id")
-  private String rawId = null;
+  @SerializedName("credential_id")
+  private String credentialId = null;
 
   @SerializedName("authenticator_data")
   private String authenticatorData = null;
@@ -41,7 +38,7 @@ public class AuthenticatecompletePayload {
   @SerializedName("signature")
   private String signature = null;
 
-  public AuthenticatecompletePayload challenge(String challenge) {
+  public AuthenticateCompletePayload challenge(String challenge) {
     this.challenge = challenge;
     return this;
   }
@@ -59,8 +56,8 @@ public class AuthenticatecompletePayload {
     this.challenge = challenge;
   }
 
-  public AuthenticatecompletePayload id(String id) {
-    this.id = id;
+  public AuthenticateCompletePayload credentialId(String id) {
+    this.credentialId = id;
     return this;
   }
 
@@ -69,33 +66,15 @@ public class AuthenticatecompletePayload {
    * @return id
   **/
   @Schema(example = "5dEDbWqk0BAc1lKwFI057rkTHPd7zHBvlDb5pd_HlTw", description = "")
-  public String getId() {
-    return id;
+  public String getCredentialId() {
+    return credentialId;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setCredentialId(String credentialId) {
+    this.credentialId = credentialId;
   }
 
-  public AuthenticatecompletePayload rawId(String rawId) {
-    this.rawId = rawId;
-    return this;
-  }
-
-   /**
-   * Get rawId
-   * @return rawId
-  **/
-  @Schema(example = "5dEDbWqk0BAc1lKwFI057rkTHPd7zHBvlDb5pd_HlTw", description = "")
-  public String getRawId() {
-    return rawId;
-  }
-
-  public void setRawId(String rawId) {
-    this.rawId = rawId;
-  }
-
-  public AuthenticatecompletePayload authenticatorData(String authenticatorData) {
+  public AuthenticateCompletePayload authenticatorData(String authenticatorData) {
     this.authenticatorData = authenticatorData;
     return this;
   }
@@ -113,7 +92,7 @@ public class AuthenticatecompletePayload {
     this.authenticatorData = authenticatorData;
   }
 
-  public AuthenticatecompletePayload clientData(String clientData) {
+  public AuthenticateCompletePayload clientData(String clientData) {
     this.clientData = clientData;
     return this;
   }
@@ -131,7 +110,7 @@ public class AuthenticatecompletePayload {
     this.clientData = clientData;
   }
 
-  public AuthenticatecompletePayload signature(String signature) {
+  public AuthenticateCompletePayload signature(String signature) {
     this.signature = signature;
     return this;
   }
@@ -158,10 +137,9 @@ public class AuthenticatecompletePayload {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AuthenticatecompletePayload authenticatecompletePayload = (AuthenticatecompletePayload) o;
+    AuthenticateCompletePayload authenticatecompletePayload = (AuthenticateCompletePayload) o;
     return Objects.equals(this.challenge, authenticatecompletePayload.challenge) &&
-        Objects.equals(this.id, authenticatecompletePayload.id) &&
-        Objects.equals(this.rawId, authenticatecompletePayload.rawId) &&
+        Objects.equals(this.credentialId, authenticatecompletePayload.credentialId) &&
         Objects.equals(this.authenticatorData, authenticatecompletePayload.authenticatorData) &&
         Objects.equals(this.clientData, authenticatecompletePayload.clientData) &&
         Objects.equals(this.signature, authenticatecompletePayload.signature);
@@ -169,7 +147,7 @@ public class AuthenticatecompletePayload {
 
   @Override
   public int hashCode() {
-    return Objects.hash(challenge, id, rawId, authenticatorData, clientData, signature);
+    return Objects.hash(challenge, credentialId, authenticatorData, clientData, signature);
   }
 
 
@@ -179,8 +157,7 @@ public class AuthenticatecompletePayload {
     sb.append("class AuthenticatecompletePayload {\n");
 
     sb.append("    challenge: ").append(toIndentedString(challenge)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    rawId: ").append(toIndentedString(rawId)).append("\n");
+    sb.append("    credentialId: ").append(toIndentedString(credentialId)).append("\n");
     sb.append("    authenticatorData: ").append(toIndentedString(authenticatorData)).append("\n");
     sb.append("    clientData: ").append(toIndentedString(clientData)).append("\n");
     sb.append("    signature: ").append(toIndentedString(signature)).append("\n");
