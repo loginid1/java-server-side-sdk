@@ -433,7 +433,7 @@ public class LoginIdManagement extends LoginId {
      * @throws ApiException
      */
     @SuppressWarnings("UnnecessaryLocalVariable")
-    public AuthenticationResponse initAddPublicKeyCredential(@Nullable String userId, @Nullable String username, String publickeyAlg, String publickey, String credentialName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public AuthenticationResponse addPublicKeyCredential(@Nullable String userId, @Nullable String username, String publickeyAlg, String publickey, String credentialName) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
         String token = generateServiceToken("credentials.force_add", null, null, null, null);
 
         CredentialsApi credentialsApi = new CredentialsApi();
