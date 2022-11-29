@@ -460,6 +460,8 @@ public class LoginIdManagement extends LoginId {
         CredentialsPublickeyOptions credentialsPublickeyOptions = new CredentialsPublickeyOptions();
         credentialsPublickeyOptions.setCredentialName(credentialName);
 
+        credentialsPublickeyBody.setOptions(credentialsPublickeyOptions);
+
         AuthenticationResponse result = credentialsApi.credentialsPublickeyPost(credentialsPublickeyBody);
         return result;
     }

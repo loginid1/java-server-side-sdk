@@ -487,7 +487,10 @@ public class LoginId {
      * @throws NoSuchAlgorithmException
      * @throws InvalidKeySpecException
      */
-    public CredentialsFido2InitCodeResponse initAddFido2CredentialWithCode(String username, String code, CredentialsFido2InitCodeAuthenticationCode.TypeEnum codeType, @Nullable CredentialsFido2InitOptions options) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+    public CredentialsFido2InitCodeResponse initAddFido2CredentialWithCode(String username, String code, String codeType, @Nullable CredentialsFido2InitOptions options) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+        if (!isValidCodeType(codeType)) {
+            throw new IllegalArgumentException();
+        }
         CredentialsApi api = new CredentialsApi();
 
         ApiClient apiClient = api.getApiClient();
@@ -503,7 +506,7 @@ public class LoginId {
 
         CredentialsFido2InitCodeAuthenticationCode authenticationCode = new CredentialsFido2InitCodeAuthenticationCode();
         authenticationCode.setCode(code);
-        authenticationCode.setType(codeType);
+        authenticationCode.setType(CredentialsFido2InitCodeAuthenticationCode.TypeEnum.fromValue(codeType));
 
         body.setAuthenticationCode(authenticationCode);
         if (options != null) {
@@ -522,7 +525,7 @@ public class LoginId {
      * @return The FIDO2 attestation payload.
      * @throws ApiException
      */
-    public CredentialsCompleteResponse completeAddFido2Credential(String username, CredentialsFido2CompleteAttestationPayload attestationPayload, @Nullable RegisterFido2CompleteOptions options) throws ApiException {
+    public AuthenticationResponse completeAddFido2Credential(String username, CredentialsFido2CompleteAttestationPayload attestationPayload, @Nullable RegisterFido2CompleteOptions options) throws ApiException {
         CredentialsApi api = new CredentialsApi();
 
         ApiClient apiClient = api.getApiClient();

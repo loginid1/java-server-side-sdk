@@ -427,8 +427,8 @@ public class CredentialsApi {
      * @return CredentialsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public CredentialsCompleteResponse credentialsFido2CompletePost(CredentialsCompleteBody body, UUID requestID) throws ApiException {
-        ApiResponse<CredentialsCompleteResponse> resp = credentialsFido2CompletePostWithHttpInfo(body, requestID);
+    public AuthenticationResponse credentialsFido2CompletePost(CredentialsCompleteBody body, UUID requestID) throws ApiException {
+        ApiResponse<AuthenticationResponse> resp = credentialsFido2CompletePostWithHttpInfo(body, requestID);
         return resp.getData();
     }
 
@@ -440,9 +440,9 @@ public class CredentialsApi {
      * @return ApiResponse&lt;CredentialsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CredentialsCompleteResponse> credentialsFido2CompletePostWithHttpInfo(CredentialsCompleteBody body, UUID requestID) throws ApiException {
+    public ApiResponse<AuthenticationResponse> credentialsFido2CompletePostWithHttpInfo(CredentialsCompleteBody body, UUID requestID) throws ApiException {
         com.squareup.okhttp.Call call = credentialsFido2CompletePostValidateBeforeCall(body, requestID, null, null);
-        Type localVarReturnType = new TypeToken<CredentialsCompleteResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<AuthenticationResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
