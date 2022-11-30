@@ -18,11 +18,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * Authenticatefido2completeAssertionPayload
+ * CredentialsFido2CompleteAttestationPayload
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class Authenticatefido2completeAssertionPayload {
+public class CredentialsFido2CompleteAttestationPayload {
+  @SerializedName("credential_uuid")
+  private String credentialUuid = null;
+
   @SerializedName("credential_id")
   private String credentialId = null;
 
@@ -32,13 +35,28 @@ public class Authenticatefido2completeAssertionPayload {
   @SerializedName("client_data")
   private String clientData = null;
 
-  @SerializedName("authenticator_data")
-  private String authenticatorData = null;
+  @SerializedName("attestation_data")
+  private String attestationData = null;
 
-  @SerializedName("signature")
-  private String signature = null;
+  public CredentialsFido2CompleteAttestationPayload credentialUuid(String credentialUuid) {
+    this.credentialUuid = credentialUuid;
+    return this;
+  }
 
-  public Authenticatefido2completeAssertionPayload credentialId(String credentialId) {
+   /**
+   * Get credentialUuid
+   * @return credentialUuid
+  **/
+  @Schema(description = "")
+  public String getCredentialUuid() {
+    return credentialUuid;
+  }
+
+  public void setCredentialUuid(String credentialUuid) {
+    this.credentialUuid = credentialUuid;
+  }
+
+  public CredentialsFido2CompleteAttestationPayload credentialId(String credentialId) {
     this.credentialId = credentialId;
     return this;
   }
@@ -47,7 +65,7 @@ public class Authenticatefido2completeAssertionPayload {
    * Get credentialId
    * @return credentialId
   **/
-  @Schema(example = "5dEDbWqk0BAc1lKwFI057rkTHPd7zHBvlDb5pd_HlTw", description = "")
+  @Schema(description = "")
   public String getCredentialId() {
     return credentialId;
   }
@@ -56,7 +74,7 @@ public class Authenticatefido2completeAssertionPayload {
     this.credentialId = credentialId;
   }
 
-  public Authenticatefido2completeAssertionPayload challenge(String challenge) {
+  public CredentialsFido2CompleteAttestationPayload challenge(String challenge) {
     this.challenge = challenge;
     return this;
   }
@@ -65,7 +83,7 @@ public class Authenticatefido2completeAssertionPayload {
    * Get challenge
    * @return challenge
   **/
-  @Schema(example = "pO9V4DruYKrXClSwUn9pRIapBfFcl_l0khQd7YwqQRE", description = "")
+  @Schema(description = "")
   public String getChallenge() {
     return challenge;
   }
@@ -74,7 +92,7 @@ public class Authenticatefido2completeAssertionPayload {
     this.challenge = challenge;
   }
 
-  public Authenticatefido2completeAssertionPayload clientData(String clientData) {
+  public CredentialsFido2CompleteAttestationPayload clientData(String clientData) {
     this.clientData = clientData;
     return this;
   }
@@ -83,7 +101,7 @@ public class Authenticatefido2completeAssertionPayload {
    * Get clientData
    * @return clientData
   **/
-  @Schema(example = "eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiwiY2hhbGxlbmdlIjoicE85VjREcnVZS3JYQ2x", description = "")
+  @Schema(description = "")
   public String getClientData() {
     return clientData;
   }
@@ -92,40 +110,22 @@ public class Authenticatefido2completeAssertionPayload {
     this.clientData = clientData;
   }
 
-  public Authenticatefido2completeAssertionPayload authenticatorData(String authenticatorData) {
-    this.authenticatorData = authenticatorData;
+  public CredentialsFido2CompleteAttestationPayload attestationData(String attestationData) {
+    this.attestationData = attestationData;
     return this;
   }
 
    /**
-   * Get authenticatorData
-   * @return authenticatorData
+   * Get attestationData
+   * @return attestationData
   **/
-  @Schema(example = "b7bd9990-2c43-4dce-9286-93cccf81bc62", description = "")
-  public String getAuthenticatorData() {
-    return authenticatorData;
+  @Schema(description = "")
+  public String getAttestationData() {
+    return attestationData;
   }
 
-  public void setAuthenticatorData(String authenticatorData) {
-    this.authenticatorData = authenticatorData;
-  }
-
-  public Authenticatefido2completeAssertionPayload signature(String signature) {
-    this.signature = signature;
-    return this;
-  }
-
-   /**
-   * Get signature
-   * @return signature
-  **/
-  @Schema(example = "x2QYJ3SZVncERjV58EciojIldmblxGiIlRXYlJ3Yu4Ga0VXYiV2diojIlBXe0Jye", description = "")
-  public String getSignature() {
-    return signature;
-  }
-
-  public void setSignature(String signature) {
-    this.signature = signature;
+  public void setAttestationData(String attestationData) {
+    this.attestationData = attestationData;
   }
 
 
@@ -137,30 +137,30 @@ public class Authenticatefido2completeAssertionPayload {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Authenticatefido2completeAssertionPayload authenticatefido2completeAssertionPayload = (Authenticatefido2completeAssertionPayload) o;
-    return Objects.equals(this.credentialId, authenticatefido2completeAssertionPayload.credentialId) &&
-        Objects.equals(this.challenge, authenticatefido2completeAssertionPayload.challenge) &&
-        Objects.equals(this.clientData, authenticatefido2completeAssertionPayload.clientData) &&
-        Objects.equals(this.authenticatorData, authenticatefido2completeAssertionPayload.authenticatorData) &&
-        Objects.equals(this.signature, authenticatefido2completeAssertionPayload.signature);
+    CredentialsFido2CompleteAttestationPayload credentialsfido2completeAttestationPayload = (CredentialsFido2CompleteAttestationPayload) o;
+    return Objects.equals(this.credentialUuid, credentialsfido2completeAttestationPayload.credentialUuid) &&
+        Objects.equals(this.credentialId, credentialsfido2completeAttestationPayload.credentialId) &&
+        Objects.equals(this.challenge, credentialsfido2completeAttestationPayload.challenge) &&
+        Objects.equals(this.clientData, credentialsfido2completeAttestationPayload.clientData) &&
+        Objects.equals(this.attestationData, credentialsfido2completeAttestationPayload.attestationData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(credentialId, challenge, clientData, authenticatorData, signature);
+    return Objects.hash(credentialUuid, credentialId, challenge, clientData, attestationData);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Authenticatefido2completeAssertionPayload {\n");
+    sb.append("class Credentialsfido2completeAttestationPayload {\n");
 
+    sb.append("    credentialUuid: ").append(toIndentedString(credentialUuid)).append("\n");
     sb.append("    credentialId: ").append(toIndentedString(credentialId)).append("\n");
     sb.append("    challenge: ").append(toIndentedString(challenge)).append("\n");
     sb.append("    clientData: ").append(toIndentedString(clientData)).append("\n");
-    sb.append("    authenticatorData: ").append(toIndentedString(authenticatorData)).append("\n");
-    sb.append("    signature: ").append(toIndentedString(signature)).append("\n");
+    sb.append("    attestationData: ").append(toIndentedString(attestationData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -29,6 +29,9 @@ public class CredentialsRevokeBody {
   @SerializedName("user_id")
   private String userId = null;
 
+  @SerializedName("username")
+  private String username = null;
+
   @SerializedName("credential")
   private CredentialsrevokeCredential credential = null;
 
@@ -68,6 +71,24 @@ public class CredentialsRevokeBody {
     this.userId = userId;
   }
 
+  public CredentialsRevokeBody username(String username) {
+    this.username = username;
+    return this;
+  }
+
+   /**
+   * Get username
+   * @return username
+  **/
+  @Schema(description = "")
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
   public CredentialsRevokeBody credential(CredentialsrevokeCredential credential) {
     this.credential = credential;
     return this;
@@ -97,7 +118,8 @@ public class CredentialsRevokeBody {
     }
     CredentialsRevokeBody credentialsRevokeBody = (CredentialsRevokeBody) o;
     return Objects.equals(this.clientId, credentialsRevokeBody.clientId) &&
-        Objects.equals(this.userId, credentialsRevokeBody.userId) &&
+    Objects.equals(this.userId, credentialsRevokeBody.userId) &&
+    Objects.equals(this.username, credentialsRevokeBody.username) &&
         Objects.equals(this.credential, credentialsRevokeBody.credential);
   }
 
@@ -114,6 +136,7 @@ public class CredentialsRevokeBody {
 
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    credential: ").append(toIndentedString(credential)).append("\n");
     sb.append("}");
     return sb.toString();

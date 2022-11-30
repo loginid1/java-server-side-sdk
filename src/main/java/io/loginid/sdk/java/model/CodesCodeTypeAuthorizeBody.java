@@ -34,6 +34,9 @@ public class CodesCodeTypeAuthorizeBody {
   @SerializedName("user_id")
   private String userId = null;
 
+  @SerializedName("username")
+  private String username = null;
+
   /**
    * Gets or Sets purpose
    */
@@ -117,6 +120,24 @@ public class CodesCodeTypeAuthorizeBody {
     this.userId = userId;
   }
 
+  public CodesCodeTypeAuthorizeBody username(String username) {
+    this.username = username;
+    return this;
+  }
+
+   /**
+   * Get username
+   * @return username
+  **/
+  @Schema(description = "")
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
   public CodesCodeTypeAuthorizeBody purpose(PurposeEnum purpose) {
     this.purpose = purpose;
     return this;
@@ -165,13 +186,14 @@ public class CodesCodeTypeAuthorizeBody {
     CodesCodeTypeAuthorizeBody codesCodeTypeAuthorizeBody = (CodesCodeTypeAuthorizeBody) o;
     return Objects.equals(this.clientId, codesCodeTypeAuthorizeBody.clientId) &&
         Objects.equals(this.userId, codesCodeTypeAuthorizeBody.userId) &&
+        Objects.equals(this.username, codesCodeTypeAuthorizeBody.username) &&
         Objects.equals(this.purpose, codesCodeTypeAuthorizeBody.purpose) &&
         Objects.equals(this.code, codesCodeTypeAuthorizeBody.code);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, userId, purpose, code);
+    return Objects.hash(clientId, userId, username, purpose, code);
   }
 
 
@@ -182,6 +204,7 @@ public class CodesCodeTypeAuthorizeBody {
 
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("}");

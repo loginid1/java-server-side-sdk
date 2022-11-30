@@ -30,10 +30,10 @@ public class RegisterFido2CompleteBody {
   private String username = null;
 
   @SerializedName("attestation_payload")
-  private Registerfido2completeAttestationPayload attestationPayload = null;
+  private RegisterFido2CompleteAttestationPayload attestationPayload = null;
 
   @SerializedName("options")
-  private Registerfido2completeOptions options = null;
+  private RegisterFido2CompleteOptions options = null;
 
   public RegisterFido2CompleteBody clientId(String clientId) {
     this.clientId = clientId;
@@ -71,7 +71,7 @@ public class RegisterFido2CompleteBody {
     this.username = username;
   }
 
-  public RegisterFido2CompleteBody attestationPayload(Registerfido2completeAttestationPayload attestationPayload) {
+  public RegisterFido2CompleteBody attestationPayload(RegisterFido2CompleteAttestationPayload attestationPayload) {
     this.attestationPayload = attestationPayload;
     return this;
   }
@@ -81,15 +81,15 @@ public class RegisterFido2CompleteBody {
    * @return attestationPayload
   **/
   @Schema(description = "")
-  public Registerfido2completeAttestationPayload getAttestationPayload() {
+  public RegisterFido2CompleteAttestationPayload getAttestationPayload() {
     return attestationPayload;
   }
 
-  public void setAttestationPayload(Registerfido2completeAttestationPayload attestationPayload) {
+  public void setAttestationPayload(RegisterFido2CompleteAttestationPayload attestationPayload) {
     this.attestationPayload = attestationPayload;
   }
 
-  public RegisterFido2CompleteBody options(Registerfido2completeOptions options) {
+  public RegisterFido2CompleteBody options(RegisterFido2CompleteOptions options) {
     this.options = options;
     return this;
   }
@@ -99,11 +99,11 @@ public class RegisterFido2CompleteBody {
    * @return options
   **/
   @Schema(description = "")
-  public Registerfido2completeOptions getOptions() {
+  public RegisterFido2CompleteOptions getOptions() {
     return options;
   }
 
-  public void setOptions(Registerfido2completeOptions options) {
+  public void setOptions(RegisterFido2CompleteOptions options) {
     this.options = options;
   }
 

@@ -18,24 +18,24 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * AuthenticateCompleteBody
+ * PublickeyInitBody
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class AuthenticateCompleteBody {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-01-25T11:19:57.896818-05:00[America/Toronto]")
+public class PublickeyInitBody {
   @SerializedName("client_id")
   private String clientId = null;
 
   @SerializedName("username")
   private String username = null;
 
-  @SerializedName("strategy")
-  private String strategy = null;
+  @SerializedName("publickey_alg")
+  private String publickeyAlg = "ES256";
 
-  @SerializedName("payload")
-  private AuthenticateCompletePayload payload = null;
+  @SerializedName("publickey")
+  private String publickey = null;
 
-  public AuthenticateCompleteBody clientId(String clientId) {
+  public PublickeyInitBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -44,7 +44,7 @@ public class AuthenticateCompleteBody {
    * Get clientId
    * @return clientId
   **/
-  @Schema(example = "MjE4MDA4NTgtMmI0NS0xMWViLWFkYzEtMDI0MmFjMTIwMDAyLg==", description = "")
+  @Schema(example = "[client ID]", description = "")
   public String getClientId() {
     return clientId;
   }
@@ -53,7 +53,7 @@ public class AuthenticateCompleteBody {
     this.clientId = clientId;
   }
 
-  public AuthenticateCompleteBody username(String username) {
+  public PublickeyInitBody username(String username) {
     this.username = username;
     return this;
   }
@@ -62,7 +62,7 @@ public class AuthenticateCompleteBody {
    * Get username
    * @return username
   **/
-  @Schema(example = "john.doe", description = "")
+  @Schema(example = "[username]", description = "")
   public String getUsername() {
     return username;
   }
@@ -71,73 +71,73 @@ public class AuthenticateCompleteBody {
     this.username = username;
   }
 
-  public AuthenticateCompleteBody strategy(String strategy) {
-    this.strategy = strategy;
+  public PublickeyInitBody publickeyAlg(String publickeyAlg) {
+    this.publickeyAlg = publickeyAlg;
     return this;
   }
 
    /**
-   * Get strategy
-   * @return strategy
-  **/
-  @Schema(example = "fido2", description = "")
-  public String getStrategy() {
-    return strategy;
-  }
-
-  public void setStrategy(String strategy) {
-    this.strategy = strategy;
-  }
-
-  public AuthenticateCompleteBody payload(AuthenticateCompletePayload payload) {
-    this.payload = payload;
-    return this;
-  }
-
-   /**
-   * Get payload
-   * @return payload
+   * Get publickeyAlg
+   * @return publickeyAlg
   **/
   @Schema(description = "")
-  public AuthenticateCompletePayload getPayload() {
-    return payload;
+  public String getPublickeyAlg() {
+    return publickeyAlg;
   }
 
-  public void setPayload(AuthenticateCompletePayload payload) {
-    this.payload = payload;
+  public void setPublickeyAlg(String publickeyAlg) {
+    this.publickeyAlg = publickeyAlg;
+  }
+
+  public PublickeyInitBody publickey(String publickey) {
+    this.publickey = publickey;
+    return this;
+  }
+
+   /**
+   * Get publickey
+   * @return publickey
+  **/
+  @Schema(example = "[base64url-encoded publickey]", description = "")
+  public String getPublickey() {
+    return publickey;
+  }
+
+  public void setPublickey(String publickey) {
+    this.publickey = publickey;
   }
 
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AuthenticateCompleteBody authenticateCompleteBody = (AuthenticateCompleteBody) o;
-    return Objects.equals(this.clientId, authenticateCompleteBody.clientId) &&
-        Objects.equals(this.username, authenticateCompleteBody.username) &&
-        Objects.equals(this.strategy, authenticateCompleteBody.strategy) &&
-        Objects.equals(this.payload, authenticateCompleteBody.payload);
+    PublickeyInitBody publickeyInitBody = (PublickeyInitBody) o;
+    return Objects.equals(this.clientId, publickeyInitBody.clientId) &&
+        Objects.equals(this.username, publickeyInitBody.username) &&
+        Objects.equals(this.publickeyAlg, publickeyInitBody.publickeyAlg) &&
+        Objects.equals(this.publickey, publickeyInitBody.publickey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, username, strategy, payload);
+    return Objects.hash(clientId, username, publickeyAlg, publickey);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AuthenticateCompleteBody {\n");
-
+    sb.append("class PublickeyInitBody {\n");
+    
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    strategy: ").append(toIndentedString(strategy)).append("\n");
-    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
+    sb.append("    publickeyAlg: ").append(toIndentedString(publickeyAlg)).append("\n");
+    sb.append("    publickey: ").append(toIndentedString(publickey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -146,7 +146,7 @@ public class AuthenticateCompleteBody {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(java.lang.Object o) {
     if (o == null) {
       return "null";
     }

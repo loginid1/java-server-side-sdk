@@ -18,57 +18,57 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * InlineResponse2003
+ * AuthenticateauthidinitOptions
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class AuthenticateFido2InitResponse {
-  @SerializedName("assertion_payload")
-  private AuthenticateFido2CompleteAssertionPayload assertionPayload = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-01-25T11:19:57.896818-05:00[America/Toronto]")
+public class AuthenticateVerifyInitOptions {
+  @SerializedName("credential_uuid")
+  private String credentialUuid = null;
 
-  public AuthenticateFido2InitResponse assertionPayload(AuthenticateFido2CompleteAssertionPayload assertionPayload) {
-    this.assertionPayload = assertionPayload;
+  public AuthenticateVerifyInitOptions credentialUuid(String credentialUuid) {
+    this.credentialUuid = credentialUuid;
     return this;
   }
 
    /**
-   * Get assertionPayload
-   * @return assertionPayload
+   * Get credentialUuid
+   * @return credentialUuid
   **/
   @Schema(description = "")
-  public AuthenticateFido2CompleteAssertionPayload getAssertionPayload() {
-    return assertionPayload;
+  public String getCredentialUuid() {
+    return credentialUuid;
   }
 
-  public void setAssertionPayload(AuthenticateFido2CompleteAssertionPayload assertionPayload) {
-    this.assertionPayload = assertionPayload;
+  public void setCredentialUuid(String credentialUuid) {
+    this.credentialUuid = credentialUuid;
   }
 
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AuthenticateFido2InitResponse authenticateFido2InitResponse = (AuthenticateFido2InitResponse) o;
-    return Objects.equals(this.assertionPayload, authenticateFido2InitResponse.assertionPayload);
+    AuthenticateVerifyInitOptions authenticateauthidinitOptions = (AuthenticateVerifyInitOptions) o;
+    return Objects.equals(this.credentialUuid, authenticateauthidinitOptions.credentialUuid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(assertionPayload);
+    return Objects.hash(credentialUuid);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2003 {\n");
-
-    sb.append("    assertionPayload: ").append(toIndentedString(assertionPayload)).append("\n");
+    sb.append("class AuthenticateauthidinitOptions {\n");
+    
+    sb.append("    credentialUuid: ").append(toIndentedString(credentialUuid)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -77,7 +77,7 @@ public class AuthenticateFido2InitResponse {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(java.lang.Object o) {
     if (o == null) {
       return "null";
     }

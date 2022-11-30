@@ -18,21 +18,21 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * Fido2InitBody
+ * CredentialsListBody
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class RegisterFido2InitBody {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-01-25T11:19:57.896818-05:00[America/Toronto]")
+public class CredentialsListBody {
   @SerializedName("client_id")
   private String clientId = null;
+
+  @SerializedName("user_id")
+  private String userId = null;
 
   @SerializedName("username")
   private String username = null;
 
-  @SerializedName("options")
-  private RegisterFido2InitOptions options = null;
-
-  public RegisterFido2InitBody clientId(String clientId) {
+  public CredentialsListBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -50,7 +50,25 @@ public class RegisterFido2InitBody {
     this.clientId = clientId;
   }
 
-  public RegisterFido2InitBody username(String username) {
+  public CredentialsListBody userId(String userId) {
+    this.userId = userId;
+    return this;
+  }
+
+   /**
+   * Get userId
+   * @return userId
+  **/
+  @Schema(description = "")
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+
+  public CredentialsListBody username(String username) {
     this.username = username;
     return this;
   }
@@ -68,53 +86,35 @@ public class RegisterFido2InitBody {
     this.username = username;
   }
 
-  public RegisterFido2InitBody options(RegisterFido2InitOptions options) {
-    this.options = options;
-    return this;
-  }
-
-   /**
-   * Get options
-   * @return options
-  **/
-  @Schema(description = "")
-  public RegisterFido2InitOptions getOptions() {
-    return options;
-  }
-
-  public void setOptions(RegisterFido2InitOptions options) {
-    this.options = options;
-  }
-
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegisterFido2InitBody registerFido2InitBody = (RegisterFido2InitBody) o;
-    return Objects.equals(this.clientId, registerFido2InitBody.clientId) &&
-        Objects.equals(this.username, registerFido2InitBody.username) &&
-        Objects.equals(this.options, registerFido2InitBody.options);
+    CredentialsListBody credentialsListBody = (CredentialsListBody) o;
+    return Objects.equals(this.clientId, credentialsListBody.clientId) &&
+        Objects.equals(this.userId, credentialsListBody.userId) &&
+        Objects.equals(this.username, credentialsListBody.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, username, options);
+    return Objects.hash(clientId, userId, username);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Fido2InitBody {\n");
-
+    sb.append("class CredentialsListBody {\n");
+    
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -123,7 +123,7 @@ public class RegisterFido2InitBody {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(java.lang.Object o) {
     if (o == null) {
       return "null";
     }

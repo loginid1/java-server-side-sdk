@@ -37,7 +37,8 @@ public class AuthenticationResponseCredential {
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
     FIDO2("fido2"),
-    PASSWORD("password");
+    PASSWORD("password"),
+    PUBLICKEY("public_key");
 
     private String value;
 

@@ -18,30 +18,30 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * InlineResponse2003
+ * Registerfido2completeOptions
  */
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class AuthenticateFido2InitResponse {
-  @SerializedName("assertion_payload")
-  private AuthenticateFido2CompleteAssertionPayload assertionPayload = null;
+public class RegisterFido2CompleteOptions {
+  @SerializedName("credential_name")
+  private String credentialName = null;
 
-  public AuthenticateFido2InitResponse assertionPayload(AuthenticateFido2CompleteAssertionPayload assertionPayload) {
-    this.assertionPayload = assertionPayload;
+  public RegisterFido2CompleteOptions credentialName(String credentialName) {
+    this.credentialName = credentialName;
     return this;
   }
 
    /**
-   * Get assertionPayload
-   * @return assertionPayload
+   * Get credentialName
+   * @return credentialName
   **/
   @Schema(description = "")
-  public AuthenticateFido2CompleteAssertionPayload getAssertionPayload() {
-    return assertionPayload;
+  public String getCredentialName() {
+    return credentialName;
   }
 
-  public void setAssertionPayload(AuthenticateFido2CompleteAssertionPayload assertionPayload) {
-    this.assertionPayload = assertionPayload;
+  public void setCredentialName(String credentialName) {
+    this.credentialName = credentialName;
   }
 
 
@@ -53,22 +53,22 @@ public class AuthenticateFido2InitResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AuthenticateFido2InitResponse authenticateFido2InitResponse = (AuthenticateFido2InitResponse) o;
-    return Objects.equals(this.assertionPayload, authenticateFido2InitResponse.assertionPayload);
+    RegisterFido2CompleteOptions registerfido2completeOptions = (RegisterFido2CompleteOptions) o;
+    return Objects.equals(this.credentialName, registerfido2completeOptions.credentialName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(assertionPayload);
+    return Objects.hash(credentialName);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2003 {\n");
+    sb.append("class Registerfido2completeOptions {\n");
 
-    sb.append("    assertionPayload: ").append(toIndentedString(assertionPayload)).append("\n");
+    sb.append("    credentialName: ").append(toIndentedString(credentialName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

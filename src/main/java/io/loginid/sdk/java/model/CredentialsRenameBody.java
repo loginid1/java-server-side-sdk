@@ -29,6 +29,9 @@ public class CredentialsRenameBody {
   @SerializedName("user_id")
   private String userId = null;
 
+  @SerializedName("username")
+  private String username = null;
+
   @SerializedName("credential")
   private CredentialsrenameCredential credential = null;
 
@@ -68,6 +71,24 @@ public class CredentialsRenameBody {
     this.userId = userId;
   }
 
+  public CredentialsRenameBody username(String username) {
+    this.username = username;
+    return this;
+  }
+
+   /**
+   * Get username
+   * @return username
+  **/
+  @Schema(description = "")
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
   public CredentialsRenameBody credential(CredentialsrenameCredential credential) {
     this.credential = credential;
     return this;
@@ -98,6 +119,7 @@ public class CredentialsRenameBody {
     CredentialsRenameBody credentialsRenameBody = (CredentialsRenameBody) o;
     return Objects.equals(this.clientId, credentialsRenameBody.clientId) &&
         Objects.equals(this.userId, credentialsRenameBody.userId) &&
+        Objects.equals(this.username, credentialsRenameBody.username) &&
         Objects.equals(this.credential, credentialsRenameBody.credential);
   }
 
@@ -114,6 +136,7 @@ public class CredentialsRenameBody {
 
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    credential: ").append(toIndentedString(credential)).append("\n");
     sb.append("}");
     return sb.toString();

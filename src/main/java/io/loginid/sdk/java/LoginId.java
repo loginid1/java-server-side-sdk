@@ -2,6 +2,8 @@ package io.loginid.sdk.java;
 
 import io.jsonwebtoken.*;
 import io.loginid.sdk.java.api.AuthenticateApi;
+import io.loginid.sdk.java.api.CredentialsApi;
+import io.loginid.sdk.java.api.RegisterApi;
 import io.loginid.sdk.java.api.TransactionsApi;
 import io.loginid.sdk.java.invokers.ApiClient;
 import io.loginid.sdk.java.invokers.ApiException;
@@ -17,7 +19,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.time.Instant;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("unused")
 public class LoginId {
@@ -69,6 +70,13 @@ public class LoginId {
      */
     public String getRandomString() {
         return getRandomString(16);
+    }
+
+    /**
+     * Verifies if the string is null or empty
+     * */
+    protected boolean isNullOrEmpty(@Nullable String value) {
+        return value == null || value.isEmpty();
     }
 
     /**
@@ -179,7 +187,7 @@ public class LoginId {
         headers.put("typ", "JWT");
 
         KeyFactory keyFactory = KeyFactory.getInstance("EC");
-        String privateKeyContent = privateKey;
+        String privateKeyContent = this.privateKey;
         privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PRIVATE KEY-----", "")
                 .replace("-----END PRIVATE KEY-----", "");
         PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
@@ -231,7 +239,7 @@ public class LoginId {
         headers.put("typ", "JWT");
 
         KeyFactory keyFactory = KeyFactory.getInstance("EC");
-        String privateKeyContent = privateKey;
+        String privateKeyContent = this.privateKey;
         privateKeyContent = privateKeyContent.replaceAll("\\n", "").replace("-----BEGIN PRIVATE KEY-----", "")
                 .replace("-----END PRIVATE KEY-----", "");
         PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
@@ -256,9 +264,10 @@ public class LoginId {
 
         ApiClient apiClient = transactionsApi.getApiClient();
         apiClient.setBasePath(baseUrl);
-
-        String token = generateTxAuthToken(txPayload, username, null);
-        apiClient.setAccessToken(token);
+        if (!this.privateKey.isEmpty()) {
+            String token = generateTxAuthToken(txPayload, username, null);
+            apiClient.setAccessToken(token);
+        }
 
         TxBody txBody = new TxBody();
         txBody.setClientId(clientId);
@@ -306,6 +315,234 @@ public class LoginId {
     }
 
     /**
+     * Initiate a FIDO2 registration
+     *
+     * @param username The username to be registered.
+     * @param options Options to allow roaming authenticators, override name and set the display name.
+     * @return The Fido2 attestation payload
+     * @throws ApiException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public RegisterFido2InitResponse registerFido2Init(String username, @Nullable RegisterFido2InitOptions options) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+        RegisterApi api = new RegisterApi();
+
+        ApiClient apiClient = api.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        if (!this.privateKey.isEmpty()) {
+            String token = generateServiceToken("auth.register", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
+
+        RegisterFido2InitBody body = new RegisterFido2InitBody();
+        body.setClientId(getClientId());
+        body.setUsername(username);
+        if (options != null) {
+            body.setOptions(options);
+        }
+
+        return api.registerFido2InitPost(body,null);
+    }
+
+    /**
+     * Complete a FIDO2 registration
+     *
+     * @param username The username.
+     * @param attestationPayload The attestation payload.
+     * @param options Options to allow updating the credential name.
+     * @return The Fido2 attestation payload
+     * @throws ApiException
+     */
+    public AuthenticationResponse registerFido2Complete(String username, RegisterFido2CompleteAttestationPayload attestationPayload, @Nullable RegisterFido2CompleteOptions options) throws ApiException {
+        RegisterApi api = new RegisterApi();
+
+        ApiClient apiClient = api.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+
+        RegisterFido2CompleteBody body = new RegisterFido2CompleteBody();
+        body.setClientId(getClientId());
+        body.setUsername(username);
+        body.setAttestationPayload(attestationPayload);
+        if (options != null) {
+            body.setOptions(options);
+        }
+
+        return api.registerFido2CompletePost(body,null);
+    }
+
+    /**
+     * Initialize authentication process with a FIDO2 credential
+     *
+     * @param username The username to be authenticated.
+     * @return The Fido2 assertion payload
+     * @throws ApiException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public AuthenticateFido2InitResponse authenticateFido2Init(String username) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+        AuthenticateApi api = new AuthenticateApi();
+
+        ApiClient apiClient = api.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        if (!this.privateKey.isEmpty()) {
+            String token = generateServiceToken("auth.login", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
+
+        AuthenticateFido2InitBody body = new AuthenticateFido2InitBody();
+        body.setClientId(getClientId());
+        body.setUsername(username);
+
+        return api.authenticateFido2InitPost(body,null);
+    }
+
+    /**
+     * Complete authentication process with a FIDO2 credential
+     *
+     * @param username The username to be authenticated.
+     * @param assertionPayload The assertion payload.
+     * @return The authentication response
+     * @throws ApiException
+     */
+    public AuthenticationResponse authenticateFido2Complete(String username, AuthenticateCompletePayload assertionPayload) throws ApiException {
+        AuthenticateApi api = new AuthenticateApi();
+
+        ApiClient apiClient = api.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+
+        AuthenticateFido2CompleteBody body = new AuthenticateFido2CompleteBody();
+        body.setClientId(getClientId());
+        body.setUsername(username);
+        body.setAssertionPayload(assertionPayload);
+
+        return api.authenticateFido2CompletePost(body,null);
+    }
+
+    /**
+     * Register a new user with password
+     *
+     * @param username The username to be registered
+     * @param password The password
+     * @return The registration response
+     * @throws ApiException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public AuthenticationResponse registerPassword(String username, String password) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+        RegisterApi api = new RegisterApi();
+
+        ApiClient apiClient = api.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        if (!this.privateKey.isEmpty()) {
+            String token = generateServiceToken("auth.register", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
+
+        RegisterPasswordBody body = new RegisterPasswordBody();
+        body.setClientId(getClientId());
+        body.setUsername(username);
+        body.setPassword(password);
+        body.setPasswordConfirmation(password);
+
+        return api.registerPasswordPost(body,null);
+    }
+
+    /**
+     * Authenticate user with password
+     *
+     * @param username The username to be authenticated
+     * @param password The password
+     * @return The authentication response
+     * @throws ApiException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public AuthenticationResponse authenticatePassword(String username, String password) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+        AuthenticateApi api = new AuthenticateApi();
+
+        ApiClient apiClient = api.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        if (!this.privateKey.isEmpty()) {
+            String token = generateServiceToken("auth.login", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
+
+        AuthenticatePasswordBody body = new AuthenticatePasswordBody();
+        body.setClientId(getClientId());
+        body.setUsername(username);
+        body.setPassword(password);
+
+        return api.authenticatePasswordPost(body,null);
+    }
+
+    /**
+     * Initialize adding a FIDO2 credential with pre-authorized code
+     *
+     * @param username The username to add the new credential.
+     * @param code The authorization code
+     * @param codeType The code type, must be `short`, `long` or `phrase`
+     * @param options Options to allow roaming authenticators, override name and set the display name.
+     * @return The FIDO2 attestation payload.
+     * @throws ApiException
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
+    public CredentialsFido2InitCodeResponse initAddFido2CredentialWithCode(String username, String code, String codeType, @Nullable CredentialsFido2InitOptions options) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+        if (!isValidCodeType(codeType)) {
+            throw new IllegalArgumentException();
+        }
+        CredentialsApi api = new CredentialsApi();
+
+        ApiClient apiClient = api.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        if (!this.privateKey.isEmpty()) {
+            String token = generateServiceToken("credentials.add", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
+
+        CredentialsFido2InitCodeBody body = new CredentialsFido2InitCodeBody();
+        body.setClientId(getClientId());
+        body.setUsername(username);
+
+        CredentialsFido2InitCodeAuthenticationCode authenticationCode = new CredentialsFido2InitCodeAuthenticationCode();
+        authenticationCode.setCode(code);
+        authenticationCode.setType(CredentialsFido2InitCodeAuthenticationCode.TypeEnum.fromValue(codeType));
+
+        body.setAuthenticationCode(authenticationCode);
+        if (options != null) {
+            body.setOptions(options);
+        }
+
+        return api.credentialsFido2InitCodePost(body,null);
+    }
+
+    /**
+     * Complete adding a FIDO2 credential (initialized with or without code)
+     *
+     * @param username The username to add the new credential.
+     * @param attestationPayload The attestation payload returned by the init function
+     * @param options Options to allow updating the credential name.
+     * @return The FIDO2 attestation payload.
+     * @throws ApiException
+     */
+    public AuthenticationResponse completeAddFido2Credential(String username, CredentialsFido2CompleteAttestationPayload attestationPayload, @Nullable RegisterFido2CompleteOptions options) throws ApiException {
+        CredentialsApi api = new CredentialsApi();
+
+        ApiClient apiClient = api.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+
+        CredentialsCompleteBody body = new CredentialsCompleteBody();
+        body.setClientId(getClientId());
+        body.setUsername(username);
+        body.setAttestationPayload(attestationPayload);
+        if (options != null) {
+            body.setOptions(options);
+        }
+
+        return api.credentialsFido2CompletePost(body,null);
+    }
+
+    /**
      * Waits for a given code
      *
      * @param username The username
@@ -316,18 +553,35 @@ public class LoginId {
      * @throws InvalidKeySpecException
      * @throws ApiException
      */
-    public AuthenticationResponse waitCode(String username, String code, String codeType) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+    public AuthenticationResponse authenticateCodeWait(String username, String code, String codeType) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
+        return this.waitCode(username, code, codeType);
+    }
+
+    /**
+     * Waits for a given code
+     *
+     * @param username The username
+     * @param code     The code associated with the username
+     * @param codeType The type of the code
+     * @return The response body from Code Wait
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    @Deprecated
+    public AuthenticationResponse waitCode(String username, String code, String codeType) throws ApiException, NoSuchAlgorithmException, InvalidKeySpecException {
         if (!isValidCodeType(codeType)) {
             throw new IllegalArgumentException();
         }
 
-        String token = generateServiceToken("auth.temporary", null, null, null, null);
-
         ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(getBaseUrl());
-        apiClient.setAccessToken(token);
         apiClient.setConnectTimeout(3*60*1000);
         apiClient.setReadTimeout(3*60*1000);
+        if (!this.privateKey.isEmpty()) {
+            String token = generateServiceToken("auth.temporary", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
 
         AuthenticateApi authenticateApi = new AuthenticateApi(apiClient);
 
@@ -347,6 +601,66 @@ public class LoginId {
             throw new SecurityException();
         }
 
+        return result;
+    }
+
+    /**
+     * init user login process with public key
+     *
+     * @param username The username to be authenticated.
+     * @param publickey the public key in PEM format.
+     * @param publickeyAlg The algorithm of the public key. Defaults to "ES256".
+     * @return The challenge id and nonce
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public AuthenticatePublickeyInitResponse authenticatePublickeyInit(String username, String publickey, String publickeyAlg) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        AuthenticateApi authenticateApi = new AuthenticateApi();
+
+        ApiClient apiClient = authenticateApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+        if (!this.privateKey.isEmpty()) {
+            String token = generateServiceToken("auth.login", null, null, null, null);
+            apiClient.setAccessToken(token);
+        }
+
+        PublickeyInitBody publickeyInitBody = new PublickeyInitBody();
+        publickeyInitBody.setClientId(getClientId());
+        publickeyInitBody.setUsername(username);
+        publickeyInitBody.setPublickey(publickey);
+        if (publickeyAlg.length() > 0) {
+            publickeyInitBody.setPublickeyAlg(publickeyAlg);
+        } 
+
+        AuthenticatePublickeyInitResponse result = authenticateApi.authenticatePublickeyInitPost(publickeyInitBody);
+        return result;
+    }
+
+    /**
+     * complete user login process with public key
+     *
+     * @param username The ID of the user to generate the new recovery code for
+     * @param challengeID The temporary generated ID 
+     * @param assertion The JWT used for assertion
+     * @return The response body from the code generation request
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws ApiException
+     */
+    public AuthenticationResponse authenticatePublickeyComplete(String username, String challengeID, String assertion) throws NoSuchAlgorithmException, InvalidKeySpecException, ApiException {
+        AuthenticateApi authenticateApi = new AuthenticateApi();
+
+        ApiClient apiClient = authenticateApi.getApiClient();
+        apiClient.setBasePath(getBaseUrl());
+
+        PublickeyCompleteBody publickeyCompleteBody = new PublickeyCompleteBody();
+        publickeyCompleteBody.setClientId(getClientId());
+        publickeyCompleteBody.setUsername(username);
+        publickeyCompleteBody.setChallengeId(challengeID);
+        publickeyCompleteBody.setAssertion(assertion);
+
+        AuthenticationResponse result = authenticateApi.authenticatePublickeyCompletePost(publickeyCompleteBody);
         return result;
     }
 }

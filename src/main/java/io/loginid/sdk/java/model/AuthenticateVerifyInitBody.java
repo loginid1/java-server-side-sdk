@@ -13,29 +13,27 @@
 package io.loginid.sdk.java.model;
 
 import com.google.gson.annotations.SerializedName;
+import io.loginid.sdk.java.model.AuthenticateVerifyInitOptions;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Objects;
 
 /**
- * AuthenticateCompleteBody
+ * AuthidInitBody
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class AuthenticateCompleteBody {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-01-25T11:19:57.896818-05:00[America/Toronto]")
+public class AuthenticateVerifyInitBody {
   @SerializedName("client_id")
   private String clientId = null;
 
   @SerializedName("username")
   private String username = null;
 
-  @SerializedName("strategy")
-  private String strategy = null;
+  @SerializedName("options")
+  private AuthenticateVerifyInitOptions options = null;
 
-  @SerializedName("payload")
-  private AuthenticateCompletePayload payload = null;
-
-  public AuthenticateCompleteBody clientId(String clientId) {
+  public AuthenticateVerifyInitBody clientId(String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -53,7 +51,7 @@ public class AuthenticateCompleteBody {
     this.clientId = clientId;
   }
 
-  public AuthenticateCompleteBody username(String username) {
+  public AuthenticateVerifyInitBody username(String username) {
     this.username = username;
     return this;
   }
@@ -71,73 +69,53 @@ public class AuthenticateCompleteBody {
     this.username = username;
   }
 
-  public AuthenticateCompleteBody strategy(String strategy) {
-    this.strategy = strategy;
+  public AuthenticateVerifyInitBody options(AuthenticateVerifyInitOptions options) {
+    this.options = options;
     return this;
   }
 
    /**
-   * Get strategy
-   * @return strategy
-  **/
-  @Schema(example = "fido2", description = "")
-  public String getStrategy() {
-    return strategy;
-  }
-
-  public void setStrategy(String strategy) {
-    this.strategy = strategy;
-  }
-
-  public AuthenticateCompleteBody payload(AuthenticateCompletePayload payload) {
-    this.payload = payload;
-    return this;
-  }
-
-   /**
-   * Get payload
-   * @return payload
+   * Get options
+   * @return options
   **/
   @Schema(description = "")
-  public AuthenticateCompletePayload getPayload() {
-    return payload;
+  public AuthenticateVerifyInitOptions getOptions() {
+    return options;
   }
 
-  public void setPayload(AuthenticateCompletePayload payload) {
-    this.payload = payload;
+  public void setOptions(AuthenticateVerifyInitOptions authenticateauthidinitOptions) {
+    this.options = authenticateauthidinitOptions;
   }
 
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AuthenticateCompleteBody authenticateCompleteBody = (AuthenticateCompleteBody) o;
-    return Objects.equals(this.clientId, authenticateCompleteBody.clientId) &&
-        Objects.equals(this.username, authenticateCompleteBody.username) &&
-        Objects.equals(this.strategy, authenticateCompleteBody.strategy) &&
-        Objects.equals(this.payload, authenticateCompleteBody.payload);
+    AuthenticateVerifyInitBody authidInitBody = (AuthenticateVerifyInitBody) o;
+    return Objects.equals(this.clientId, authidInitBody.clientId) &&
+        Objects.equals(this.username, authidInitBody.username) &&
+        Objects.equals(this.options, authidInitBody.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, username, strategy, payload);
+    return Objects.hash(clientId, username, options);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AuthenticateCompleteBody {\n");
-
+    sb.append("class AuthidInitBody {\n");
+    
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    strategy: ").append(toIndentedString(strategy)).append("\n");
-    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -146,7 +124,7 @@ public class AuthenticateCompleteBody {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(java.lang.Object o) {
     if (o == null) {
       return "null";
     }

@@ -18,15 +18,15 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
- * Registerfido2completeOptions
+ * CredentialsPublickeyOptions
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-06-10T08:30:05.952Z[GMT]")
-public class Registerfido2completeOptions {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-01-25T11:19:57.896818-05:00[America/Toronto]")
+public class CredentialsPublickeyOptions {
   @SerializedName("credential_name")
   private String credentialName = null;
 
-  public Registerfido2completeOptions credentialName(String credentialName) {
+  public CredentialsPublickeyOptions credentialName(String credentialName) {
     this.credentialName = credentialName;
     return this;
   }
@@ -35,7 +35,7 @@ public class Registerfido2completeOptions {
    * Get credentialName
    * @return credentialName
   **/
-  @Schema(description = "")
+  @Schema(example = "[Optional display name]", description = "")
   public String getCredentialName() {
     return credentialName;
   }
@@ -46,15 +46,15 @@ public class Registerfido2completeOptions {
 
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Registerfido2completeOptions registerfido2completeOptions = (Registerfido2completeOptions) o;
-    return Objects.equals(this.credentialName, registerfido2completeOptions.credentialName);
+    CredentialsPublickeyOptions credentialsPublickeyOptions = (CredentialsPublickeyOptions) o;
+    return Objects.equals(this.credentialName, credentialsPublickeyOptions.credentialName);
   }
 
   @Override
@@ -66,8 +66,8 @@ public class Registerfido2completeOptions {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Registerfido2completeOptions {\n");
-
+    sb.append("class CredentialsPublickeyOptions {\n");
+    
     sb.append("    credentialName: ").append(toIndentedString(credentialName)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -77,7 +77,7 @@ public class Registerfido2completeOptions {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(java.lang.Object o) {
     if (o == null) {
       return "null";
     }
